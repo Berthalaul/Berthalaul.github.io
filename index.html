@@ -395,3 +395,400 @@ document.addEventListener("click",(e)=>{
 
 </body>
 </html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pretty Y2K Background</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    overflow:hidden;
+    height:100vh;
+    position:relative;
+    background:
+    linear-gradient(
+    135deg,
+    #ff98cb,
+    #ffb6dd,
+    #ff9fce
+    );
+}
+
+/* soft glitter texture */
+
+body::before{
+    content:"";
+    position:absolute;
+    inset:0;
+
+    background-image:
+    radial-gradient(
+    rgba(255,255,255,.18) 1px,
+    transparent 1px);
+
+    background-size:5px 5px;
+
+    opacity:.4;
+}
+
+/* dreamy glow */
+
+.glow{
+
+    position:absolute;
+
+    width:700px;
+    height:700px;
+
+    border-radius:50%;
+
+    background:
+    radial-gradient(circle,
+    rgba(255,255,255,.18),
+    transparent 70%);
+
+    filter:blur(80px);
+
+    animation:moveGlow 12s infinite alternate ease-in-out;
+}
+
+.glow1{
+    top:-200px;
+    left:-150px;
+}
+
+.glow2{
+    bottom:-250px;
+    right:-200px;
+}
+
+@keyframes moveGlow{
+
+    from{
+        transform:translate(0,0);
+    }
+
+    to{
+        transform:translate(40px,-20px);
+    }
+}
+
+/* =========================================
+BIG Y2K FLOWERS
+========================================= */
+
+.flower{
+
+    position:absolute;
+
+    width:220px;
+    height:220px;
+
+    animation:
+    float 8s infinite ease-in-out;
+
+    transition:.3s;
+
+}
+
+/* petals */
+
+.petal{
+
+    position:absolute;
+
+    width:95px;
+    height:95px;
+
+    background:
+    radial-gradient(circle at top,
+    rgba(255,255,255,.95),
+    rgba(255,220,240,.75));
+
+    border-radius:50% 50% 50% 0;
+
+    box-shadow:
+    0 0 15px rgba(255,255,255,.7);
+
+}
+
+/* petal positions */
+
+.p1{
+    left:62px;
+    top:0;
+    transform:rotate(45deg);
+}
+
+.p2{
+    right:0;
+    top:62px;
+    transform:rotate(135deg);
+}
+
+.p3{
+    left:62px;
+    bottom:0;
+    transform:rotate(225deg);
+}
+
+.p4{
+    left:0;
+    top:62px;
+    transform:rotate(315deg);
+}
+
+/* center */
+
+.center{
+
+    position:absolute;
+
+    width:70px;
+    height:70px;
+
+    left:75px;
+    top:75px;
+
+    border-radius:50%;
+
+    background:
+    radial-gradient(circle,
+    white,
+    #ff9fd4);
+
+    box-shadow:
+    0 0 20px white,
+    0 0 40px #ffd6ee;
+}
+
+/* hover sparkle */
+
+.flower.active{
+
+    filter:
+    drop-shadow(0 0 20px white)
+    drop-shadow(0 0 40px #ffd6ee);
+
+    transform:scale(1.08);
+}
+
+/* =========================================
+SPARKLES
+========================================= */
+
+.sparkle{
+
+    position:absolute;
+
+    color:white;
+
+    font-size:18px;
+
+    pointer-events:none;
+
+    opacity:.7;
+
+    animation:
+    twinkle 2s infinite alternate;
+
+    text-shadow:
+    0 0 10px white,
+    0 0 20px white;
+}
+
+@keyframes twinkle{
+
+    from{
+        transform:scale(.7);
+        opacity:.4;
+    }
+
+    to{
+        transform:scale(1.3);
+        opacity:1;
+    }
+}
+
+/* =========================================
+SWIRLS
+========================================= */
+
+.swirl{
+
+    position:absolute;
+
+    border:3px solid rgba(255,255,255,.7);
+
+    border-color:white transparent transparent transparent;
+
+    border-radius:50%;
+
+    opacity:.75;
+}
+
+/* =========================================
+ANIMATION
+========================================= */
+
+@keyframes float{
+
+    0%,100%{
+        transform:translateY(0px);
+    }
+
+    50%{
+        transform:translateY(-15px);
+    }
+}
+
+</style>
+</head>
+<body>
+
+<!-- glowing background -->
+<div class="glow glow1"></div>
+<div class="glow glow2"></div>
+
+<!-- swirls -->
+<div class="swirl"
+style="
+width:700px;
+height:700px;
+left:-250px;
+top:-250px;
+"></div>
+
+<div class="swirl"
+style="
+width:550px;
+height:550px;
+right:-180px;
+bottom:-180px;
+"></div>
+
+<!-- flowers -->
+<div class="flower"
+style="
+top:40px;
+right:40px;
+transform:scale(1.1);
+">
+
+    <div class="petal p1"></div>
+    <div class="petal p2"></div>
+    <div class="petal p3"></div>
+    <div class="petal p4"></div>
+    <div class="center"></div>
+
+</div>
+
+<div class="flower"
+style="
+bottom:20px;
+right:180px;
+transform:scale(.9);
+">
+
+    <div class="petal p1"></div>
+    <div class="petal p2"></div>
+    <div class="petal p3"></div>
+    <div class="petal p4"></div>
+    <div class="center"></div>
+
+</div>
+
+<div class="flower"
+style="
+top:160px;
+right:220px;
+transform:scale(.7);
+opacity:.7;
+">
+
+    <div class="petal p1"></div>
+    <div class="petal p2"></div>
+    <div class="petal p3"></div>
+    <div class="petal p4"></div>
+    <div class="center"></div>
+
+</div>
+
+<!-- sparkles -->
+
+<script>
+
+/* lightweight sparkles */
+
+for(let i=0;i<40;i++){
+
+    const sparkle =
+    document.createElement("div");
+
+    sparkle.classList.add("sparkle");
+
+    sparkle.innerHTML = "✦";
+
+    sparkle.style.left =
+    Math.random()*100+"vw";
+
+    sparkle.style.top =
+    Math.random()*100+"vh";
+
+    sparkle.style.fontSize =
+    (8 + Math.random()*16)+"px";
+
+    sparkle.style.animationDelay =
+    Math.random()*2+"s";
+
+    document.body.appendChild(sparkle);
+}
+
+/* click glow */
+
+document.addEventListener("click",(e)=>{
+
+    const flowers =
+    document.querySelectorAll(".flower");
+
+    flowers.forEach(flower=>{
+
+        const rect =
+        flower.getBoundingClientRect();
+
+        const fx =
+        rect.left + rect.width/2;
+
+        const fy =
+        rect.top + rect.height/2;
+
+        const distance =
+        Math.hypot(
+            e.clientX - fx,
+            e.clientY - fy
+        );
+
+        if(distance < 300){
+
+            flower.classList.add("active");
+
+            setTimeout(()=>{
+                flower.classList.remove("active");
+            },500);
+        }
+    });
+});
+
+</script>
+
+</body>
+</html>
