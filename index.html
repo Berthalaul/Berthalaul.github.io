@@ -203,3 +203,222 @@ function play(freq) {
 
 </body>
 </html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>3D Y2K World</title>
+
+<style>
+    body {
+        margin: 0;
+        overflow: hidden;
+        background: linear-gradient(135deg, #bfe9ff, #ffd1dc);
+        perspective: 1200px;
+        font-family: Arial;
+    }
+
+    /* Toggle */
+    #toggle {
+        position: fixed;
+        top: 15px;
+        right: 15px;
+        z-index: 9999;
+        padding: 10px 15px;
+        border-radius: 20px;
+        border: none;
+        cursor: pointer;
+        background: white;
+        font-weight: bold;
+        box-shadow: 0 0 15px #0003;
+    }
+
+    /* ===== 3D FLOWER WORLD (BACKGROUND ONLY) ===== */
+    .flower {
+        position: absolute;
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        background: radial-gradient(circle at 30% 30%, #fff, #ff9de2, #7fd3ff);
+        box-shadow: 0 0 20px #fff, 0 0 30px #ffb3ec;
+        transform-style: preserve-3d;
+        animation: float3d 8s infinite ease-in-out;
+        z-index: 1; /* ALWAYS behind computer */
+    }
+
+    @keyframes float3d {
+        0%   { transform: translate3d(0,0,-200px) rotateY(0deg); }
+        50%  { transform: translate3d(0,-40px,-300px) rotateY(180deg); }
+        100% { transform: translate3d(0,0,-200px) rotateY(360deg); }
+    }
+
+    /* ===== COMPUTER SCENE ===== */
+    #computerWrapper {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform-style: preserve-3d;
+        transform: translate(-50%, -50%) rotateX(10deg);
+        z-index: 10;
+        transition: opacity 0.5s ease;
+    }
+
+    /* 3D monitor */
+    #computer {
+        width: 520px;
+        height: 360px;
+        background: #1a1a1a;
+        border-radius: 20px;
+        box-shadow:
+            0 40px 80px rgba(0,0,0,0.5),
+            0 0 80px #ffb3ec,
+            0 0 120px #8fd3ff;
+        transform: rotateX(8deg) rotateY(-8deg);
+        padding: 20px;
+        color: white;
+        position: relative;
+    }
+
+    /* screen */
+    #screen {
+        width: 100%;
+        height: 60%;
+        background: #0d0d0d;
+        border-radius: 12px;
+        box-shadow: inset 0 0 30px #8fd3ff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #8fd3ff;
+        font-size: 18px;
+        margin-bottom: 15px;
+    }
+
+    .icons {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 10px;
+    }
+
+    .icon {
+        background: #2a2a2a;
+        padding: 10px;
+        border-radius: 10px;
+        cursor: pointer;
+        font-size: 12px;
+        transition: 0.2s;
+        text-align: center;
+    }
+
+    .icon:hover {
+        transform: scale(1.08);
+        background: #444;
+    }
+
+    /* hidden computer */
+    .off {
+        opacity: 0;
+        pointer-events: none;
+    }
+
+    /* piano */
+    #piano {
+        display:none;
+        position:fixed;
+        bottom:20px;
+        left:50%;
+        transform:translateX(-50%);
+        background:white;
+        padding:10px;
+        border-radius:10px;
+        z-index:9999;
+    }
+</style>
+</head>
+
+<body>
+
+<button id="toggle">Turn OFF Computer 💻</button>
+
+<!-- FLOWERS (BACKGROUND 3D WORLD) -->
+<script>
+for (let i = 0; i < 35; i++) {
+    let f = document.createElement("div");
+    f.className = "flower";
+
+    f.style.left = Math.random() * window.innerWidth + "px";
+    f.style.top = Math.random() * window.innerHeight + "px";
+
+    let size = 30 + Math.random() * 80;
+    f.style.width = size + "px";
+    f.style.height = size + "px";
+
+    f.style.transform = `
+        translate3d(${Math.random()*200-100}px, ${Math.random()*200-100}px, ${-200 - Math.random()*400}px)
+        rotateY(${Math.random()*360}deg)
+    `;
+
+    document.body.appendChild(f);
+}
+</script>
+
+<!-- COMPUTER -->
+<div id="computerWrapper">
+    <div id="computer">
+        <div id="screen">Y2K 3D SYSTEM ONLINE ✨</div>
+
+        <div class="icons">
+            <div class="icon" onclick="window.open('https://supermario.nintendo.com/')">Super Mario</div>
+            <div class="icon" onclick="window.open('https://winxclub.com/')">Winx</div>
+            <div class="icon" onclick="window.open('https://bratz.com/')">Bratz</div>
+            <div class="icon" onclick="window.open('https://www.youtube.com/watch?v=2vjPBrBU-TM')">2000s Music</div>
+            <div class="icon" onclick="document.getElementById('piano').style.display='block'">Piano</div>
+        </div>
+    </div>
+</div>
+
+<!-- PIANO -->
+<div id="piano">
+    <div onclick="play(261.6)" style="display:inline-block;width:40px;height:120px;background:white;border:1px solid black;"></div>
+    <div onclick="play(293.7)" style="display:inline-block;width:40px;height:120px;background:white;border:1px solid black;"></div>
+    <div onclick="play(329.6)" style="display:inline-block;width:40px;height:120px;background:white;border:1px solid black;"></div>
+    <div onclick="play(349.2)" style="display:inline-block;width:40px;height:120px;background:white;border:1px solid black;"></div>
+    <button onclick="document.getElementById('piano').style.display='none'">Close</button>
+</div>
+
+<script>
+let computerOn = true;
+
+/* toggle ONLY computer */
+document.getElementById("toggle").onclick = () => {
+    computerOn = !computerOn;
+
+    document.getElementById("computerWrapper").classList.toggle("off");
+
+    document.getElementById("toggle").innerText =
+        computerOn ? "Turn OFF Computer 💻" : "Turn ON Computer 💻";
+};
+
+/* piano sound */
+function play(freq) {
+    let ctx = new (window.AudioContext || window.webkitAudioContext)();
+    let osc = ctx.createOscillator();
+    let gain = ctx.createGain();
+
+    osc.frequency.value = freq;
+    osc.type = "sine";
+
+    osc.connect(gain);
+    gain.connect(ctx.destination);
+
+    gain.gain.setValueAtTime(0.2, ctx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + 1);
+
+    osc.start();
+    osc.stop(ctx.currentTime + 1);
+}
+</script>
+
+</body>
+</html>
