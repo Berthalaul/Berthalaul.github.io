@@ -3,353 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>3D Y2K Flower Background</title>
-
-<style>
-
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-}
-
-body{
-    overflow:hidden;
-    height:100vh;
-
-    background:
-    radial-gradient(circle at top left,
-    #ffb7dc 0%,
-    transparent 30%),
-
-    radial-gradient(circle at bottom right,
-    #ffc7e8 0%,
-    transparent 30%),
-
-    linear-gradient(
-    135deg,
-    #ff8fc6,
-    #ffb1da,
-    #ff9ccc
-    );
-
-    position:relative;
-}
-
-/* glitter texture */
-
-body::before{
-    content:"";
-    position:absolute;
-    inset:0;
-
-    background-image:
-    radial-gradient(
-    rgba(255,255,255,0.22) 1px,
-    transparent 1px);
-
-    background-size:5px 5px;
-
-    opacity:.45;
-
-    pointer-events:none;
-}
-
-/* dreamy fog */
-
-body::after{
-    content:"";
-    position:absolute;
-    inset:0;
-
-    background:
-    radial-gradient(circle at center,
-    rgba(255,255,255,0.12),
-    transparent 70%);
-
-    filter:blur(60px);
-
-    pointer-events:none;
-}
-
-/* flowers */
-
-.flower{
-    position:absolute;
-    color:rgba(255,255,255,0.88);
-
-    text-shadow:
-    0 0 15px white,
-    0 0 35px #ffd9f1,
-    0 0 60px #fff;
-
-    filter:drop-shadow(0 0 25px rgba(255,255,255,.7));
-
-    animation:
-    floatFlower linear infinite,
-    pulse 3s ease-in-out infinite alternate;
-}
-
-/* flower sparkle */
-
-.flower::after{
-    content:"✦";
-    position:absolute;
-    top:-10px;
-    right:-10px;
-
-    font-size:28px;
-
-    color:white;
-
-    animation:twinkle 2s infinite alternate;
-
-    text-shadow:
-    0 0 10px white,
-    0 0 20px white;
-}
-
-@keyframes floatFlower{
-
-    from{
-        transform:
-        translateY(110vh)
-        rotate(0deg)
-        scale(1);
-    }
-
-    to{
-        transform:
-        translateY(-130vh)
-        rotate(360deg)
-        scale(1.1);
-    }
-}
-
-@keyframes pulse{
-
-    from{
-        opacity:.7;
-    }
-
-    to{
-        opacity:1;
-    }
-}
-
-@keyframes twinkle{
-
-    from{
-        transform:scale(.6);
-        opacity:.4;
-    }
-
-    to{
-        transform:scale(1.4);
-        opacity:1;
-    }
-}
-
-/* glowing vines */
-
-.vine{
-    position:absolute;
-    border:3px solid rgba(255,255,255,.75);
-
-    border-color:white transparent transparent transparent;
-
-    border-radius:50%;
-
-    filter:
-    drop-shadow(0 0 12px white);
-
-    opacity:.8;
-
-    animation:spin linear infinite;
-}
-
-/* 3D depth */
-
-.layer1{
-    transform:perspective(1000px) rotateX(10deg);
-}
-
-.layer2{
-    transform:perspective(1000px) rotateX(-8deg);
-}
-
-.layer3{
-    transform:perspective(1000px) rotateY(12deg);
-}
-
-@keyframes spin{
-
-    from{
-        transform:rotate(0deg);
-    }
-
-    to{
-        transform:rotate(360deg);
-    }
-}
-
-/* extra sparkles */
-
-.sparkle{
-    position:absolute;
-
-    color:white;
-
-    animation:
-    sparkleFloat linear infinite,
-    twinkle 2s infinite alternate;
-
-    text-shadow:
-    0 0 10px white,
-    0 0 25px white;
-}
-
-@keyframes sparkleFloat{
-
-    from{
-        transform:translateY(100vh);
-    }
-
-    to{
-        transform:translateY(-100vh);
-    }
-}
-
-</style>
-</head>
-<body>
-
-<!-- vines -->
-<div class="vine layer1"
-style="
-width:900px;
-height:900px;
-top:-300px;
-left:-250px;
-animation-duration:40s;
-"></div>
-
-<div class="vine layer2"
-style="
-width:700px;
-height:700px;
-bottom:-250px;
-right:-200px;
-animation-duration:30s;
-"></div>
-
-<div class="vine layer3"
-style="
-width:600px;
-height:600px;
-top:120px;
-right:-180px;
-animation-duration:26s;
-"></div>
-
-<script>
-
-/* giant flowers */
-
-const flowers = ["🌸","❀","✿","🌺"];
-
-for(let i=0;i<18;i++){
-
-    const f = document.createElement("div");
-
-    f.classList.add("flower");
-
-    f.innerHTML =
-    flowers[Math.floor(Math.random()*flowers.length)];
-
-    f.style.left =
-    Math.random()*100+"vw";
-
-    f.style.fontSize =
-    (80 + Math.random()*140)+"px";
-
-    f.style.top =
-    Math.random()*100+"vh";
-
-    f.style.animationDuration =
-    (18 + Math.random()*25)+"s";
-
-    f.style.animationDelay =
-    (-Math.random()*20)+"s";
-
-    document.body.appendChild(f);
-}
-
-/* sparkles */
-
-for(let i=0;i<120;i++){
-
-    const s = document.createElement("div");
-
-    s.classList.add("sparkle");
-
-    s.innerHTML = "✦";
-
-    s.style.left =
-    Math.random()*100+"vw";
-
-    s.style.top =
-    Math.random()*100+"vh";
-
-    s.style.fontSize =
-    (6 + Math.random()*20)+"px";
-
-    s.style.animationDuration =
-    (8 + Math.random()*12)+"s";
-
-    s.style.animationDelay =
-    (-Math.random()*20)+"s";
-
-    document.body.appendChild(s);
-}
-
-/* mouse glow */
-
-document.addEventListener("mousemove",(e)=>{
-
-    document.body.style.background = `
-
-    radial-gradient(circle at ${e.clientX}px ${e.clientY}px,
-    rgba(255,255,255,.16),
-    transparent 18%),
-
-    radial-gradient(circle at top left,
-    #ffb7dc 0%,
-    transparent 30%),
-
-    radial-gradient(circle at bottom right,
-    #ffc7e8 0%,
-    transparent 30%),
-
-    linear-gradient(
-    135deg,
-    #ff8fc6,
-    #ffb1da,
-    #ff9ccc
-    )
-    `;
-});
-
-</script>
-
-</body>
-</html>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Y2K Flower Background</title>
+<title>Pretty Y2K Background</title>
 
 <style>
 
@@ -363,921 +17,16 @@ body{
     overflow:hidden;
     height:100vh;
     position:relative;
-
     background:
-    radial-gradient(circle at top left,
-    #ffb3d9 0%,
-    transparent 35%),
-
-    radial-gradient(circle at bottom right,
-    #ffcce8 0%,
-    transparent 35%),
-
     linear-gradient(
     135deg,
-    #ff8fc7,
-    #ffaad7,
-    #ff9ccc
-    );
-}
-
-/* y2k glitter texture */
-
-body::before{
-    content:"";
-    position:absolute;
-    inset:0;
-
-    background-image:
-    radial-gradient(
-    rgba(255,255,255,.22) 1px,
-    transparent 1px);
-
-    background-size:4px 4px;
-
-    opacity:.45;
-
-    pointer-events:none;
-}
-
-/* dreamy blur */
-
-body::after{
-    content:"";
-    position:absolute;
-    inset:0;
-
-    background:
-    radial-gradient(circle,
-    rgba(255,255,255,.15),
-    transparent 70%);
-
-    filter:blur(60px);
-
-    pointer-events:none;
-}
-
-/* =========================================================
-Y2K FLOWERS
-========================================================= */
-
-.flower{
-    position:absolute;
-
-    width:220px;
-    height:220px;
-
-    pointer-events:none;
-
-    animation:
-    floatFlower linear infinite,
-    glow 3s ease-in-out infinite alternate;
-}
-
-/* petals */
-
-.flower .petal{
-
-    position:absolute;
-
-    width:90px;
-    height:90px;
-
-    background:
-    radial-gradient(circle at top,
-    rgba(255,255,255,.95),
-    rgba(255,220,240,.8));
-
-    border-radius:50% 50% 50% 0;
-
-    filter:
-    drop-shadow(0 0 15px white);
-
-    opacity:.9;
-}
-
-/* flower center */
-
-.flower .center{
-
-    position:absolute;
-
-    width:65px;
-    height:65px;
-
-    background:
-    radial-gradient(circle,
-    white,
-    #ff9ed5);
-
-    border-radius:50%;
-
-    left:77px;
-    top:77px;
-
-    box-shadow:
-    0 0 25px white,
-    0 0 50px #ffd6f1;
-}
-
-/* petals placement */
-
-.p1{
-    left:65px;
-    top:0;
-    transform:rotate(45deg);
-}
-
-.p2{
-    right:0;
-    top:65px;
-    transform:rotate(135deg);
-}
-
-.p3{
-    left:65px;
-    bottom:0;
-    transform:rotate(225deg);
-}
-
-.p4{
-    left:0;
-    top:65px;
-    transform:rotate(315deg);
-}
-
-.p5{
-    left:20px;
-    top:20px;
-    transform:rotate(0deg);
-}
-
-.p6{
-    right:20px;
-    top:20px;
-    transform:rotate(90deg);
-}
-
-.p7{
-    right:20px;
-    bottom:20px;
-    transform:rotate(180deg);
-}
-
-.p8{
-    left:20px;
-    bottom:20px;
-    transform:rotate(270deg);
-}
-
-/* =========================================================
-SPARKLES
-========================================================= */
-
-.sparkle{
-    position:absolute;
-
-    color:white;
-
-    text-shadow:
-    0 0 10px white,
-    0 0 20px white,
-    0 0 40px #ffd6f1;
-
-    animation:
-    twinkle 2s infinite alternate,
-    sparkleFloat linear infinite;
-}
-
-/* =========================================================
-Y2K SWIRLS
-========================================================= */
-
-.swirl{
-    position:absolute;
-
-    border:3px solid rgba(255,255,255,.8);
-
-    border-color:white transparent transparent transparent;
-
-    border-radius:50%;
-
-    filter:
-    drop-shadow(0 0 12px white);
-
-    opacity:.8;
-
-    animation:spin linear infinite;
-}
-
-/* =========================================================
-ANIMATIONS
-========================================================= */
-
-@keyframes floatFlower{
-
-    from{
-        transform:
-        translateY(120vh)
-        rotate(0deg)
-        scale(1);
-    }
-
-    to{
-        transform:
-        translateY(-140vh)
-        rotate(360deg)
-        scale(1.1);
-    }
-}
-
-@keyframes twinkle{
-
-    from{
-        transform:scale(.5);
-        opacity:.4;
-    }
-
-    to{
-        transform:scale(1.5);
-        opacity:1;
-    }
-}
-
-@keyframes sparkleFloat{
-
-    from{
-        transform:translateY(100vh);
-    }
-
-    to{
-        transform:translateY(-100vh);
-    }
-}
-
-@keyframes spin{
-
-    from{
-        transform:rotate(0deg);
-    }
-
-    to{
-        transform:rotate(360deg);
-    }
-}
-
-@keyframes glow{
-
-    from{
-        filter:
-        drop-shadow(0 0 15px white);
-    }
-
-    to{
-        filter:
-        drop-shadow(0 0 35px white)
-        drop-shadow(0 0 60px #ffd6f1);
-    }
-}
-
-</style>
-</head>
-<body>
-
-<!-- giant y2k swirls -->
-
-<div class="swirl"
-style="
-width:900px;
-height:900px;
-left:-320px;
-top:-320px;
-animation-duration:35s;
-"></div>
-
-<div class="swirl"
-style="
-width:700px;
-height:700px;
-right:-220px;
-bottom:-220px;
-animation-duration:28s;
-"></div>
-
-<div class="swirl"
-style="
-width:500px;
-height:500px;
-right:100px;
-top:-120px;
-animation-duration:20s;
-"></div>
-
-<script>
-
-/* =========================================================
-CREATE Y2K FLOWERS
-========================================================= */
-
-for(let i=0;i<14;i++){
-
-    const flower = document.createElement("div");
-
-    flower.classList.add("flower");
-
-    flower.style.left =
-    Math.random()*100+"vw";
-
-    flower.style.top =
-    Math.random()*100+"vh";
-
-    const size =
-    120 + Math.random()*180;
-
-    flower.style.width = size+"px";
-    flower.style.height = size+"px";
-
-    flower.style.animationDuration =
-    (18 + Math.random()*20)+"s";
-
-    flower.style.animationDelay =
-    (-Math.random()*20)+"s";
-
-    /* petals */
-
-    for(let p=1;p<=8;p++){
-
-        const petal =
-        document.createElement("div");
-
-        petal.classList.add("petal","p"+p);
-
-        flower.appendChild(petal);
-    }
-
-    /* center */
-
-    const center =
-    document.createElement("div");
-
-    center.classList.add("center");
-
-    flower.appendChild(center);
-
-    document.body.appendChild(flower);
-}
-
-/* =========================================================
-SPARKLES
-========================================================= */
-
-for(let i=0;i<140;i++){
-
-    const sparkle =
-    document.createElement("div");
-
-    sparkle.classList.add("sparkle");
-
-    sparkle.innerHTML = "✦";
-
-    sparkle.style.left =
-    Math.random()*100+"vw";
-
-    sparkle.style.top =
-    Math.random()*100+"vh";
-
-    sparkle.style.fontSize =
-    (8 + Math.random()*18)+"px";
-
-    sparkle.style.animationDuration =
-    (8 + Math.random()*12)+"s";
-
-    sparkle.style.animationDelay =
-    (-Math.random()*20)+"s";
-
-    document.body.appendChild(sparkle);
-}
-
-/* =========================================================
-MOUSE GLOW
-========================================================= */
-
-document.addEventListener("mousemove",(e)=>{
-
-    document.body.style.background = `
-
-    radial-gradient(circle at ${e.clientX}px ${e.clientY}px,
-    rgba(255,255,255,.18),
-    transparent 18%),
-
-    radial-gradient(circle at top left,
-    #ffb3d9 0%,
-    transparent 35%),
-
-    radial-gradient(circle at bottom right,
-    #ffcce8 0%,
-    transparent 35%),
-
-    linear-gradient(
-    135deg,
-    #ff8fc7,
-    #ffaad7,
-    #ff9ccc
-    )
-    `;
-});
-
-</script>
-
-</body>
-</html>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Y2K Flower Background</title>
-
-<style>
-
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-}
-
-body{
-    overflow:hidden;
-    height:100vh;
-    position:relative;
-
-    background:
-    radial-gradient(circle at top left,
-    #ffb3d9 0%,
-    transparent 35%),
-
-    radial-gradient(circle at bottom right,
-    #ffcce8 0%,
-    transparent 35%),
-
-    linear-gradient(
-    135deg,
-    #ff8fc7,
-    #ffaad7,
-    #ff9ccc
-    );
-}
-
-/* y2k glitter texture */
-
-body::before{
-    content:"";
-    position:absolute;
-    inset:0;
-
-    background-image:
-    radial-gradient(
-    rgba(255,255,255,.22) 1px,
-    transparent 1px);
-
-    background-size:4px 4px;
-
-    opacity:.45;
-
-    pointer-events:none;
-}
-
-/* dreamy blur */
-
-body::after{
-    content:"";
-    position:absolute;
-    inset:0;
-
-    background:
-    radial-gradient(circle,
-    rgba(255,255,255,.15),
-    transparent 70%);
-
-    filter:blur(60px);
-
-    pointer-events:none;
-}
-
-/* =========================================================
-Y2K FLOWERS
-========================================================= */
-
-.flower{
-    position:absolute;
-
-    width:220px;
-    height:220px;
-
-    pointer-events:none;
-
-    animation:
-    floatFlower linear infinite,
-    glow 3s ease-in-out infinite alternate;
-}
-
-/* petals */
-
-.flower .petal{
-
-    position:absolute;
-
-    width:90px;
-    height:90px;
-
-    background:
-    radial-gradient(circle at top,
-    rgba(255,255,255,.95),
-    rgba(255,220,240,.8));
-
-    border-radius:50% 50% 50% 0;
-
-    filter:
-    drop-shadow(0 0 15px white);
-
-    opacity:.9;
-}
-
-/* flower center */
-
-.flower .center{
-
-    position:absolute;
-
-    width:65px;
-    height:65px;
-
-    background:
-    radial-gradient(circle,
-    white,
-    #ff9ed5);
-
-    border-radius:50%;
-
-    left:77px;
-    top:77px;
-
-    box-shadow:
-    0 0 25px white,
-    0 0 50px #ffd6f1;
-}
-
-/* petals placement */
-
-.p1{
-    left:65px;
-    top:0;
-    transform:rotate(45deg);
-}
-
-.p2{
-    right:0;
-    top:65px;
-    transform:rotate(135deg);
-}
-
-.p3{
-    left:65px;
-    bottom:0;
-    transform:rotate(225deg);
-}
-
-.p4{
-    left:0;
-    top:65px;
-    transform:rotate(315deg);
-}
-
-.p5{
-    left:20px;
-    top:20px;
-    transform:rotate(0deg);
-}
-
-.p6{
-    right:20px;
-    top:20px;
-    transform:rotate(90deg);
-}
-
-.p7{
-    right:20px;
-    bottom:20px;
-    transform:rotate(180deg);
-}
-
-.p8{
-    left:20px;
-    bottom:20px;
-    transform:rotate(270deg);
-}
-
-/* =========================================================
-SPARKLES
-========================================================= */
-
-.sparkle{
-    position:absolute;
-
-    color:white;
-
-    text-shadow:
-    0 0 10px white,
-    0 0 20px white,
-    0 0 40px #ffd6f1;
-
-    animation:
-    twinkle 2s infinite alternate,
-    sparkleFloat linear infinite;
-}
-
-/* =========================================================
-Y2K SWIRLS
-========================================================= */
-
-.swirl{
-    position:absolute;
-
-    border:3px solid rgba(255,255,255,.8);
-
-    border-color:white transparent transparent transparent;
-
-    border-radius:50%;
-
-    filter:
-    drop-shadow(0 0 12px white);
-
-    opacity:.8;
-
-    animation:spin linear infinite;
-}
-
-/* =========================================================
-ANIMATIONS
-========================================================= */
-
-@keyframes floatFlower{
-
-    from{
-        transform:
-        translateY(120vh)
-        rotate(0deg)
-        scale(1);
-    }
-
-    to{
-        transform:
-        translateY(-140vh)
-        rotate(360deg)
-        scale(1.1);
-    }
-}
-
-@keyframes twinkle{
-
-    from{
-        transform:scale(.5);
-        opacity:.4;
-    }
-
-    to{
-        transform:scale(1.5);
-        opacity:1;
-    }
-}
-
-@keyframes sparkleFloat{
-
-    from{
-        transform:translateY(100vh);
-    }
-
-    to{
-        transform:translateY(-100vh);
-    }
-}
-
-@keyframes spin{
-
-    from{
-        transform:rotate(0deg);
-    }
-
-    to{
-        transform:rotate(360deg);
-    }
-}
-
-@keyframes glow{
-
-    from{
-        filter:
-        drop-shadow(0 0 15px white);
-    }
-
-    to{
-        filter:
-        drop-shadow(0 0 35px white)
-        drop-shadow(0 0 60px #ffd6f1);
-    }
-}
-
-</style>
-</head>
-<body>
-
-<!-- giant y2k swirls -->
-
-<div class="swirl"
-style="
-width:900px;
-height:900px;
-left:-320px;
-top:-320px;
-animation-duration:35s;
-"></div>
-
-<div class="swirl"
-style="
-width:700px;
-height:700px;
-right:-220px;
-bottom:-220px;
-animation-duration:28s;
-"></div>
-
-<div class="swirl"
-style="
-width:500px;
-height:500px;
-right:100px;
-top:-120px;
-animation-duration:20s;
-"></div>
-
-<script>
-
-/* =========================================================
-CREATE Y2K FLOWERS
-========================================================= */
-
-for(let i=0;i<14;i++){
-
-    const flower = document.createElement("div");
-
-    flower.classList.add("flower");
-
-    flower.style.left =
-    Math.random()*100+"vw";
-
-    flower.style.top =
-    Math.random()*100+"vh";
-
-    const size =
-    120 + Math.random()*180;
-
-    flower.style.width = size+"px";
-    flower.style.height = size+"px";
-
-    flower.style.animationDuration =
-    (18 + Math.random()*20)+"s";
-
-    flower.style.animationDelay =
-    (-Math.random()*20)+"s";
-
-    /* petals */
-
-    for(let p=1;p<=8;p++){
-
-        const petal =
-        document.createElement("div");
-
-        petal.classList.add("petal","p"+p);
-
-        flower.appendChild(petal);
-    }
-
-    /* center */
-
-    const center =
-    document.createElement("div");
-
-    center.classList.add("center");
-
-    flower.appendChild(center);
-
-    document.body.appendChild(flower);
-}
-
-/* =========================================================
-SPARKLES
-========================================================= */
-
-for(let i=0;i<140;i++){
-
-    const sparkle =
-    document.createElement("div");
-
-    sparkle.classList.add("sparkle");
-
-    sparkle.innerHTML = "✦";
-
-    sparkle.style.left =
-    Math.random()*100+"vw";
-
-    sparkle.style.top =
-    Math.random()*100+"vh";
-
-    sparkle.style.fontSize =
-    (8 + Math.random()*18)+"px";
-
-    sparkle.style.animationDuration =
-    (8 + Math.random()*12)+"s";
-
-    sparkle.style.animationDelay =
-    (-Math.random()*20)+"s";
-
-    document.body.appendChild(sparkle);
-}
-
-/* =========================================================
-MOUSE GLOW
-========================================================= */
-
-document.addEventListener("mousemove",(e)=>{
-
-    document.body.style.background = `
-
-    radial-gradient(circle at ${e.clientX}px ${e.clientY}px,
-    rgba(255,255,255,.18),
-    transparent 18%),
-
-    radial-gradient(circle at top left,
-    #ffb3d9 0%,
-    transparent 35%),
-
-    radial-gradient(circle at bottom right,
-    #ffcce8 0%,
-    transparent 35%),
-
-    linear-gradient(
-    135deg,
-    #ff8fc7,
-    #ffaad7,
-    #ff9ccc
-    )
-    `;
-});
-
-</script>
-
-</body>
-</html>
-```html id="smooth-y2k-background"
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Y2K Background</title>
-
-<style>
-
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-}
-
-body{
-    overflow:hidden;
-    height:100vh;
-    cursor:pointer;
-    position:relative;
-
-    background:
-    radial-gradient(circle at top left,
-    #ffb5da 0%,
-    transparent 30%),
-
-    radial-gradient(circle at bottom right,
-    #ffd2ea 0%,
-    transparent 30%),
-
-    linear-gradient(
-    135deg,
-    #ff92c9,
-    #ffacd8,
+    #ff98cb,
+    #ffb6dd,
     #ff9fce
     );
 }
 
-/* glitter texture */
+/* soft glitter texture */
 
 body::before{
     content:"";
@@ -1286,34 +35,72 @@ body::before{
 
     background-image:
     radial-gradient(
-    rgba(255,255,255,.22) 1px,
+    rgba(255,255,255,.18) 1px,
     transparent 1px);
 
-    background-size:4px 4px;
+    background-size:5px 5px;
 
-    opacity:.35;
+    opacity:.4;
+}
 
-    pointer-events:none;
+/* dreamy glow */
+
+.glow{
+
+    position:absolute;
+
+    width:700px;
+    height:700px;
+
+    border-radius:50%;
+
+    background:
+    radial-gradient(circle,
+    rgba(255,255,255,.18),
+    transparent 70%);
+
+    filter:blur(80px);
+
+    animation:moveGlow 12s infinite alternate ease-in-out;
+}
+
+.glow1{
+    top:-200px;
+    left:-150px;
+}
+
+.glow2{
+    bottom:-250px;
+    right:-200px;
+}
+
+@keyframes moveGlow{
+
+    from{
+        transform:translate(0,0);
+    }
+
+    to{
+        transform:translate(40px,-20px);
+    }
 }
 
 /* =========================================
-FLOWERS
+BIG Y2K FLOWERS
 ========================================= */
 
 .flower{
 
     position:absolute;
 
-    width:180px;
-    height:180px;
+    width:220px;
+    height:220px;
 
-    pointer-events:none;
+    animation:
+    float 8s infinite ease-in-out;
 
-    opacity:.92;
+    transition:.3s;
 
-    transition:
-    transform .4s,
-    filter .4s;
 }
 
 /* petals */
@@ -1322,41 +109,44 @@ FLOWERS
 
     position:absolute;
 
-    width:70px;
-    height:70px;
-
-    border-radius:50% 50% 50% 0;
+    width:95px;
+    height:95px;
 
     background:
     radial-gradient(circle at top,
     rgba(255,255,255,.95),
-    rgba(255,215,238,.8));
+    rgba(255,220,240,.75));
+
+    border-radius:50% 50% 50% 0;
+
+    box-shadow:
+    0 0 15px rgba(255,255,255,.7);
 
 }
 
 /* petal positions */
 
 .p1{
-    left:55px;
+    left:62px;
     top:0;
     transform:rotate(45deg);
 }
 
 .p2{
     right:0;
-    top:55px;
+    top:62px;
     transform:rotate(135deg);
 }
 
 .p3{
-    left:55px;
+    left:62px;
     bottom:0;
     transform:rotate(225deg);
 }
 
 .p4{
     left:0;
-    top:55px;
+    top:62px;
     transform:rotate(315deg);
 }
 
@@ -1366,11 +156,11 @@ FLOWERS
 
     position:absolute;
 
-    width:50px;
-    height:50px;
+    width:70px;
+    height:70px;
 
-    left:65px;
-    top:65px;
+    left:75px;
+    top:75px;
 
     border-radius:50%;
 
@@ -1380,16 +170,17 @@ FLOWERS
     #ff9fd4);
 
     box-shadow:
-    0 0 15px white;
+    0 0 20px white,
+    0 0 40px #ffd6ee;
 }
 
-/* glow on click */
+/* hover sparkle */
 
 .flower.active{
 
     filter:
-    drop-shadow(0 0 15px white)
-    drop-shadow(0 0 35px #ffd7ef);
+    drop-shadow(0 0 20px white)
+    drop-shadow(0 0 40px #ffd6ee);
 
     transform:scale(1.08);
 }
@@ -1408,38 +199,31 @@ SPARKLES
 
     pointer-events:none;
 
-    opacity:0;
+    opacity:.7;
 
-    animation:sparkleAnim .8s forwards;
+    animation:
+    twinkle 2s infinite alternate;
 
     text-shadow:
     0 0 10px white,
     0 0 20px white;
 }
 
-@keyframes sparkleAnim{
+@keyframes twinkle{
 
-    0%{
-        transform:
-        translateY(0px)
-        scale(.4);
-        opacity:0;
+    from{
+        transform:scale(.7);
+        opacity:.4;
     }
 
-    50%{
+    to{
+        transform:scale(1.3);
         opacity:1;
-    }
-
-    100%{
-        transform:
-        translateY(-40px)
-        scale(1.4);
-        opacity:0;
     }
 }
 
 /* =========================================
-Y2K SWIRLS
+SWIRLS
 ========================================= */
 
 .swirl{
@@ -1452,15 +236,33 @@ Y2K SWIRLS
 
     border-radius:50%;
 
-    opacity:.7;
+    opacity:.75;
+}
+
+/* =========================================
+ANIMATION
+========================================= */
+
+@keyframes float{
+
+    0%,100%{
+        transform:translateY(0px);
+    }
+
+    50%{
+        transform:translateY(-15px);
+    }
 }
 
 </style>
 </head>
 <body>
 
-<!-- swirls -->
+<!-- glowing background -->
+<div class="glow glow1"></div>
+<div class="glow glow2"></div>
 
+<!-- swirls -->
 <div class="swirl"
 style="
 width:700px;
@@ -1477,88 +279,86 @@ right:-180px;
 bottom:-180px;
 "></div>
 
+<!-- flowers -->
+<div class="flower"
+style="
+top:40px;
+right:40px;
+transform:scale(1.1);
+">
+
+    <div class="petal p1"></div>
+    <div class="petal p2"></div>
+    <div class="petal p3"></div>
+    <div class="petal p4"></div>
+    <div class="center"></div>
+
+</div>
+
+<div class="flower"
+style="
+bottom:20px;
+right:180px;
+transform:scale(.9);
+">
+
+    <div class="petal p1"></div>
+    <div class="petal p2"></div>
+    <div class="petal p3"></div>
+    <div class="petal p4"></div>
+    <div class="center"></div>
+
+</div>
+
+<div class="flower"
+style="
+top:160px;
+right:220px;
+transform:scale(.7);
+opacity:.7;
+">
+
+    <div class="petal p1"></div>
+    <div class="petal p2"></div>
+    <div class="petal p3"></div>
+    <div class="petal p4"></div>
+    <div class="center"></div>
+
+</div>
+
+<!-- sparkles -->
+
 <script>
 
-/* =========================================
-CREATE FLOWERS
-========================================= */
+/* lightweight sparkles */
 
-const flowerCount = 8;
+for(let i=0;i<40;i++){
 
-for(let i=0;i<flowerCount;i++){
-
-    const flower =
+    const sparkle =
     document.createElement("div");
 
-    flower.classList.add("flower");
+    sparkle.classList.add("sparkle");
 
-    flower.style.left =
+    sparkle.innerHTML = "✦";
+
+    sparkle.style.left =
     Math.random()*100+"vw";
 
-    flower.style.top =
+    sparkle.style.top =
     Math.random()*100+"vh";
 
-    flower.style.transform =
-    `scale(${0.7 + Math.random()*0.8})`;
+    sparkle.style.fontSize =
+    (8 + Math.random()*16)+"px";
 
-    /* petals */
+    sparkle.style.animationDelay =
+    Math.random()*2+"s";
 
-    for(let p=1;p<=4;p++){
-
-        const petal =
-        document.createElement("div");
-
-        petal.classList.add("petal","p"+p);
-
-        flower.appendChild(petal);
-    }
-
-    /* center */
-
-    const center =
-    document.createElement("div");
-
-    center.classList.add("center");
-
-    flower.appendChild(center);
-
-    document.body.appendChild(flower);
+    document.body.appendChild(sparkle);
 }
 
-/* =========================================
-CLICK SPARKLE EFFECT
-========================================= */
+/* click glow */
 
 document.addEventListener("click",(e)=>{
-
-    /* sparkles */
-
-    for(let i=0;i<12;i++){
-
-        const sparkle =
-        document.createElement("div");
-
-        sparkle.classList.add("sparkle");
-
-        sparkle.innerHTML = "✦";
-
-        sparkle.style.left =
-        e.clientX + (Math.random()*80-40)+"px";
-
-        sparkle.style.top =
-        e.clientY + (Math.random()*80-40)+"px";
-
-        sparkle.style.fontSize =
-        (10 + Math.random()*20)+"px";
-
-        document.body.appendChild(sparkle);
-
-        setTimeout(()=>{
-            sparkle.remove();
-        },800);
-    }
-
-    /* nearest flowers glow */
 
     const flowers =
     document.querySelectorAll(".flower");
@@ -1580,13 +380,13 @@ document.addEventListener("click",(e)=>{
             e.clientY - fy
         );
 
-        if(distance < 250){
+        if(distance < 300){
 
             flower.classList.add("active");
 
             setTimeout(()=>{
                 flower.classList.remove("active");
-            },700);
+            },500);
         }
     });
 });
@@ -1595,4 +395,3 @@ document.addEventListener("click",(e)=>{
 
 </body>
 </html>
-```
