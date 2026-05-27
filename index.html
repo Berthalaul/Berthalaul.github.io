@@ -3,7 +3,6 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Y2K Dream Laptop</title>
 
 <style>
@@ -12,57 +11,57 @@ body{
     margin:0;
     overflow:hidden;
     height:100vh;
-
     display:flex;
     justify-content:center;
     align-items:center;
-
     font-family:Verdana,sans-serif;
+    background:linear-gradient(135deg,#ffb6dc,#8fd7ff);
+}
 
-    background-image:url("-4(1).jpg");
+/* ===== FLOWER BACKGROUND ===== */
+
+.bg{
+    position:fixed;
+    inset:0;
+    z-index:0;
+    overflow:hidden;
+}
+
+/* YOUR PINK FLOWER IMAGE */
+
+.bg::before{
+    content:"";
+    position:absolute;
+    inset:0;
+
+    background:url("https://i.imgur.com/YOURFLOWERIMAGE.jpg");
     background-size:cover;
     background-position:center;
-    background-repeat:no-repeat;
+
+    opacity:.9;
 }
 
-/* ===== FLOWERS ===== */
+/* EXTRA GLOW */
 
-.flower{
+.bg::after{
+    content:"";
     position:absolute;
-    width:180px;
-    z-index:1;
-    pointer-events:none;
+    inset:0;
 
-    animation:float 8s infinite ease-in-out;
+    background:
+    radial-gradient(circle,#ffffff55 1px,transparent 1px);
+
+    background-size:80px 80px;
+
+    animation:sparkleMove 8s linear infinite;
 }
 
-.flower img{
-    width:100%;
-
-    filter:
-    drop-shadow(0 0 15px white)
-    drop-shadow(0 0 30px #ff8fd7)
-    drop-shadow(0 0 45px white);
-}
-
-@keyframes float{
-
-    0%{
-        transform:
-        translateY(0px)
-        rotate(0deg);
+@keyframes sparkleMove{
+    from{
+        transform:translateY(0);
     }
-
-    50%{
-        transform:
-        translateY(-30px)
-        rotate(8deg);
-    }
-
-    100%{
-        transform:
-        translateY(0px)
-        rotate(0deg);
+    to{
+        transform:translateY(-50px);
     }
 }
 
@@ -70,10 +69,8 @@ body{
 
 .sparkle{
     position:absolute;
-
-    width:10px;
-    height:10px;
-
+    width:8px;
+    height:8px;
     border-radius:50%;
     background:white;
 
@@ -83,19 +80,17 @@ body{
     0 0 40px white;
 
     animation:twinkle 2s infinite alternate;
-
-    z-index:1;
 }
 
 @keyframes twinkle{
 
     from{
         transform:scale(.5);
-        opacity:.3;
+        opacity:.4;
     }
 
     to{
-        transform:scale(2);
+        transform:scale(1.8);
         opacity:1;
     }
 }
@@ -108,8 +103,6 @@ body{
     height:760px;
     z-index:10;
 }
-
-/* shell */
 
 #shell{
     position:absolute;
@@ -131,80 +124,37 @@ body{
     0 0 120px #8fd7ff;
 }
 
-/* logo */
-
 #logo{
     position:absolute;
-
     top:18px;
     left:50%;
-
     transform:translateX(-50%);
-
     font-size:36px;
     font-weight:bold;
-
     color:#777;
-}
-
-/* power button */
-
-#powerButton{
-    position:absolute;
-
-    top:18px;
-    right:24px;
-
-    width:42px;
-    height:42px;
-
-    border-radius:50%;
-
-    background:
-    linear-gradient(
-        to bottom,
-        #ff7ed2,
-        #ff2fa5
-    );
-
-    color:white;
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-
-    cursor:pointer;
-
-    box-shadow:
-    0 0 20px #ff9de2;
 }
 
 /* ===== SCREEN ===== */
 
 #screen{
     position:absolute;
-
     top:80px;
     left:70px;
-
     width:900px;
     height:500px;
 
     overflow:hidden;
 
     border-radius:25px;
-
     border:10px solid #ddd;
 
     background:
     linear-gradient(
         135deg,
-        rgba(143,215,255,.8),
-        rgba(255,208,239,.8)
+        #8fd7ff,
+        #ffd0ef
     );
 }
-
-/* desktop */
 
 #desktop{
     position:relative;
@@ -216,26 +166,20 @@ body{
 
 .desktopIcon{
     position:absolute;
-
     width:120px;
-
-    text-align:center;
-
     cursor:pointer;
+    text-align:center;
 }
 
 .desktopIcon img{
-
     width:90px;
     height:90px;
-
-    object-fit:contain;
+    object-fit:cover;
 
     border-radius:24px;
 
-    padding:8px;
-
     background:white;
+    padding:8px;
 
     box-shadow:
     0 0 20px white,
@@ -245,7 +189,6 @@ body{
 }
 
 .desktopIcon:hover img{
-
     transform:
     scale(1.1)
     rotate(5deg);
@@ -274,8 +217,6 @@ body{
     0 0 40px rgba(0,0,0,.35);
 }
 
-/* topbar */
-
 .topbar{
     height:50px;
 
@@ -296,8 +237,6 @@ body{
     );
 }
 
-/* close */
-
 .close{
     width:34px;
     height:34px;
@@ -315,8 +254,6 @@ body{
     font-weight:bold;
 }
 
-/* iframe */
-
 iframe{
     width:100%;
     height:calc(100% - 50px);
@@ -327,7 +264,6 @@ iframe{
 
 #base{
     position:absolute;
-
     bottom:0;
     left:50%;
 
@@ -351,8 +287,6 @@ iframe{
     0 20px 60px rgba(0,0,0,.25);
 }
 
-/* trackpad */
-
 #trackpad{
     position:absolute;
 
@@ -374,61 +308,20 @@ iframe{
     );
 }
 
-.off{
-    opacity:0;
-    pointer-events:none;
-}
-
 </style>
 </head>
 
 <body>
 
-<!-- ===== FLOATING FLOWERS ===== -->
+<!-- FLOWER BACKGROUND -->
+
+<div class="bg"></div>
+
+<!-- SPARKLES -->
 
 <script>
 
-const flowers=[
-
-"https://pngimg.com/d/flower_PNG102.png",
-
-"https://pngimg.com/d/daisy_PNG5.png",
-
-"https://pngimg.com/d/flowers_PNG102.png"
-
-];
-
-for(let i=0;i<18;i++){
-
-    const flower=document.createElement("div");
-
-    flower.className="flower";
-
-    flower.style.left=
-    Math.random()*window.innerWidth+"px";
-
-    flower.style.top=
-    Math.random()*window.innerHeight+"px";
-
-    flower.style.width=
-    120+Math.random()*120+"px";
-
-    flower.style.animationDuration=
-    6+Math.random()*6+"s";
-
-    const img=document.createElement("img");
-
-    img.src=
-    flowers[Math.floor(Math.random()*flowers.length)];
-
-    flower.appendChild(img);
-
-    document.body.appendChild(flower);
-}
-
-/* ===== SPARKLES ===== */
-
-for(let i=0;i<150;i++){
+for(let i=0;i<120;i++){
 
     const sparkle=document.createElement("div");
 
@@ -448,7 +341,7 @@ for(let i=0;i<150;i++){
 
 </script>
 
-<!-- ===== COMPUTER ===== -->
+<!-- COMPUTER -->
 
 <div id="computer">
 
@@ -458,63 +351,59 @@ for(let i=0;i<150;i++){
 iBook Dream
 </div>
 
-<!-- POWER -->
-
-<div id="powerButton"
-onclick="toggleComputer()">
-⏻
-</div>
-
-<!-- ===== SCREEN ===== -->
+<!-- SCREEN -->
 
 <div id="screen">
 
 <div id="desktop">
 
-<!-- ===== APP ICONS ===== -->
+<!-- MARIO -->
 
 <div class="desktopIcon"
 style="top:30px;left:35px;"
 onclick="openWindow('mario')">
 
-<img
-src="https://upload.wikimedia.org/wikipedia/en/a/a9/MarioNSMBUDeluxe.png">
+<img src="https://upload.wikimedia.org/wikipedia/en/a/a9/MarioNSMBUDeluxe.png">
 
 </div>
+
+<!-- WINX -->
 
 <div class="desktopIcon"
 style="top:30px;left:210px;"
 onclick="openWindow('winx')">
 
-<img
-src="https://static.wikia.nocookie.net/logopedia/images/5/5b/Winx_Club_logo.png">
+<img src="https://upload.wikimedia.org/wikipedia/en/f/fb/Winx_Club_logo.png">
 
 </div>
+
+<!-- BRATZ -->
 
 <div class="desktopIcon"
 style="top:30px;left:385px;"
 onclick="openWindow('bratz')">
 
-<img
-src="https://upload.wikimedia.org/wikipedia/commons/6/69/Bratz_logo.svg">
+<img src="https://upload.wikimedia.org/wikipedia/commons/6/69/Bratz_logo.svg">
 
 </div>
+
+<!-- MUSIC -->
 
 <div class="desktopIcon"
 style="top:30px;left:560px;"
 onclick="openWindow('music')">
 
-<img
-src="https://cdn-icons-png.flaticon.com/512/3659/3659899.png">
+<img src="https://cdn-icons-png.flaticon.com/512/3659/3659899.png">
 
 </div>
+
+<!-- HELLO KITTY -->
 
 <div class="desktopIcon"
 style="top:30px;left:735px;"
 onclick="openWindow('kitty')">
 
-<img
-src="https://upload.wikimedia.org/wikipedia/en/0/05/Hello_Kitty_character_portrait.png">
+<img src="https://upload.wikimedia.org/wikipedia/en/0/05/Hello_Kitty_character_portrait.png">
 
 </div>
 
@@ -536,7 +425,7 @@ onclick="closeWindow('mario')">
 </div>
 
 <iframe
-src="https://www.retrogames.cc/embed/20899-super-mario-world-usa.html">
+src="https://www.retrogames.cc/embed/20884-super-mario-world-usa.html">
 </iframe>
 
 </div>
@@ -557,7 +446,7 @@ onclick="closeWindow('winx')">
 </div>
 
 <iframe
-src="https://www.numuki.com/game/winx-club-bloomix-battle/">
+src="https://www.numuki.com/game/winx-club-love-and-pet/">
 </iframe>
 
 </div>
@@ -599,7 +488,7 @@ onclick="closeWindow('music')">
 </div>
 
 <iframe
-src="https://www.youtube.com/embed/dQw4w9WgXcQ">
+src="https://www.youtube.com/embed/4fndeDfaWCg">
 </iframe>
 
 </div>
@@ -628,51 +517,22 @@ src="https://www.numuki.com/games/hello-kitty/">
 </div>
 </div>
 
-<!-- ===== KEYBOARD ===== -->
+<!-- KEYBOARD -->
 
 <div id="base">
-
 <div id="trackpad"></div>
-
 </div>
 
 </div>
 
 <script>
 
-/* ===== POWER ===== */
-
-let computerOn=true;
-
-function toggleComputer(){
-
-computerOn=!computerOn;
-
-const screen=
-document.getElementById("screen");
-
-if(computerOn){
-
-screen.classList.remove("off");
-
-}else{
-
-screen.classList.add("off");
-}
-}
-
-/* ===== OPEN ===== */
-
 function openWindow(id){
-
-if(!computerOn) return;
 
 document
 .getElementById(id)
 .style.display="block";
 }
-
-/* ===== CLOSE ===== */
 
 function closeWindow(id){
 
