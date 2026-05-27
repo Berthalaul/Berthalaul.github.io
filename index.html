@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Y2K Dream Computer</title>
+<title>Y2K Dream Laptop</title>
 
 <style>
 
@@ -17,7 +17,7 @@ body{
     background:
     linear-gradient(
         135deg,
-        #c6ebff,
+        #c7ecff,
         #ffd7ef,
         #fff0f8
     );
@@ -27,10 +27,10 @@ body{
 
 .flower{
     position:absolute;
-    width:120px;
-    height:120px;
-    animation:float 8s infinite ease-in-out;
+    width:140px;
+    height:140px;
     z-index:1;
+    animation:float 10s infinite ease-in-out;
 }
 
 .flower::before,
@@ -38,15 +38,14 @@ body{
     content:"";
     position:absolute;
     inset:0;
-
     border-radius:50%;
 
     background:
     radial-gradient(
         circle,
-        white 0%,
+        #ffffff 0%,
         #ffb6e8 45%,
-        #ff4ebf 80%
+        #ff4fc4 80%
     );
 }
 
@@ -62,17 +61,15 @@ body{
     position:absolute;
     width:30px;
     height:30px;
-    border-radius:50%;
     background:white;
-
+    border-radius:50%;
     top:50%;
     left:50%;
-
     transform:translate(-50%,-50%);
 
     box-shadow:
-    0 0 15px white,
-    0 0 30px #ff99dd;
+    0 0 20px white,
+    0 0 40px #ff99dd;
 }
 
 @keyframes float{
@@ -86,7 +83,7 @@ body{
     50%{
         transform:
         translateY(-40px)
-        rotate(15deg);
+        rotate(10deg);
     }
 
     100%{
@@ -102,15 +99,15 @@ body{
     position:absolute;
     width:8px;
     height:8px;
-    background:white;
     border-radius:50%;
-
-    animation:twinkle 2s infinite alternate;
+    background:white;
 
     box-shadow:
     0 0 10px white,
     0 0 20px #ffb6ea,
-    0 0 30px #8fd7ff;
+    0 0 40px #8fd7ff;
+
+    animation:twinkle 2s infinite alternate;
 }
 
 @keyframes twinkle{
@@ -130,15 +127,14 @@ body{
 
 #computer{
     position:absolute;
-
     top:50%;
     left:50%;
 
     transform:
     translate(-50%,-50%);
 
-    width:650px;
-    height:520px;
+    width:760px;
+    height:600px;
 
     z-index:100;
 }
@@ -155,30 +151,72 @@ body{
     linear-gradient(
         to bottom,
         white,
-        #f2f2f2
+        #f3f3f3
     );
 
-    border:10px solid #ff3faf;
+    border:12px solid #ff43b0;
 
     box-shadow:
-    0 0 50px #ffb6ea,
-    0 0 100px #8fd7ff;
+    0 0 60px #ffb6ea,
+    0 0 120px #8fd7ff;
 }
 
 /* title */
 
 #logo{
     position:absolute;
-
     top:20px;
     left:50%;
-
     transform:translateX(-50%);
 
-    font-size:28px;
+    font-size:30px;
     font-weight:bold;
 
     color:#666;
+}
+
+/* POWER BUTTON */
+
+#powerButton{
+    position:absolute;
+
+    top:18px;
+    right:25px;
+
+    width:34px;
+    height:34px;
+
+    border-radius:50%;
+
+    background:
+    linear-gradient(
+        to bottom,
+        #ff7ed2,
+        #ff2fa5
+    );
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    color:white;
+
+    font-size:18px;
+    font-weight:bold;
+
+    cursor:pointer;
+
+    z-index:999;
+
+    box-shadow:
+    0 0 15px #ffb6ea,
+    0 0 30px #8fd7ff;
+
+    transition:.3s;
+}
+
+#powerButton:hover{
+    transform:scale(1.1);
 }
 
 /* screen */
@@ -187,28 +225,31 @@ body{
     position:absolute;
 
     top:70px;
-    left:70px;
+    left:75px;
 
-    width:510px;
-    height:290px;
+    width:610px;
+    height:340px;
+
+    border-radius:18px;
+
+    border:8px solid #ddd;
+
+    overflow:hidden;
 
     background:
     linear-gradient(
         135deg,
-        #ffc6ea,
-        #ff9ed8
+        #ffc9eb,
+        #ff9fd8
     );
 
-    border:8px solid #ddd;
-    border-radius:10px;
-
-    overflow:hidden;
-
     box-shadow:
-    inset 0 0 30px white;
+    inset 0 0 40px white;
+
+    transition:.5s;
 }
 
-/* fake desktop */
+/* desktop */
 
 #desktop{
     width:100%;
@@ -216,91 +257,28 @@ body{
     position:relative;
 }
 
-/* apps */
+/* desktop icons */
 
-.window{
+.desktopIcon{
+    width:90px;
     position:absolute;
-
-    inset:0;
-
-    display:none;
-
-    padding:20px;
-
-    color:white;
-
-    overflow:auto;
-
-    background:
-    linear-gradient(
-        135deg,
-        #ff8fd8,
-        #ffb6ea
-    );
-}
-
-/* close */
-
-.close{
-    position:absolute;
-    top:10px;
-    right:10px;
-
-    background:white;
-    color:#ff3faf;
-
-    border:none;
-
-    border-radius:20px;
-
-    padding:8px 14px;
-
-    cursor:pointer;
-
-    font-weight:bold;
-}
-
-/* icons */
-
-.icons{
-    position:absolute;
-
-    bottom:40px;
-    left:50%;
-
-    transform:translateX(-50%);
-
-    display:flex;
-    gap:15px;
-
-    z-index:20;
-}
-
-.icon{
-    width:80px;
-    height:80px;
-
-    border-radius:20px;
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-
     text-align:center;
-
+    color:white;
     font-size:12px;
     font-weight:bold;
-
-    color:#ff3faf;
-
     cursor:pointer;
+}
 
-    background:
-    linear-gradient(
-        to bottom,
-        white,
-        #ffd8ef
-    );
+.desktopIcon img{
+    width:64px;
+    height:64px;
+    object-fit:cover;
+
+    border-radius:18px;
+
+    background:white;
+
+    padding:5px;
 
     box-shadow:
     0 0 20px white,
@@ -309,10 +287,95 @@ body{
     transition:.3s;
 }
 
-.icon:hover{
-    transform:
-    scale(1.1)
-    rotate(5deg);
+.desktopIcon:hover img{
+    transform:scale(1.1);
+}
+
+/* windows */
+
+.window{
+    position:absolute;
+
+    top:20px;
+    left:20px;
+
+    width:560px;
+    height:280px;
+
+    border-radius:20px;
+
+    background:white;
+
+    display:none;
+
+    overflow:hidden;
+
+    box-shadow:
+    0 0 40px rgba(0,0,0,.3);
+
+    animation:pop .3s ease;
+}
+
+@keyframes pop{
+
+    from{
+        transform:scale(.8);
+        opacity:0;
+    }
+
+    to{
+        transform:scale(1);
+        opacity:1;
+    }
+}
+
+/* top bar */
+
+.topbar{
+    height:45px;
+
+    background:
+    linear-gradient(
+        to right,
+        #ff7ed2,
+        #ffb7e8
+    );
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    padding:0 15px;
+
+    color:white;
+    font-weight:bold;
+}
+
+/* close */
+
+.close{
+    background:white;
+    color:#ff43b0;
+
+    border:none;
+
+    width:28px;
+    height:28px;
+
+    border-radius:50%;
+
+    cursor:pointer;
+
+    font-weight:bold;
+}
+
+/* content */
+
+.content{
+    padding:20px;
+    height:calc(100% - 45px);
+    overflow:auto;
+    color:#444;
 }
 
 /* keyboard */
@@ -325,10 +388,10 @@ body{
 
     transform:translateX(-50%);
 
-    width:720px;
-    height:140px;
+    width:820px;
+    height:150px;
 
-    border-radius:40px;
+    border-radius:45px;
 
     background:
     linear-gradient(
@@ -337,37 +400,49 @@ body{
         #f2f2f2
     );
 
-    border:10px solid #ff3faf;
+    border:12px solid #ff43b0;
 
     box-shadow:
-    0 20px 50px rgba(0,0,0,.2);
+    0 20px 50px rgba(0,0,0,.25);
+
+    transition:.5s;
 }
 
 /* trackpad */
 
 #trackpad{
     position:absolute;
-
     bottom:25px;
     left:50%;
 
     transform:translateX(-50%);
 
-    width:160px;
-    height:35px;
+    width:180px;
+    height:40px;
 
-    border-radius:20px;
+    border-radius:30px;
 
     background:
     linear-gradient(
         to bottom,
-        #ff77cf,
+        #ff7ed2,
         #ff2fa5
     );
+
+    box-shadow:
+    0 0 20px #ff9de2;
 }
 
-h1{
-    margin-top:40px;
+/* OFF MODE */
+
+.offScreen{
+    opacity:0;
+    pointer-events:none;
+}
+
+video{
+    width:100%;
+    border-radius:15px;
 }
 
 </style>
@@ -375,9 +450,9 @@ h1{
 
 <body>
 
-<!-- FLOWERS -->
-
 <script>
+
+/* FLOWERS */
 
 for(let i=0;i<35;i++){
 
@@ -392,10 +467,13 @@ for(let i=0;i<35;i++){
     Math.random()*window.innerHeight+"px";
 
     const size=
-    50+Math.random()*90;
+    70+Math.random()*100;
 
     flower.style.width=size+"px";
     flower.style.height=size+"px";
+
+    flower.style.animationDuration=
+    (6+Math.random()*6)+"s";
 
     const center=document.createElement("span");
 
@@ -404,9 +482,9 @@ for(let i=0;i<35;i++){
     document.body.appendChild(flower);
 }
 
-/* sparkles */
+/* SPARKLES */
 
-for(let i=0;i<120;i++){
+for(let i=0;i<150;i++){
 
     const sparkle=document.createElement("div");
 
@@ -433,7 +511,14 @@ for(let i=0;i<120;i++){
     <div id="shell"></div>
 
     <div id="logo">
-        iBook
+        iBook Dream
+    </div>
+
+    <!-- POWER BUTTON -->
+
+    <div id="powerButton"
+    onclick="toggleComputer()">
+    ⏻
     </div>
 
     <!-- SCREEN -->
@@ -442,24 +527,76 @@ for(let i=0;i<120;i++){
 
         <div id="desktop">
 
-            <!-- MARIO -->
+            <!-- ICONS -->
+
+            <div class="desktopIcon"
+            style="top:20px;left:20px;"
+            onclick="openWindow('mario')">
+
+                <img src="https://cdn-icons-png.flaticon.com/512/188/188987.png">
+
+                <div>Mario</div>
+
+            </div>
+
+            <div class="desktopIcon"
+            style="top:20px;left:130px;"
+            onclick="openWindow('winx')">
+
+                <img src="https://cdn-icons-png.flaticon.com/512/4140/4140048.png">
+
+                <div>Winx</div>
+
+            </div>
+
+            <div class="desktopIcon"
+            style="top:20px;left:240px;"
+            onclick="openWindow('bratz')">
+
+                <img src="https://cdn-icons-png.flaticon.com/512/892/892458.png">
+
+                <div>Bratz</div>
+
+            </div>
+
+            <div class="desktopIcon"
+            style="top:20px;left:350px;"
+            onclick="openWindow('music')">
+
+                <img src="https://cdn-icons-png.flaticon.com/512/727/727245.png">
+
+                <div>Music</div>
+
+            </div>
+
+            <!-- MARIO WINDOW -->
 
             <div class="window" id="mario">
 
-                <button class="close"
-                onclick="closeWindow('mario')">
-                CLOSE
-                </button>
+                <div class="topbar">
 
-                <h1>🍄 SUPER MARIO WORLD 🍄</h1>
+                    Super Mario
 
-                <p>
-                Welcome to the Y2K Mario zone!!
-                </p>
+                    <button class="close"
+                    onclick="closeWindow('mario')">
+                    ✕
+                    </button>
 
-                <img
-                src="https://upload.wikimedia.org/wikipedia/en/a/a9/MarioNSMBUDeluxe.png"
-                width="200">
+                </div>
+
+                <div class="content">
+
+                    <h2>🍄 Mario World 🍄</h2>
+
+                    <p>
+                    Welcome to the Y2K Mario desktop!!
+                    </p>
+
+                    <img
+                    src="https://upload.wikimedia.org/wikipedia/en/a/a9/MarioNSMBUDeluxe.png"
+                    width="220">
+
+                </div>
 
             </div>
 
@@ -467,16 +604,30 @@ for(let i=0;i<120;i++){
 
             <div class="window" id="winx">
 
-                <button class="close"
-                onclick="closeWindow('winx')">
-                CLOSE
-                </button>
+                <div class="topbar">
 
-                <h1>✨ WINX CLUB ✨</h1>
+                    Winx Club
 
-                <p>
-                Magical fairy desktop !!
-                </p>
+                    <button class="close"
+                    onclick="closeWindow('winx')">
+                    ✕
+                    </button>
+
+                </div>
+
+                <div class="content">
+
+                    <h2>✨ Winx Club ✨</h2>
+
+                    <p>
+                    Magical fairy Y2K vibes!!
+                    </p>
+
+                    <img
+                    src="https://i.imgur.com/JR6Y6be.png"
+                    width="250">
+
+                </div>
 
             </div>
 
@@ -484,16 +635,30 @@ for(let i=0;i<120;i++){
 
             <div class="window" id="bratz">
 
-                <button class="close"
-                onclick="closeWindow('bratz')">
-                CLOSE
-                </button>
+                <div class="topbar">
 
-                <h1>💖 BRATZ WORLD 💖</h1>
+                    Bratz
 
-                <p>
-                Fashion dolls + pink Y2K vibes.
-                </p>
+                    <button class="close"
+                    onclick="closeWindow('bratz')">
+                    ✕
+                    </button>
+
+                </div>
+
+                <div class="content">
+
+                    <h2>💖 Bratz Fashion 💖</h2>
+
+                    <p>
+                    Pink fashion doll aesthetic.
+                    </p>
+
+                    <img
+                    src="https://i.imgur.com/K4XxA0K.png"
+                    width="220">
+
+                </div>
 
             </div>
 
@@ -501,16 +666,34 @@ for(let i=0;i<120;i++){
 
             <div class="window" id="music">
 
-                <button class="close"
-                onclick="closeWindow('music')">
-                CLOSE
-                </button>
+                <div class="topbar">
 
-                <h1>🎵 2000s MUSIC 🎵</h1>
+                    Music
 
-                <p>
-                Britney Spears • Avril Lavigne • Cascada
-                </p>
+                    <button class="close"
+                    onclick="closeWindow('music')">
+                    ✕
+                    </button>
+
+                </div>
+
+                <div class="content">
+
+                    <h2>🎵 2000s Playlist 🎵</h2>
+
+                    <p>
+                    Britney Spears • Cascada • Avril Lavigne
+                    </p>
+
+                    <video controls>
+
+                        <source
+                        src="https://www.w3schools.com/html/mov_bbb.mp4"
+                        type="video/mp4">
+
+                    </video>
+
+                </div>
 
             </div>
 
@@ -518,48 +701,56 @@ for(let i=0;i<120;i++){
 
     </div>
 
-    <!-- ICONS -->
-
-    <div class="icons">
-
-        <div class="icon"
-        onclick="openWindow('mario')">
-        Mario
-        </div>
-
-        <div class="icon"
-        onclick="openWindow('winx')">
-        Winx
-        </div>
-
-        <div class="icon"
-        onclick="openWindow('bratz')">
-        Bratz
-        </div>
-
-        <div class="icon"
-        onclick="openWindow('music')">
-        Music
-        </div>
-
-    </div>
-
 </div>
 
-<!-- keyboard -->
+<!-- KEYBOARD -->
 
 <div id="base">
+
     <div id="trackpad"></div>
+
 </div>
 
 <script>
 
+let computerOn=true;
+
+/* POWER BUTTON */
+
+function toggleComputer(){
+
+    computerOn=!computerOn;
+
+    const screen=
+    document.getElementById("screen");
+
+    const base=
+    document.getElementById("base");
+
+    if(computerOn){
+
+        screen.classList.remove("offScreen");
+        base.classList.remove("offScreen");
+
+    }else{
+
+        screen.classList.add("offScreen");
+        base.classList.add("offScreen");
+    }
+}
+
+/* OPEN WINDOWS */
+
 function openWindow(id){
+
+    if(!computerOn) return;
 
     document
     .getElementById(id)
     .style.display="block";
 }
+
+/* CLOSE WINDOWS */
 
 function closeWindow(id){
 
