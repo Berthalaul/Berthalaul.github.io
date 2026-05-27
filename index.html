@@ -202,24 +202,65 @@ body{
 
 /* POWER BUTTON */
 
-.power{
-    position:absolute;
-    bottom:18px;
-    right:22px;
-    width:30px;
-    height:30px;
-    border-radius:50%;
-    background:#8affc7;
-    box-shadow:
-      0 0 10px #8affc7,
-      0 0 20px #8affc7;
-    cursor:pointer;
-    transition:0.3s;
-}
+const powerBtn=document.getElementById('powerBtn');
 
-.power.off{
-    background:#666;
-    box-shadow:none;
+const screen=document.getElementById('screen');
+
+const shutdown=document.getElementById('shutdownScreen');
+
+const powerText=document.getElementById('powerText');
+
+const powerSubtext=document.getElementById('powerSubtext');
+
+let isOn=true;
+
+/* STARTUP */
+
+powerText.innerHTML="COMPUTER ON";
+powerSubtext.innerHTML="Welcome to your Y2K desktop ✨";
+
+setTimeout(()=>{
+    shutdown.style.display='none';
+},1500);
+
+/* POWER BUTTON CLICK */
+
+powerBtn.addEventListener('click',()=>{
+
+    isOn=!isOn;
+
+    if(isOn){
+
+        powerBtn.classList.remove('off');
+
+        shutdown.style.display='flex';
+
+        powerText.innerHTML="COMPUTER ON";
+
+        powerSubtext.innerHTML="Loading glitter desktop ✨";
+
+        setTimeout(()=>{
+
+            screen.style.display='block';
+
+            shutdown.style.display='none';
+
+        },1200);
+
+    }else{
+
+        powerBtn.classList.add('off');
+
+        screen.style.display='none';
+
+        shutdown.style.display='flex';
+
+        powerText.innerHTML="COMPUTER OFF";
+
+        powerSubtext.innerHTML="Press power button to turn on";
+    }
+
+});
 }
 
 /* SHUTDOWN SCREEN */
@@ -319,10 +360,14 @@ body{
 <!-- OFF SCREEN -->
 
 <div class="shutdown" id="shutdownScreen">
-    COMPUTER OFF
-    <small>Press power button to turn on</small>
-</div>
 
+    <div id="powerText">COMPUTER OFF</div>
+
+    <small id="powerSubtext">
+        Press power button to turn on
+    </small>
+
+</div>
 <!-- SCREEN -->
 
 <div class="screen" id="screen">
