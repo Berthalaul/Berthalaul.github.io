@@ -31,7 +31,6 @@ body{
     width:140px;
     pointer-events:none;
     z-index:1;
-
     animation:float 8s infinite ease-in-out;
 }
 
@@ -72,8 +71,6 @@ body{
     z-index:10;
 }
 
-/* shell */
-
 #shell{
     position:absolute;
     inset:0;
@@ -94,8 +91,6 @@ body{
     0 0 120px #8fd7ff;
 }
 
-/* logo */
-
 #logo{
     position:absolute;
     top:18px;
@@ -105,11 +100,8 @@ body{
 
     font-size:36px;
     font-weight:bold;
-
     color:#777;
 }
-
-/* power */
 
 #powerButton{
     position:absolute;
@@ -166,8 +158,6 @@ body{
     );
 }
 
-/* desktop */
-
 #desktop{
     position:relative;
     width:100%;
@@ -178,15 +168,10 @@ body{
 
 .desktopIcon{
     position:absolute;
-
     width:120px;
-
     text-align:center;
-
     color:white;
-
     font-weight:bold;
-
     cursor:pointer;
 }
 
@@ -195,7 +180,7 @@ body{
     width:90px;
     height:90px;
 
-    object-fit:cover;
+    object-fit:contain;
 
     border-radius:22px;
 
@@ -240,8 +225,6 @@ body{
     0 0 40px rgba(0,0,0,.35);
 }
 
-/* topbar */
-
 .topbar{
     height:50px;
 
@@ -262,8 +245,6 @@ body{
     );
 }
 
-/* close */
-
 .close{
     width:34px;
     height:34px;
@@ -281,8 +262,6 @@ body{
     font-weight:bold;
 }
 
-/* iframe */
-
 iframe{
     width:100%;
     height:calc(100% - 50px);
@@ -295,77 +274,248 @@ iframe{
     position:absolute;
 
     bottom:0;
-   <!-- ===== WINX ===== -->
+    left:50%;
 
-<iframe
-src="https://www.numuki.com/game/winx-club-love-and-pet/">
-<!-- WINX ICON -->
+    transform:translateX(-50%);
 
-<img
-src="https://upload.wikimedia.org/wikipedia/en/f/fb/Winx_Club_logo.png">
-</iframe>
-<!-- ===== BRATZ ===== -->
+    width:1100px;
+    height:170px;
 
-<iframe
-src="https://www.numuki.com/game/bratz-fascinating-cake/">
-</iframe>
-<!-- BRATZ ICON -->
+    border-radius:45px;
 
-<img
-src="https://upload.wikimedia.org/wikipedia/commons/6/69/Bratz_logo.svg">
-<!-- ===== MARIO ===== -->
+    background:
+    linear-gradient(
+        to bottom,
+        #ffffff,
+        #f0f0f0
+    );
 
-<iframe
-src="https://arcadespot.com/game/super-mario-world-online/">
-</iframe>
-<!-- ===== MUSIC ===== -->
+    border:14px solid #ff4fb5;
 
-<iframe
-src="https://www.youtube.com/embed/4fndeDfaWCg">
-</iframe>
-<!-- BARBIE -->
+    box-shadow:
+    0 20px 60px rgba(0,0,0,.25);
+}
+
+#trackpad{
+    position:absolute;
+
+    bottom:30px;
+    left:50%;
+
+    transform:translateX(-50%);
+
+    width:220px;
+    height:45px;
+
+    border-radius:40px;
+
+    background:
+    linear-gradient(
+        to bottom,
+        #ff7ed2,
+        #ff2fa5
+    );
+}
+
+.off{
+    opacity:0;
+    pointer-events:none;
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- ===== FLOWERS ===== -->
+
+<script>
+
+const flowers = [
+"https://cdn-icons-png.flaticon.com/512/616/616490.png",
+"https://cdn-icons-png.flaticon.com/512/2909/2909768.png",
+"https://cdn-icons-png.flaticon.com/512/599/599502.png"
+];
+
+for(let i=0;i<20;i++){
+
+    const flower=document.createElement("div");
+
+    flower.className="flower";
+
+    flower.style.left=
+    Math.random()*window.innerWidth+"px";
+
+    flower.style.top=
+    Math.random()*window.innerHeight+"px";
+
+    const img=document.createElement("img");
+
+    img.src=
+    flowers[Math.floor(Math.random()*flowers.length)];
+
+    flower.appendChild(img);
+
+    document.body.appendChild(flower);
+}
+
+</script>
+
+<!-- ===== COMPUTER ===== -->
+
+<div id="computer">
+
+<div id="shell"></div>
+
+<div id="logo">
+iBook Dream
+</div>
+
+<div id="powerButton"
+onclick="toggleComputer()">
+⏻
+</div>
+
+<!-- ===== SCREEN ===== -->
+
+<div id="screen">
+
+<div id="desktop">
+
+<!-- ===== APPS ===== -->
 
 <div class="desktopIcon"
-style="top:200px;left:35px;"
-onclick="openWindow('barbie')">
+style="top:30px;left:35px;"
+onclick="openWindow('mario')">
 
 <img
-src="https://upload.wikimedia.org/wikipedia/commons/0/0b/Barbie_Logo.svg">
-
-<div>Barbie</div>
+src="https://upload.wikimedia.org/wikipedia/en/a/a9/MarioNSMBUDeluxe.png">
 
 </div>
 
-<div class="window" id="barbie">
+<div class="desktopIcon"
+style="top:30px;left:210px;"
+onclick="openWindow('winx')">
+
+<img
+src="https://upload.wikimedia.org/wikipedia/en/f/fb/Winx_Club_logo.png">
+
+</div>
+
+<div class="desktopIcon"
+style="top:30px;left:385px;"
+onclick="openWindow('bratz')">
+
+<img
+src="https://upload.wikimedia.org/wikipedia/commons/6/69/Bratz_logo.svg">
+
+</div>
+
+<div class="desktopIcon"
+style="top:30px;left:560px;"
+onclick="openWindow('music')">
+
+<img
+src="https://cdn-icons-png.flaticon.com/512/3659/3659899.png">
+
+</div>
+
+<div class="desktopIcon"
+style="top:30px;left:735px;"
+onclick="openWindow('kitty')">
+
+<img
+src="https://upload.wikimedia.org/wikipedia/en/0/05/Hello_Kitty_character_portrait.png">
+
+</div>
+
+<!-- ===== WINDOWS ===== -->
+
+<!-- MARIO -->
+
+<div class="window" id="mario">
 
 <div class="topbar">
 
-💖 BARBIE WORLD 💖
+🍄 SUPER MARIO 🍄
 
 <button class="close"
-onclick="closeWindow('barbie')">
+onclick="closeWindow('mario')">
 ✕
 </button>
 
 </div>
 
 <iframe
-src="https://www.numuki.com/games/barbie/">
+src="https://arcadespot.com/game/super-mario-world-online/">
 </iframe>
 
 </div>
-<!-- HELLO KITTY -->
 
-<div class="desktopIcon"
-style="top:200px;left:210px;"
-onclick="openWindow('kitty')">
+<!-- WINX -->
 
-<img
-src="https://upload.wikimedia.org/wikipedia/en/0/05/Hello_Kitty_character_portrait.png">
+<div class="window" id="winx">
 
-<div>Hello Kitty</div>
+<div class="topbar">
+
+✨ WINX CLUB ✨
+
+<button class="close"
+onclick="closeWindow('winx')">
+✕
+</button>
 
 </div>
+
+<iframe
+src="https://www.numuki.com/game/winx-club-love-and-pet/">
+</iframe>
+
+</div>
+
+<!-- BRATZ -->
+
+<div class="window" id="bratz">
+
+<div class="topbar">
+
+💖 BRATZ WORLD 💖
+
+<button class="close"
+onclick="closeWindow('bratz')">
+✕
+</button>
+
+</div>
+
+<iframe
+src="https://www.numuki.com/game/bratz-fascinating-cake/">
+</iframe>
+
+</div>
+
+<!-- MUSIC -->
+
+<div class="window" id="music">
+
+<div class="topbar">
+
+🎵 Y2K MUSIC 🎵
+
+<button class="close"
+onclick="closeWindow('music')">
+✕
+</button>
+
+</div>
+
+<iframe
+src="https://www.youtube.com/embed/4fndeDfaWCg">
+</iframe>
+
+</div>
+
+<!-- HELLO KITTY -->
 
 <div class="window" id="kitty">
 
@@ -385,3 +535,55 @@ src="https://www.numuki.com/games/hello-kitty/">
 </iframe>
 
 </div>
+
+</div>
+</div>
+</div>
+
+<!-- ===== KEYBOARD ===== -->
+
+<div id="base">
+<div id="trackpad"></div>
+</div>
+
+<script>
+
+let computerOn=true;
+
+function toggleComputer(){
+
+computerOn=!computerOn;
+
+const screen=
+document.getElementById("screen");
+
+if(computerOn){
+
+screen.classList.remove("off");
+
+}else{
+
+screen.classList.add("off");
+}
+}
+
+function openWindow(id){
+
+if(!computerOn) return;
+
+document
+.getElementById(id)
+.style.display="block";
+}
+
+function closeWindow(id){
+
+document
+.getElementById(id)
+.style.display="none";
+}
+
+</script>
+
+</body>
+</html>
