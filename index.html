@@ -200,40 +200,17 @@ body{
     border-radius:20px;
 }
 
-<!-- POWER BUTTON -->
-
-<div class="power-container">
-
-    <div class="power-label">
-        POWER
-    </div>
-
-    <div class="power" id="powerBtn"></div>
-
-</div>
-
-/* STARTUP */
-
-powerText.innerHTML="COMPUTER ON";
-powerSubtext.innerHTML="Welcome to your Y2K desktop ✨";
-
-setTimeout(()=>{
-    shutdown.style.display='none';
-},1500);
-
-/* POWER CONTAINER */
+/* POWER */
 
 .power-container{
     position:absolute;
-    bottom:10px;
+    bottom:12px;
     right:18px;
     display:flex;
     align-items:center;
     gap:10px;
     z-index:50;
 }
-
-/* POWER LABEL */
 
 .power-label{
     color:#ff1493;
@@ -246,11 +223,9 @@ setTimeout(()=>{
     user-select:none;
 }
 
-/* POWER BUTTON */
-
 .power{
-    width:30px;
-    height:30px;
+    width:32px;
+    height:32px;
     border-radius:50%;
     background:#8affc7;
     box-shadow:
@@ -261,8 +236,6 @@ setTimeout(()=>{
     border:2px solid white;
     position:relative;
 }
-
-/* POWER SYMBOL */
 
 .power::before{
     content:"⏻";
@@ -279,6 +252,28 @@ setTimeout(()=>{
 .power.off{
     background:#666;
     box-shadow:none;
+}
+
+/* SHUTDOWN */
+
+.shutdown{
+    position:absolute;
+    inset:0;
+    background:black;
+    color:white;
+    display:none;
+    align-items:center;
+    justify-content:center;
+    flex-direction:column;
+    font-size:42px;
+    z-index:100;
+    letter-spacing:3px;
+}
+
+.shutdown small{
+    font-size:18px;
+    margin-top:20px;
+    color:#aaa;
 }
 
 /* MARQUEE */
@@ -324,7 +319,7 @@ setTimeout(()=>{
 
 }
 
-/* FLOWERS POSITIONS */
+/* FLOWER POSITIONS */
 
 .f1{top:5%;left:8%;}
 .f2{top:70%;left:12%;}
@@ -353,17 +348,20 @@ setTimeout(()=>{
 
 <div class="monitor">
 
-<!-- OFF SCREEN -->
+<!-- SHUTDOWN SCREEN -->
 
 <div class="shutdown" id="shutdownScreen">
 
-    <div id="powerText">COMPUTER OFF</div>
+    <div id="powerText">
+        COMPUTER ON
+    </div>
 
     <small id="powerSubtext">
-        Press power button to turn on
+        Welcome to your Y2K desktop ✨
     </small>
 
 </div>
+
 <!-- SCREEN -->
 
 <div class="screen" id="screen">
@@ -372,75 +370,75 @@ setTimeout(()=>{
 💖 Y2K DREAM DESKTOP 💖
 </div>
 
-<!-- DESKTOP ICONS -->
+<!-- DESKTOP -->
 
 <div class="desktop">
 
-   <!-- MUSIC -->
+<!-- MUSIC -->
 
 <div class="icon"
 onclick="openSite('https://www.youtube.com/watch?v=4fndeDfaWCg')">
 
-    <div class="emoji">🎵</div>
+<div class="emoji">🎵</div>
 
-    2000's Music
+2000's Music
 
 </div>
 
-    <!-- HELLO KITTY -->
+<!-- HELLO KITTY -->
 
-    <div class="icon"
-    onclick="openSite('https://www.numuki.com/games/hello-kitty/')">
+<div class="icon"
+onclick="openSite('https://www.numuki.com/games/hello-kitty/')">
 
-        <div class="emoji">🐱</div>
+<div class="emoji">🐱</div>
 
-        Hello Kitty
+Hello Kitty
 
-    </div>
+</div>
 
-    <!-- WINX -->
+<!-- WINX -->
 
-    <div class="icon"
-    onclick="openSite('https://games.winxclub.com/31/Game.html?languageId=1')">
+<div class="icon"
+onclick="openSite('https://games.winxclub.com/31/Game.html?languageId=1')">
 
-        <div class="emoji">🧚</div>
+<div class="emoji">🧚</div>
 
-        Winx Game
+Winx Game
 
-    </div>
+</div>
 
-    <!-- MARIO -->
+<!-- MARIO -->
 
-    <div class="icon"
-    onclick="openSite('https://supermario-game.com/')">
+<div class="icon"
+onclick="openSite('https://supermario-game.com/')">
 
-        <div class="emoji">🍄</div>
+<div class="emoji">🍄</div>
 
-        Mario
+Mario
 
-    </div>
+</div>
 
-    <!-- BRATZ -->
+<!-- BRATZ -->
 
-    <div class="icon"
-    onclick="openSite('https://bratz.fandom.com/wiki/Category:Video_Games')">
+<div class="icon"
+onclick="openSite('https://bratz.fandom.com/wiki/Category:Video_Games')">
 
-        <div class="emoji">💋</div>
+<div class="emoji">💋</div>
 
-        Bratz
+Bratz
 
-    </div>
+</div>
 
-    <!-- Y2K WEB -->
+<!-- Y2K WEB -->
 
-    <div class="icon"
-    onclick="openSite('https://www.cameronsworld.net/')">
+<div class="icon"
+onclick="openSite('https://www.cameronsworld.net/')">
 
-        <div class="emoji">💿</div>
+<div class="emoji">💿</div>
 
-        Y2K Web
+Y2K Web
 
-    </div>
+</div>
 
 </div>
 
@@ -456,7 +454,15 @@ onclick="openSite('https://www.youtube.com/watch?v=4fndeDfaWCg')">
 
 <!-- POWER BUTTON -->
 
+<div class="power-container">
+
+<div class="power-label">
+POWER
+</div>
+
 <div class="power" id="powerBtn"></div>
+
+</div>
 
 </div>
 
@@ -471,9 +477,11 @@ onclick="openSite('https://www.youtube.com/watch?v=4fndeDfaWCg')">
 <source src="https://assets.mixkit.co/active_storage/sfx/2571/2571-preview.mp3" type="audio/mpeg">
 </audio>
 
-<!-- SPARKLES SCRIPT -->
+<!-- SCRIPT -->
 
 <script>
+
+/* SPARKLES */
 
 for(let i=0;i<80;i++){
 
@@ -482,6 +490,7 @@ for(let i=0;i<80;i++){
     s.className='sparkle';
 
     s.style.left=Math.random()*100+'vw';
+
     s.style.top=Math.random()*100+'vh';
 
     s.style.animationDelay=Math.random()*4+'s';
@@ -504,25 +513,51 @@ function openSite(url){
 
 /* POWER BUTTON */
 
-const powerBtn=document.getElementById('powerBtn');
+const powerBtn = document.getElementById('powerBtn');
 
-const screen=document.getElementById('screen');
+const screen = document.getElementById('screen');
 
-const shutdown=document.getElementById('shutdownScreen');
+const shutdown = document.getElementById('shutdownScreen');
 
-let isOn=true;
+const powerText = document.getElementById('powerText');
+
+const powerSubtext = document.getElementById('powerSubtext');
+
+let isOn = true;
+
+/* STARTUP */
+
+shutdown.style.display='flex';
+
+setTimeout(()=>{
+
+    shutdown.style.display='none';
+
+},1500);
+
+/* POWER TOGGLE */
 
 powerBtn.addEventListener('click',()=>{
 
-    isOn=!isOn;
+    isOn = !isOn;
 
     if(isOn){
 
         powerBtn.classList.remove('off');
 
-        screen.style.display='block';
+        shutdown.style.display='flex';
 
-        shutdown.style.display='none';
+        powerText.innerHTML='COMPUTER ON';
+
+        powerSubtext.innerHTML='Loading glitter desktop ✨';
+
+        setTimeout(()=>{
+
+            screen.style.display='block';
+
+            shutdown.style.display='none';
+
+        },1200);
 
     }else{
 
@@ -531,6 +566,10 @@ powerBtn.addEventListener('click',()=>{
         screen.style.display='none';
 
         shutdown.style.display='flex';
+
+        powerText.innerHTML='COMPUTER OFF';
+
+        powerSubtext.innerHTML='Press power button to turn on';
     }
 
 });
