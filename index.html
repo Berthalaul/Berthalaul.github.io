@@ -22,7 +22,6 @@ body{
     justify-content:center;
     background:linear-gradient(135deg,#c7f2ff,#ffd3f0,#d7c5ff);
     position:relative;
-    cursor:url('https://cur.cursors-4u.net/cursors/cur-9/cur817.cur'),auto;
 }
 
 /* SPARKLES */
@@ -68,8 +67,6 @@ body{
         transform:translateY(-20px) rotate(10deg);
     }
 }
-
-/* FLOWER POSITIONS */
 
 .f1{top:5%;left:8%;}
 .f2{top:70%;left:12%;}
@@ -121,21 +118,7 @@ body{
     overflow:hidden;
 }
 
-.screen::after{
-    content:"";
-    position:absolute;
-    inset:0;
-    background:
-    repeating-linear-gradient(
-        to bottom,
-        rgba(255,255,255,0.03),
-        rgba(255,255,255,0.03) 2px,
-        rgba(0,0,0,0.02) 4px
-    );
-    pointer-events:none;
-}
-
-/* TOPBAR */
+/* TOP BAR */
 
 .topbar{
     height:38px;
@@ -143,11 +126,8 @@ body{
     align-items:center;
     padding:0 14px;
     background:rgba(255,255,255,0.4);
-    backdrop-filter:blur(6px);
     color:#ff1493;
     font-weight:bold;
-    border-bottom:2px solid rgba(255,255,255,0.4);
-    text-shadow:0 0 8px white;
 }
 
 /* DESKTOP */
@@ -169,7 +149,6 @@ body{
     font-weight:bold;
     cursor:pointer;
     transition:0.25s;
-    user-select:none;
 }
 
 .icon:hover{
@@ -179,9 +158,6 @@ body{
 .icon .emoji{
     font-size:58px;
     margin-bottom:8px;
-    filter:
-        drop-shadow(0 0 8px white)
-        drop-shadow(0 0 15px pink);
 }
 
 /* APP WINDOW */
@@ -199,9 +175,6 @@ body{
     overflow:hidden;
     z-index:300;
     display:none;
-    box-shadow:
-        0 0 25px rgba(255,255,255,0.9),
-        0 0 40px rgba(255,105,180,0.5);
 }
 
 .app-header{
@@ -223,15 +196,12 @@ body{
     height:28px;
     border-radius:50%;
     cursor:pointer;
-    font-size:16px;
-    font-weight:bold;
 }
 
 #appFrame{
     width:100%;
     height:calc(100% - 42px);
     border:none;
-    background:white;
 }
 
 /* POWER BUTTON */
@@ -255,15 +225,10 @@ body{
     color:white;
     font-size:20px;
     cursor:pointer;
-    box-shadow:
-        0 0 10px #8affc7,
-        0 0 20px #8affc7;
-    transition:0.3s;
 }
 
 .power.off{
     background:#666;
-    box-shadow:none;
 }
 
 .power-text{
@@ -285,7 +250,6 @@ body{
     flex-direction:column;
     font-size:42px;
     z-index:500;
-    letter-spacing:3px;
 }
 
 .shutdown small{
@@ -310,35 +274,6 @@ body{
     background:#cfcfff;
     margin:10px auto;
     border-radius:20px;
-}
-
-/* MARQUEE */
-
-.marquee{
-    position:absolute;
-    bottom:0;
-    width:100%;
-    background:rgba(255,255,255,0.45);
-    color:#ff1493;
-    padding:7px;
-    font-weight:bold;
-    overflow:hidden;
-    white-space:nowrap;
-}
-
-.marquee span{
-    display:inline-block;
-    padding-left:100%;
-    animation:scroll 18s linear infinite;
-}
-
-@keyframes scroll{
-    from{
-        transform:translateX(0);
-    }
-    to{
-        transform:translateX(-100%);
-    }
 }
 
 </style>
@@ -388,7 +323,7 @@ Welcome to your Y2K desktop ✨
 <div class="desktop">
 
 <div class="icon"
-onclick="openApp('https://www.youtube.com/embed/4fndeDfaWCg')">
+onclick="openApp('https://www.youtube.com/watch?v=4fndeDfaWCg')">
 <div class="emoji">🎵</div>
 2000's Music
 </div>
@@ -441,16 +376,12 @@ Bratz
 
 </div>
 
-<iframe id="appFrame"></iframe>
+<iframe 
+id="appFrame"
+allowfullscreen
+allow="autoplay; encrypted-media">
+</iframe>
 
-</div>
-
-<!-- MARQUEE -->
-
-<div class="marquee">
-<span>
-✨ welcome to the y2k dream desktop ✨ glitter girls forever ✨ fairycore internet ✨ myspace vibes ✨
-</span>
 </div>
 
 </div>
@@ -476,12 +407,6 @@ POWER
 
 </div>
 
-<!-- AUDIO -->
-
-<audio id="clickSound">
-<source src="https://assets.mixkit.co/active_storage/sfx/2571/2571-preview.mp3" type="audio/mpeg">
-</audio>
-
 <script>
 
 /* SPARKLES */
@@ -497,8 +422,6 @@ for(let i=0;i<80;i++){
 
     s.style.animationDelay=Math.random()*4+'s';
 
-    s.style.opacity=Math.random();
-
     document.body.appendChild(s);
 }
 
@@ -508,11 +431,18 @@ function openApp(url){
 
     if(!isOn) return;
 
-    document.getElementById('clickSound').play();
-
     const appWindow=document.getElementById('appWindow');
 
     const appFrame=document.getElementById('appFrame');
+
+    /* YOUTUBE FIX */
+
+    if(url.includes('youtube.com/watch?v=')){
+
+        const videoId=url.split('v=')[1].split('&')[0];
+
+        url=`https://www.youtube.com/embed/${videoId}?autoplay=1`;
+    }
 
     appFrame.src=url;
 
