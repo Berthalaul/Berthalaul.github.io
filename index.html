@@ -19,53 +19,83 @@ body{
     background:
     linear-gradient(
         135deg,
-        #ffb6dc,
-        #8fd7ff
+        #8fd7ff,
+        #ffd1ec,
+        #ffc8f0
     );
 }
 
-/* ===== FLOWER BACKGROUND ===== */
+/* ===== GLOW FLOWERS ===== */
 
-.bg{
-    position:fixed;
-    inset:0;
-    z-index:0;
-    overflow:hidden;
+.flower{
+    position:absolute;
+    width:170px;
+    z-index:1;
+    pointer-events:none;
+
+    animation:
+    float 8s infinite ease-in-out;
 }
 
-.bg img{
+.flower img{
     width:100%;
-    height:100%;
-    object-fit:cover;
-    opacity:.9;
+
+    filter:
+    drop-shadow(0 0 12px white)
+    drop-shadow(0 0 25px #ff8fd7)
+    drop-shadow(0 0 40px #8fd7ff);
+}
+
+@keyframes float{
+
+    0%{
+        transform:
+        translateY(0px)
+        rotate(0deg);
+    }
+
+    50%{
+        transform:
+        translateY(-30px)
+        rotate(8deg);
+    }
+
+    100%{
+        transform:
+        translateY(0px)
+        rotate(0deg);
+    }
 }
 
 /* ===== SPARKLES ===== */
 
 .sparkle{
     position:absolute;
+
     width:8px;
     height:8px;
+
     border-radius:50%;
     background:white;
 
     box-shadow:
     0 0 10px white,
     0 0 20px #ff9de2,
-    0 0 40px white;
+    0 0 40px #8fd7ff;
 
-    animation:twinkle 2s infinite alternate;
+    animation:
+    twinkle 2s infinite alternate;
 }
 
 @keyframes twinkle{
 
     from{
         transform:scale(.5);
-        opacity:.4;
+        opacity:.3;
     }
 
     to{
-        transform:scale(1.8);
+        transform:scale(2);
         opacity:1;
     }
 }
@@ -79,6 +109,8 @@ body{
     z-index:10;
 }
 
+/* shell */
+
 #shell{
     position:absolute;
     inset:0;
@@ -88,7 +120,7 @@ body{
     background:
     linear-gradient(
         to bottom,
-        #ffffff,
+        white,
         #f1f1f1
     );
 
@@ -99,8 +131,11 @@ body{
     0 0 120px #8fd7ff;
 }
 
+/* logo */
+
 #logo{
     position:absolute;
+
     top:18px;
     left:50%;
 
@@ -108,8 +143,11 @@ body{
 
     font-size:36px;
     font-weight:bold;
+
     color:#777;
 }
+
+/* power */
 
 #powerButton{
     position:absolute;
@@ -166,18 +204,23 @@ body{
     );
 }
 
+/* desktop */
+
 #desktop{
     position:relative;
     width:100%;
     height:100%;
 }
 
-/* ===== ICONS ===== */
+/* ===== APP ICONS ===== */
 
 .desktopIcon{
     position:absolute;
+
     width:120px;
+
     text-align:center;
+
     cursor:pointer;
 }
 
@@ -231,6 +274,8 @@ body{
     0 0 40px rgba(0,0,0,.35);
 }
 
+/* top bar */
+
 .topbar{
     height:50px;
 
@@ -251,6 +296,8 @@ body{
     );
 }
 
+/* close */
+
 .close{
     width:34px;
     height:34px;
@@ -267,6 +314,8 @@ body{
 
     font-weight:bold;
 }
+
+/* iframe */
 
 iframe{
     width:100%;
@@ -292,7 +341,7 @@ iframe{
     background:
     linear-gradient(
         to bottom,
-        #ffffff,
+        white,
         #f0f0f0
     );
 
@@ -301,6 +350,8 @@ iframe{
     box-shadow:
     0 20px 60px rgba(0,0,0,.25);
 }
+
+/* trackpad */
 
 #trackpad{
     position:absolute;
@@ -333,17 +384,53 @@ iframe{
 
 <body>
 
-<!-- ===== FLOWER BACKGROUND ===== -->
-
-<div class="bg">
-    <img src="/mnt/data/-4.jpg">
-</div>
-
-<!-- ===== SPARKLES ===== -->
+<!-- ===== FLOWERS ===== -->
 
 <script>
 
-for(let i=0;i<120;i++){
+const flowers = [
+
+"https://pngimg.com/d/daisy_PNG5.png",
+
+"https://pngimg.com/d/flowers_PNG102.png",
+
+"https://pngimg.com/d/flower_PNG102.png",
+
+"https://pngimg.com/d/sunflower_PNG13417.png"
+
+];
+
+for(let i=0;i<20;i++){
+
+    const flower=document.createElement("div");
+
+    flower.className="flower";
+
+    flower.style.left=
+    Math.random()*window.innerWidth+"px";
+
+    flower.style.top=
+    Math.random()*window.innerHeight+"px";
+
+    flower.style.width=
+    120+Math.random()*100+"px";
+
+    flower.style.animationDuration=
+    6+Math.random()*6+"s";
+
+    const img=document.createElement("img");
+
+    img.src=
+    flowers[Math.floor(Math.random()*flowers.length)];
+
+    flower.appendChild(img);
+
+    document.body.appendChild(flower);
+}
+
+/* ===== SPARKLES ===== */
+
+for(let i=0;i<150;i++){
 
     const sparkle=document.createElement("div");
 
@@ -384,184 +471,6 @@ onclick="toggleComputer()">
 
 <div id="desktop">
 
-<!-- ===== APP ICONS ===== -->
-
-<div class="desktopIcon"
-style="top:30px;left:35px;"
-onclick="openWindow('mario')">
-
-<img
-src="https://upload.wikimedia.org/wikipedia/en/a/a9/MarioNSMBUDeluxe.png">
-
-</div>
-
-<div class="desktopIcon"
-style="top:30px;left:210px;"
-onclick="openWindow('winx')">
-
-<img
-src="https://i.imgur.com/0R6b6sS.png">
-
-</div>
-
-<div class="desktopIcon"
-style="top:30px;left:385px;"
-onclick="openWindow('bratz')">
-
-<img
-src="https://i.imgur.com/Y4KpQeb.png">
-
-</div>
-
-<div class="desktopIcon"
-style="top:30px;left:560px;"
-onclick="openWindow('music')">
-
-<img
-src="https://cdn-icons-png.flaticon.com/512/3659/3659899.png">
-
-</div>
-
-<div class="desktopIcon"
-style="top:30px;left:735px;"
-onclick="openWindow('kitty')">
-
-<img
-src="https://i.imgur.com/Jp0n9xV.png">
-
-</div>
-
-<!-- ===== WINDOWS ===== -->
-
-<div class="window" id="mario">
-
-<div class="topbar">
-
-🍄 SUPER MARIO 🍄
-
-<button class="close"
-onclick="closeWindow('mario')">
-✕
-</button>
-
-</div>
-
-<iframe
-src="https://arcadespot.com/game/super-mario-world-online/">
-</iframe>
-
-</div>
-
-<div class="window" id="winx">
-
-<div class="topbar">
-
-✨ WINX CLUB ✨
-
-<button class="close"
-onclick="closeWindow('winx')">
-✕
-</button>
-
-</div>
-
-<iframe
-src="https://www.numuki.com/game/winx-club-love-and-pet/">
-</iframe>
-
-</div>
-
-<div class="window" id="bratz">
-
-<div class="topbar">
-
-💖 BRATZ WORLD 💖
-
-<button class="close"
-onclick="closeWindow('bratz')">
-✕
-</button>
-
-</div>
-
-<iframe
-src="https://www.numuki.com/games/bratz/">
-</iframe>
-
-</div>
-
-<div class="window" id="music">
-
-<div class="topbar">
-
-🎵 Y2K MUSIC 🎵
-
-<button class="close"
-onclick="closeWindow('music')">
-✕
-</button>
-
-</div>
-
-<iframe
-src="https://www.youtube.com/embed/4fndeDfaWCg">
-</iframe>
-
-</div>
-
-<div class="window" id="kitty">
-
-<div class="topbar">
-
-
-<!-- ===== KEYBOARD ===== -->
-
-<div id="base">
-<div id="trackpad"></div>
-</div>
-
-</div>
-
-<script>
-
-let computerOn=true;
-
-function toggleComputer(){
-
-computerOn=!computerOn;
-
-const screen=
-document.getElementById("screen");
-
-if(computerOn){
-
-screen.classList.remove("off");
-
-}else{
-
-screen.classList.add("off");
-}
-}
-
-function openWindow(id){
-
-if(!computerOn) return;
-
-document
-.getElementById(id)
-.style.display="block";
-}
-
-function closeWindow(id){
-
-document
-.getElementById(id)
-.style.display="none";
-}
-
-</script>
-
-</body>
 <!-- ===== APP ICONS ===== -->
 
 <!-- MARIO -->
@@ -618,29 +527,169 @@ onclick="openWindow('kitty')">
 src="https://upload.wikimedia.org/wikipedia/en/0/05/Hello_Kitty_character_portrait.png">
 
 </div>
-</html>
-#screen{
-    position:absolute;
 
-    top:80px;
-    left:70px;
+<!-- ===== WINDOWS ===== -->
 
-    width:900px;
-    height:500px;
+<!-- MARIO -->
 
-    overflow:hidden;
+<div class="window" id="mario">
 
-    border-radius:25px;
+<div class="topbar">
 
-    border:10px solid #ddd;
+🍄 SUPER MARIO 🍄
 
-    background:
-    linear-gradient(
-        135deg,
-        #8fd7ff,
-        #ffd0ef
-    );
-}
-<div class="bg">
-    <img src="/mnt/data/-4.jpg">
+<button class="close"
+onclick="closeWindow('mario')">
+✕
+</button>
+
 </div>
+
+<iframe
+src="https://arcadespot.com/game/super-mario-world-online/">
+</iframe>
+
+</div>
+
+<!-- WINX -->
+
+<div class="window" id="winx">
+
+<div class="topbar">
+
+✨ WINX CLUB ✨
+
+<button class="close"
+onclick="closeWindow('winx')">
+✕
+</button>
+
+</div>
+
+<iframe
+src="https://www.numuki.com/game/winx-club-love-and-pet/">
+</iframe>
+
+</div>
+
+<!-- BRATZ -->
+
+<div class="window" id="bratz">
+
+<div class="topbar">
+
+💖 BRATZ WORLD 💖
+
+<button class="close"
+onclick="closeWindow('bratz')">
+✕
+</button>
+
+</div>
+
+<iframe
+src="https://www.numuki.com/games/bratz/">
+</iframe>
+
+</div>
+
+<!-- MUSIC -->
+
+<div class="window" id="music">
+
+<div class="topbar">
+
+🎵 Y2K MUSIC 🎵
+
+<button class="close"
+onclick="closeWindow('music')">
+✕
+</button>
+
+</div>
+
+<iframe
+src="https://www.youtube.com/embed/4fndeDfaWCg">
+</iframe>
+
+</div>
+
+<!-- HELLO KITTY -->
+
+<div class="window" id="kitty">
+
+<div class="topbar">
+
+🎀 HELLO KITTY 🎀
+
+<button class="close"
+onclick="closeWindow('kitty')">
+✕
+</button>
+
+</div>
+
+<iframe
+src="https://www.numuki.com/games/hello-kitty/">
+</iframe>
+
+</div>
+
+</div>
+</div>
+
+<!-- ===== KEYBOARD ===== -->
+
+<div id="base">
+<div id="trackpad"></div>
+</div>
+
+</div>
+
+<script>
+
+/* ===== POWER ===== */
+
+let computerOn=true;
+
+function toggleComputer(){
+
+computerOn=!computerOn;
+
+const screen=
+document.getElementById("screen");
+
+if(computerOn){
+
+screen.classList.remove("off");
+
+}else{
+
+screen.classList.add("off");
+}
+}
+
+/* ===== OPEN ===== */
+
+function openWindow(id){
+
+if(!computerOn) return;
+
+document
+.getElementById(id)
+.style.display="block";
+}
+
+/* ===== CLOSE ===== */
+
+function closeWindow(id){
+
+document
+.getElementById(id)
+.style.display="none";
+}
+
+</script>
+
+</body>
+</html>
