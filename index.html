@@ -3,7 +3,6 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Y2K Dream Laptop</title>
 
 <style>
@@ -25,12 +24,52 @@ body{
     );
 }
 
+/* ===== FLOWERS ===== */
+
+.flower{
+    position:absolute;
+    width:140px;
+    pointer-events:none;
+    z-index:1;
+
+    animation:float 8s infinite ease-in-out;
+}
+
+.flower img{
+    width:100%;
+    filter:
+    drop-shadow(0 0 15px white)
+    drop-shadow(0 0 25px #ff9de2);
+}
+
+@keyframes float{
+
+    0%{
+        transform:
+        translateY(0px)
+        rotate(0deg);
+    }
+
+    50%{
+        transform:
+        translateY(-30px)
+        rotate(8deg);
+    }
+
+    100%{
+        transform:
+        translateY(0px)
+        rotate(0deg);
+    }
+}
+
 /* ===== COMPUTER ===== */
 
 #computer{
     position:relative;
     width:1050px;
     height:760px;
+    z-index:10;
 }
 
 /* shell */
@@ -256,316 +295,4 @@ iframe{
     position:absolute;
 
     bottom:0;
-    left:50%;
-
-    transform:translateX(-50%);
-
-    width:1100px;
-    height:170px;
-
-    border-radius:45px;
-
-    background:
-    linear-gradient(
-        to bottom,
-        #ffffff,
-        #f0f0f0
-    );
-
-    border:14px solid #ff4fb5;
-
-    box-shadow:
-    0 20px 60px rgba(0,0,0,.25);
-}
-
-/* trackpad */
-
-#trackpad{
-    position:absolute;
-
-    bottom:30px;
-    left:50%;
-
-    transform:translateX(-50%);
-
-    width:220px;
-    height:45px;
-
-    border-radius:40px;
-
-    background:
-    linear-gradient(
-        to bottom,
-        #ff7ed2,
-        #ff2fa5
-    );
-}
-
-.off{
-    opacity:0;
-    pointer-events:none;
-}
-
-</style>
-</head>
-
-<body>
-
-<!-- ===== COMPUTER ===== -->
-
-<div id="computer">
-
-    <div id="shell"></div>
-
-    <div id="logo">
-        iBook Dream
-    </div>
-
-    <!-- POWER -->
-
-    <div id="powerButton"
-    onclick="toggleComputer()">
-    ⏻
-    </div>
-
-    <!-- ===== SCREEN ===== -->
-
-    <div id="screen">
-
-        <div id="desktop">
-
-            <!-- ===== APPS ===== -->
-
-            <!-- MARIO -->
-
-            <div class="desktopIcon"
-            style="top:30px;left:35px;"
-            onclick="openWindow('mario')">
-
-                <img
-                src="https://upload.wikimedia.org/wikipedia/en/a/a9/MarioNSMBUDeluxe.png">
-
-                <div>Mario</div>
-
-            </div>
-
-            <!-- WINX -->
-
-            <div class="desktopIcon"
-            style="top:30px;left:210px;"
-            onclick="openWindow('winx')">
-
-                <img
-                src="https://static.wikia.nocookie.net/logopedia/images/5/5b/Winx_Club_logo.png">
-
-                <div>Winx</div>
-
-            </div>
-
-            <!-- BRATZ -->
-
-            <div class="desktopIcon"
-            style="top:30px;left:385px;"
-            onclick="openWindow('bratz')">
-
-                <img
-                src="https://upload.wikimedia.org/wikipedia/commons/6/69/Bratz_logo.svg">
-
-                <div>Bratz</div>
-
-            </div>
-
-            <!-- MUSIC -->
-
-            <div class="desktopIcon"
-            style="top:30px;left:560px;"
-            onclick="openWindow('music')">
-
-                <img
-                src="https://cdn-icons-png.flaticon.com/512/3659/3659899.png">
-
-                <div>Music</div>
-
-            </div>
-
-            <!-- SONIC -->
-
-            <div class="desktopIcon"
-            style="top:30px;left:735px;"
-            onclick="openWindow('sonic')">
-
-                <img
-                src="https://upload.wikimedia.org/wikipedia/commons/5/5a/Sonic_the_Hedgehog_Logo.png">
-
-                <div>Sonic</div>
-
-            </div>
-
-            <!-- ===== WINDOWS ===== -->
-
-            <!-- MARIO -->
-
-            <div class="window" id="mario">
-
-                <div class="topbar">
-
-                    🍄 SUPER MARIO 🍄
-
-                    <button class="close"
-                    onclick="closeWindow('mario')">
-                    ✕
-                    </button>
-
-                </div>
-
-                <iframe
-                src="https://supermario-game.com/webgl/super-mario-world/">
-                </iframe>
-
-            </div>
-
-            <!-- WINX -->
-
-            <div class="window" id="winx">
-
-                <div class="topbar">
-
-                    ✨ WINX CLUB ✨
-
-                    <button class="close"
-                    onclick="closeWindow('winx')">
-                    ✕
-                    </button>
-
-                </div>
-
-                <iframe
-                src="https://www.numuki.com/game/winx-club-bloomix-battle/">
-                </iframe>
-
-            </div>
-
-            <!-- BRATZ -->
-
-            <div class="window" id="bratz">
-
-                <div class="topbar">
-
-                    💖 BRATZ WORLD 💖
-
-                    <button class="close"
-                    onclick="closeWindow('bratz')">
-                    ✕
-                    </button>
-
-                </div>
-
-                <iframe
-                src="https://www.numuki.com/games/bratz/">
-                </iframe>
-
-            </div>
-
-            <!-- MUSIC -->
-
-            <div class="window" id="music">
-
-                <div class="topbar">
-
-                    🎵 Y2K MUSIC 🎵
-
-                    <button class="close"
-                    onclick="closeWindow('music')">
-                    ✕
-                    </button>
-
-                </div>
-
-                <iframe
-                src="https://www.youtube.com/embed/P13M4K1xuDo">
-                </iframe>
-
-            </div>
-
-            <!-- SONIC -->
-
-            <div class="window" id="sonic">
-
-                <div class="topbar">
-
-                    💙 SONIC GAME 💙
-
-                    <button class="close"
-                    onclick="closeWindow('sonic')">
-                    ✕
-                    </button>
-
-                </div>
-
-                <iframe
-                src="https://kbhgames.com/game/sonic-the-hedgehog">
-                </iframe>
-
-            </div>
-
-        </div>
-
-    </div>
-
-</div>
-
-<!-- ===== KEYBOARD ===== -->
-
-<div id="base">
-
-    <div id="trackpad"></div>
-
-</div>
-
-<script>
-
-/* ===== POWER ===== */
-
-let computerOn=true;
-
-function toggleComputer(){
-
-    computerOn=!computerOn;
-
-    const screen=
-    document.getElementById("screen");
-
-    if(computerOn){
-
-        screen.classList.remove("off");
-
-    }else{
-
-        screen.classList.add("off");
-    }
-}
-
-/* ===== OPEN ===== */
-
-function openWindow(id){
-
-    if(!computerOn) return;
-
-    document
-    .getElementById(id)
-    .style.display="block";
-}
-
-/* ===== CLOSE ===== */
-
-function closeWindow(id){
-
-    document
-    .getElementById(id)
-    .style.display="none";
-}
-
-</script>
-
-</body>
-</html>
+   
