@@ -170,8 +170,6 @@ body{
     position:absolute;
     width:120px;
     text-align:center;
-    color:white;
-    font-weight:bold;
     cursor:pointer;
 }
 
@@ -332,12 +330,18 @@ iframe{
 <script>
 
 const flowers = [
-"https://cdn-icons-png.flaticon.com/512/616/616490.png",
-"https://cdn-icons-png.flaticon.com/512/2909/2909768.png",
-"https://cdn-icons-png.flaticon.com/512/599/599502.png"
+
+"https://pngimg.com/d/daisy_PNG5.png",
+
+"https://pngimg.com/d/flowers_PNG102.png",
+
+"https://pngimg.com/d/flower_PNG102.png",
+
+"https://pngimg.com/d/sunflower_PNG13417.png"
+
 ];
 
-for(let i=0;i<20;i++){
+for(let i=0;i<18;i++){
 
     const flower=document.createElement("div");
 
@@ -348,6 +352,12 @@ for(let i=0;i<20;i++){
 
     flower.style.top=
     Math.random()*window.innerHeight+"px";
+
+    flower.style.width=
+    100+Math.random()*120+"px";
+
+    flower.style.animationDuration=
+    6+Math.random()*6+"s";
 
     const img=document.createElement("img");
 
@@ -382,7 +392,9 @@ onclick="toggleComputer()">
 
 <div id="desktop">
 
-<!-- ===== APPS ===== -->
+<!-- ===== APP ICONS ===== -->
+
+<!-- MARIO -->
 
 <div class="desktopIcon"
 style="top:30px;left:35px;"
@@ -393,23 +405,29 @@ src="https://upload.wikimedia.org/wikipedia/en/a/a9/MarioNSMBUDeluxe.png">
 
 </div>
 
+<!-- WINX -->
+
 <div class="desktopIcon"
 style="top:30px;left:210px;"
 onclick="openWindow('winx')">
 
 <img
-src="https://upload.wikimedia.org/wikipedia/en/f/fb/Winx_Club_logo.png">
+src="https://i.imgur.com/0R6b6sS.png">
 
 </div>
+
+<!-- BRATZ -->
 
 <div class="desktopIcon"
 style="top:30px;left:385px;"
 onclick="openWindow('bratz')">
 
 <img
-src="https://upload.wikimedia.org/wikipedia/commons/6/69/Bratz_logo.svg">
+src="https://i.imgur.com/Y4KpQeb.png">
 
 </div>
+
+<!-- MUSIC -->
 
 <div class="desktopIcon"
 style="top:30px;left:560px;"
@@ -420,12 +438,14 @@ src="https://cdn-icons-png.flaticon.com/512/3659/3659899.png">
 
 </div>
 
+<!-- HELLO KITTY -->
+
 <div class="desktopIcon"
 style="top:30px;left:735px;"
 onclick="openWindow('kitty')">
 
 <img
-src="https://upload.wikimedia.org/wikipedia/en/0/05/Hello_Kitty_character_portrait.png">
+src="https://i.imgur.com/Jp0n9xV.png">
 
 </div>
 
@@ -468,7 +488,7 @@ onclick="closeWindow('winx')">
 </div>
 
 <iframe
-src="https://www.numuki.com/game/winx-club-love-and-pet/">
+src="https://www.gameszap.com/game/204/winx-club-dress-up.html">
 </iframe>
 
 </div>
@@ -489,7 +509,7 @@ onclick="closeWindow('bratz')">
 </div>
 
 <iframe
-src="https://www.numuki.com/game/bratz-fascinating-cake/">
+src="https://www.girlsgogames.com/game/bratz-makeover-game">
 </iframe>
 
 </div>
@@ -531,7 +551,7 @@ onclick="closeWindow('kitty')">
 </div>
 
 <iframe
-src="https://www.numuki.com/games/hello-kitty/">
+src="https://www.gameszap.com/game/272/hello-kitty-dress-up.html">
 </iframe>
 
 </div>
