@@ -23,53 +23,20 @@ body{
     );
 }
 
-/* ===== FLOWERS ===== */
+/* ===== REAL FLOWERS ===== */
 
 .flower{
     position:absolute;
-    width:140px;
-    height:140px;
     z-index:1;
-    animation:float 10s infinite ease-in-out;
+    animation:float 8s infinite ease-in-out;
+    pointer-events:none;
 }
 
-.flower::before,
-.flower::after{
-    content:"";
-    position:absolute;
-    inset:0;
-    border-radius:50%;
-
-    background:
-    radial-gradient(
-        circle,
-        #ffffff 0%,
-        #ffb6e8 45%,
-        #ff4fc4 80%
-    );
-}
-
-.flower::before{
-    transform:rotate(45deg) scale(.65);
-}
-
-.flower::after{
-    transform:rotate(-45deg) scale(.65);
-}
-
-.flower span{
-    position:absolute;
-    width:30px;
-    height:30px;
-    background:white;
-    border-radius:50%;
-    top:50%;
-    left:50%;
-    transform:translate(-50%,-50%);
-
-    box-shadow:
-    0 0 20px white,
-    0 0 40px #ff99dd;
+.flower img{
+    width:160px;
+    filter:
+    drop-shadow(0 0 15px #fff)
+    drop-shadow(0 0 30px #ff9de2);
 }
 
 @keyframes float{
@@ -82,8 +49,8 @@ body{
 
     50%{
         transform:
-        translateY(-40px)
-        rotate(10deg);
+        translateY(-30px)
+        rotate(8deg);
     }
 
     100%{
@@ -97,14 +64,14 @@ body{
 
 .sparkle{
     position:absolute;
-    width:8px;
-    height:8px;
+    width:10px;
+    height:10px;
     border-radius:50%;
     background:white;
 
     box-shadow:
     0 0 10px white,
-    0 0 20px #ffb6ea,
+    0 0 25px #ffb6ea,
     0 0 40px #8fd7ff;
 
     animation:twinkle 2s infinite alternate;
@@ -133,8 +100,8 @@ body{
     transform:
     translate(-50%,-50%);
 
-    width:760px;
-    height:600px;
+    width:980px;
+    height:760px;
 
     z-index:100;
 }
@@ -145,23 +112,23 @@ body{
     position:absolute;
     inset:0;
 
-    border-radius:45px;
+    border-radius:55px;
 
     background:
     linear-gradient(
         to bottom,
         white,
-        #f3f3f3
+        #f4f4f4
     );
 
-    border:12px solid #ff43b0;
+    border:14px solid #ff43b0;
 
     box-shadow:
-    0 0 60px #ffb6ea,
-    0 0 120px #8fd7ff;
+    0 0 70px #ffb6ea,
+    0 0 140px #8fd7ff;
 }
 
-/* title */
+/* logo */
 
 #logo{
     position:absolute;
@@ -169,22 +136,21 @@ body{
     left:50%;
     transform:translateX(-50%);
 
-    font-size:30px;
+    font-size:36px;
     font-weight:bold;
-
     color:#666;
 }
 
-/* POWER BUTTON */
+/* power button */
 
 #powerButton{
     position:absolute;
 
-    top:18px;
+    top:20px;
     right:25px;
 
-    width:34px;
-    height:34px;
+    width:40px;
+    height:40px;
 
     border-radius:50%;
 
@@ -201,16 +167,13 @@ body{
 
     color:white;
 
-    font-size:18px;
-    font-weight:bold;
+    font-size:22px;
 
     cursor:pointer;
 
-    z-index:999;
-
     box-shadow:
-    0 0 15px #ffb6ea,
-    0 0 30px #8fd7ff;
+    0 0 20px #ffb6ea,
+    0 0 40px #8fd7ff;
 
     transition:.3s;
 }
@@ -219,66 +182,77 @@ body{
     transform:scale(1.1);
 }
 
-/* screen */
+/* ===== SCREEN ===== */
 
 #screen{
     position:absolute;
 
-    top:70px;
-    left:75px;
+    top:80px;
+    left:70px;
 
-    width:610px;
-    height:340px;
+    width:840px;
+    height:470px;
 
-    border-radius:18px;
+    border-radius:25px;
 
-    border:8px solid #ddd;
+    border:10px solid #ddd;
 
     overflow:hidden;
 
     background:
     linear-gradient(
         135deg,
-        #ffc9eb,
-        #ff9fd8
+        #ffbfe5,
+        #ff93d2
     );
 
     box-shadow:
-    inset 0 0 40px white;
+    inset 0 0 50px white;
 
     transition:.5s;
 }
 
-/* desktop */
+/* wallpaper */
 
 #desktop{
     width:100%;
     height:100%;
     position:relative;
+
+    background:
+    radial-gradient(circle at center,
+    rgba(255,255,255,.6),
+    transparent 50%);
 }
 
-/* desktop icons */
+/* ===== ICONS ===== */
 
 .desktopIcon{
-    width:90px;
+    width:110px;
     position:absolute;
+
     text-align:center;
+
     color:white;
-    font-size:12px;
+
+    font-size:14px;
     font-weight:bold;
+
     cursor:pointer;
 }
 
 .desktopIcon img{
-    width:64px;
-    height:64px;
-    object-fit:cover;
 
-    border-radius:18px;
+    width:78px;
+    height:78px;
+
+    border-radius:22px;
+
+    object-fit:cover;
 
     background:white;
 
-    padding:5px;
+    padding:6px;
 
     box-shadow:
     0 0 20px white,
@@ -288,21 +262,23 @@ body{
 }
 
 .desktopIcon:hover img{
-    transform:scale(1.1);
+    transform:
+    scale(1.1)
+    rotate(5deg);
 }
 
-/* windows */
+/* ===== APP WINDOWS ===== */
 
 .window{
     position:absolute;
 
-    top:20px;
-    left:20px;
+    top:30px;
+    left:40px;
 
-    width:560px;
-    height:280px;
+    width:740px;
+    height:380px;
 
-    border-radius:20px;
+    border-radius:25px;
 
     background:white;
 
@@ -311,7 +287,7 @@ body{
     overflow:hidden;
 
     box-shadow:
-    0 0 40px rgba(0,0,0,.3);
+    0 0 50px rgba(0,0,0,.35);
 
     animation:pop .3s ease;
 }
@@ -329,10 +305,10 @@ body{
     }
 }
 
-/* top bar */
+/* topbar */
 
 .topbar{
-    height:45px;
+    height:50px;
 
     background:
     linear-gradient(
@@ -345,9 +321,10 @@ body{
     align-items:center;
     justify-content:space-between;
 
-    padding:0 15px;
+    padding:0 18px;
 
     color:white;
+
     font-weight:bold;
 }
 
@@ -359,8 +336,8 @@ body{
 
     border:none;
 
-    width:28px;
-    height:28px;
+    width:32px;
+    height:32px;
 
     border-radius:50%;
 
@@ -369,16 +346,15 @@ body{
     font-weight:bold;
 }
 
-/* content */
+/* iframe */
 
-.content{
-    padding:20px;
-    height:calc(100% - 45px);
-    overflow:auto;
-    color:#444;
+iframe{
+    width:100%;
+    height:calc(100% - 50px);
+    border:none;
 }
 
-/* keyboard */
+/* ===== KEYBOARD ===== */
 
 #base{
     position:absolute;
@@ -388,10 +364,10 @@ body{
 
     transform:translateX(-50%);
 
-    width:820px;
-    height:150px;
+    width:1040px;
+    height:180px;
 
-    border-radius:45px;
+    border-radius:50px;
 
     background:
     linear-gradient(
@@ -400,10 +376,10 @@ body{
         #f2f2f2
     );
 
-    border:12px solid #ff43b0;
+    border:14px solid #ff43b0;
 
     box-shadow:
-    0 20px 50px rgba(0,0,0,.25);
+    0 20px 60px rgba(0,0,0,.25);
 
     transition:.5s;
 }
@@ -412,15 +388,16 @@ body{
 
 #trackpad{
     position:absolute;
-    bottom:25px;
+
+    bottom:30px;
     left:50%;
 
     transform:translateX(-50%);
 
-    width:180px;
-    height:40px;
+    width:220px;
+    height:45px;
 
-    border-radius:30px;
+    border-radius:40px;
 
     background:
     linear-gradient(
@@ -430,19 +407,14 @@ body{
     );
 
     box-shadow:
-    0 0 20px #ff9de2;
+    0 0 25px #ff9de2;
 }
 
-/* OFF MODE */
+/* off */
 
 .offScreen{
     opacity:0;
     pointer-events:none;
-}
-
-video{
-    width:100%;
-    border-radius:15px;
 }
 
 </style>
@@ -452,9 +424,19 @@ video{
 
 <script>
 
-/* FLOWERS */
+/* ===== FLOWERS ===== */
 
-for(let i=0;i<35;i++){
+const flowerURLs=[
+
+"https://cdn-icons-png.flaticon.com/512/616/616490.png",
+
+"https://cdn-icons-png.flaticon.com/512/2909/2909768.png",
+
+"https://cdn-icons-png.flaticon.com/512/599/599502.png"
+
+];
+
+for(let i=0;i<25;i++){
 
     const flower=document.createElement("div");
 
@@ -466,25 +448,24 @@ for(let i=0;i<35;i++){
     flower.style.top=
     Math.random()*window.innerHeight+"px";
 
-    const size=
-    70+Math.random()*100;
-
-    flower.style.width=size+"px";
-    flower.style.height=size+"px";
-
     flower.style.animationDuration=
     (6+Math.random()*6)+"s";
 
-    const center=document.createElement("span");
+    const img=document.createElement("img");
 
-    flower.appendChild(center);
+    img.src=
+    flowerURLs[
+        Math.floor(Math.random()*flowerURLs.length)
+    ];
+
+    flower.appendChild(img);
 
     document.body.appendChild(flower);
 }
 
-/* SPARKLES */
+/* ===== SPARKLES ===== */
 
-for(let i=0;i<150;i++){
+for(let i=0;i<180;i++){
 
     const sparkle=document.createElement("div");
 
@@ -504,7 +485,7 @@ for(let i=0;i<150;i++){
 
 </script>
 
-<!-- COMPUTER -->
+<!-- ===== COMPUTER ===== -->
 
 <div id="computer">
 
@@ -514,7 +495,7 @@ for(let i=0;i<150;i++){
         iBook Dream
     </div>
 
-    <!-- POWER BUTTON -->
+    <!-- POWER -->
 
     <div id="powerButton"
     onclick="toggleComputer()">
@@ -530,7 +511,7 @@ for(let i=0;i<150;i++){
             <!-- ICONS -->
 
             <div class="desktopIcon"
-            style="top:20px;left:20px;"
+            style="top:25px;left:25px;"
             onclick="openWindow('mario')">
 
                 <img src="https://cdn-icons-png.flaticon.com/512/188/188987.png">
@@ -540,7 +521,7 @@ for(let i=0;i<150;i++){
             </div>
 
             <div class="desktopIcon"
-            style="top:20px;left:130px;"
+            style="top:25px;left:160px;"
             onclick="openWindow('winx')">
 
                 <img src="https://cdn-icons-png.flaticon.com/512/4140/4140048.png">
@@ -550,17 +531,17 @@ for(let i=0;i<150;i++){
             </div>
 
             <div class="desktopIcon"
-            style="top:20px;left:240px;"
+            style="top:25px;left:295px;"
             onclick="openWindow('bratz')">
 
-                <img src="https://cdn-icons-png.flaticon.com/512/892/892458.png">
+                <img src="https://cdn-icons-png.flaticon.com/512/3468/3468377.png">
 
                 <div>Bratz</div>
 
             </div>
 
             <div class="desktopIcon"
-            style="top:20px;left:350px;"
+            style="top:25px;left:430px;"
             onclick="openWindow('music')">
 
                 <img src="https://cdn-icons-png.flaticon.com/512/727/727245.png">
@@ -569,13 +550,15 @@ for(let i=0;i<150;i++){
 
             </div>
 
-            <!-- MARIO WINDOW -->
+            <!-- ===== WINDOWS ===== -->
+
+            <!-- MARIO -->
 
             <div class="window" id="mario">
 
                 <div class="topbar">
 
-                    Super Mario
+                    Mario Website
 
                     <button class="close"
                     onclick="closeWindow('mario')">
@@ -584,19 +567,9 @@ for(let i=0;i<150;i++){
 
                 </div>
 
-                <div class="content">
-
-                    <h2>🍄 Mario World 🍄</h2>
-
-                    <p>
-                    Welcome to the Y2K Mario desktop!!
-                    </p>
-
-                    <img
-                    src="https://upload.wikimedia.org/wikipedia/en/a/a9/MarioNSMBUDeluxe.png"
-                    width="220">
-
-                </div>
+                <iframe
+                src="https://example.com">
+                </iframe>
 
             </div>
 
@@ -615,19 +588,9 @@ for(let i=0;i<150;i++){
 
                 </div>
 
-                <div class="content">
-
-                    <h2>✨ Winx Club ✨</h2>
-
-                    <p>
-                    Magical fairy Y2K vibes!!
-                    </p>
-
-                    <img
-                    src="https://i.imgur.com/JR6Y6be.png"
-                    width="250">
-
-                </div>
+                <iframe
+                src="https://www.wikipedia.org">
+                </iframe>
 
             </div>
 
@@ -637,7 +600,7 @@ for(let i=0;i<150;i++){
 
                 <div class="topbar">
 
-                    Bratz
+                    Bratz Fashion
 
                     <button class="close"
                     onclick="closeWindow('bratz')">
@@ -646,19 +609,9 @@ for(let i=0;i<150;i++){
 
                 </div>
 
-                <div class="content">
-
-                    <h2>💖 Bratz Fashion 💖</h2>
-
-                    <p>
-                    Pink fashion doll aesthetic.
-                    </p>
-
-                    <img
-                    src="https://i.imgur.com/K4XxA0K.png"
-                    width="220">
-
-                </div>
+                <iframe
+                src="https://archive.org">
+                </iframe>
 
             </div>
 
@@ -668,7 +621,7 @@ for(let i=0;i<150;i++){
 
                 <div class="topbar">
 
-                    Music
+                    2000s Music
 
                     <button class="close"
                     onclick="closeWindow('music')">
@@ -677,23 +630,9 @@ for(let i=0;i<150;i++){
 
                 </div>
 
-                <div class="content">
-
-                    <h2>🎵 2000s Playlist 🎵</h2>
-
-                    <p>
-                    Britney Spears • Cascada • Avril Lavigne
-                    </p>
-
-                    <video controls>
-
-                        <source
-                        src="https://www.w3schools.com/html/mov_bbb.mp4"
-                        type="video/mp4">
-
-                    </video>
-
-                </div>
+                <iframe
+                src="https://www.youtube.com/embed/2vjPBrBU-TM">
+                </iframe>
 
             </div>
 
@@ -703,7 +642,7 @@ for(let i=0;i<150;i++){
 
 </div>
 
-<!-- KEYBOARD -->
+<!-- ===== KEYBOARD ===== -->
 
 <div id="base">
 
@@ -715,7 +654,7 @@ for(let i=0;i<150;i++){
 
 let computerOn=true;
 
-/* POWER BUTTON */
+/* power */
 
 function toggleComputer(){
 
@@ -739,7 +678,7 @@ function toggleComputer(){
     }
 }
 
-/* OPEN WINDOWS */
+/* open */
 
 function openWindow(id){
 
@@ -750,7 +689,7 @@ function openWindow(id){
     .style.display="block";
 }
 
-/* CLOSE WINDOWS */
+/* close */
 
 function closeWindow(id){
 
