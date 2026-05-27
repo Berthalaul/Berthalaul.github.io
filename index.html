@@ -6,11 +6,12 @@
 <title>Y2K Dream Computer</title>
 
 <style>
+
 *{
     margin:0;
     padding:0;
     box-sizing:border-box;
-    font-family: "Trebuchet MS", sans-serif;
+    font-family:"Trebuchet MS",sans-serif;
 }
 
 body{
@@ -18,9 +19,11 @@ body{
     height:100vh;
     background:linear-gradient(135deg,#c7f2ff,#ffd3f0,#d7c5ff);
     position:relative;
+    cursor:url('https://cur.cursors-4u.net/cursors/cur-9/cur817.cur'),auto;
 }
 
 /* SPARKLES */
+
 .sparkle{
     position:absolute;
     width:4px;
@@ -31,28 +34,40 @@ body{
         0 0 10px white,
         0 0 20px #fff,
         0 0 30px #ffb6ff;
-    animation: twinkle 3s infinite ease-in-out;
+    animation:twinkle 3s infinite ease-in-out;
 }
 
 @keyframes twinkle{
-    0%,100%{transform:scale(0.5);opacity:0.4;}
-    50%{transform:scale(2);opacity:1;}
+    0%,100%{
+        transform:scale(0.5);
+        opacity:0.4;
+    }
+    50%{
+        transform:scale(2);
+        opacity:1;
+    }
 }
 
 /* FLOWERS */
+
 .flower{
     position:absolute;
     font-size:40px;
-    animation: floatFlower 8s infinite ease-in-out;
-    filter: drop-shadow(0 0 10px #fff);
+    animation:floatFlower 8s infinite ease-in-out;
+    filter:drop-shadow(0 0 10px #fff);
 }
 
 @keyframes floatFlower{
-    0%,100%{transform:translateY(0px) rotate(0deg);}
-    50%{transform:translateY(-20px) rotate(10deg);}
+    0%,100%{
+        transform:translateY(0px) rotate(0deg);
+    }
+    50%{
+        transform:translateY(-20px) rotate(10deg);
+    }
 }
 
-/* COMPUTER */
+/* SCENE */
+
 .scene{
     width:100%;
     height:100%;
@@ -61,136 +76,120 @@ body{
     justify-content:center;
 }
 
+/* COMPUTER */
+
 .computer{
     position:relative;
-    transform:scale(1);
+    animation:floatPC 5s infinite ease-in-out;
 }
 
+@keyframes floatPC{
+    0%,100%{
+        transform:translateY(0px);
+    }
+    50%{
+        transform:translateY(-8px);
+    }
+}
+
+/* MONITOR */
+
 .monitor{
-    width:700px;
-    height:470px;
+    width:760px;
+    height:500px;
     background:#f2d6ff;
     border:18px solid #d6d6ff;
     border-radius:25px;
     box-shadow:
-        0 0 40px rgba(255,255,255,0.8),
+        0 0 50px rgba(255,255,255,0.9),
         inset 0 0 20px rgba(255,255,255,0.7);
     position:relative;
     overflow:hidden;
 }
 
-/* screen */
+/* SCREEN */
+
 .screen{
     width:100%;
     height:100%;
     background:
-      linear-gradient(rgba(255,255,255,0.1),rgba(255,255,255,0.1)),
-      linear-gradient(135deg,#ffb3ec,#ffc8f3,#ffdbfa);
+    linear-gradient(rgba(255,255,255,0.08),rgba(255,255,255,0.08)),
+    linear-gradient(135deg,#ffb3ec,#ffc8f3,#ffdbfa);
     position:relative;
     overflow:hidden;
 }
 
-/* top bar */
+/* CRT EFFECT */
+
+.screen::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:
+    repeating-linear-gradient(
+        to bottom,
+        rgba(255,255,255,0.03),
+        rgba(255,255,255,0.03) 2px,
+        rgba(0,0,0,0.02) 4px
+    );
+    pointer-events:none;
+}
+
+/* TOP BAR */
+
 .topbar{
-    height:36px;
-    background:rgba(255,255,255,0.45);
-    backdrop-filter: blur(5px);
+    height:38px;
+    background:rgba(255,255,255,0.4);
+    backdrop-filter:blur(6px);
     display:flex;
     align-items:center;
-    padding:0 12px;
+    padding:0 14px;
     color:#ff1493;
     font-weight:bold;
-    border-bottom:2px solid rgba(255,255,255,0.5);
+    border-bottom:2px solid rgba(255,255,255,0.4);
+    text-shadow:0 0 8px white;
 }
 
-/* desktop apps */
+/* DESKTOP */
+
 .desktop{
-    padding:20px;
+    padding:25px;
     display:grid;
     grid-template-columns:repeat(3,1fr);
-    gap:20px;
+    gap:28px;
 }
 
+/* ICONS */
+
 .icon{
-    width:120px;
+    width:140px;
     text-align:center;
     color:#ff1493;
     font-weight:bold;
     cursor:pointer;
-    transition:0.2s;
+    transition:0.25s;
     user-select:none;
 }
 
 .icon:hover{
-    transform:scale(1.08);
+    transform:scale(1.1);
+    filter:brightness(1.1);
+}
+
+.icon:active{
+    transform:scale(0.95);
 }
 
 .icon .emoji{
-    font-size:54px;
-    filter: drop-shadow(0 0 8px white);
+    font-size:58px;
+    margin-bottom:8px;
+    filter:
+        drop-shadow(0 0 8px white)
+        drop-shadow(0 0 15px pink);
 }
 
-/* windows */
-.window{
-    position:absolute;
-    width:260px;
-    height:190px;
-    background:#fff0fb;
-    border:4px solid #ff8ad8;
-    border-radius:14px;
-    box-shadow:0 0 25px rgba(255,255,255,0.9);
-    display:none;
-    flex-direction:column;
-    overflow:hidden;
-    animation:pop .25s ease;
-}
+/* STAND */
 
-@keyframes pop{
-    from{transform:scale(0.7);opacity:0;}
-    to{transform:scale(1);opacity:1;}
-}
-
-.window-header{
-    background:linear-gradient(90deg,#ff8de1,#ffc4ef);
-    color:white;
-    padding:8px;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    font-weight:bold;
-}
-
-.close{
-    cursor:pointer;
-    background:white;
-    color:#ff1493;
-    width:22px;
-    height:22px;
-    border-radius:50%;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:14px;
-}
-
-.window-body{
-    flex:1;
-    padding:15px;
-    color:#ff1493;
-    overflow:auto;
-    font-size:15px;
-    background:
-      radial-gradient(circle at top left,rgba(255,255,255,0.9),transparent 60%);
-}
-
-/* positions */
-#w1{top:70px;left:60px;}
-#w2{top:110px;left:320px;}
-#w3{top:240px;left:120px;}
-#w4{top:210px;left:420px;}
-#w5{top:150px;left:210px;}
-
-/* stand */
 .stand{
     width:180px;
     height:35px;
@@ -207,28 +206,30 @@ body{
     border-radius:20px;
 }
 
-/* power button */
+/* POWER BUTTON */
+
 .power{
     position:absolute;
     bottom:18px;
     right:22px;
-    width:28px;
-    height:28px;
+    width:30px;
+    height:30px;
     border-radius:50%;
     background:#8affc7;
     box-shadow:
-      0 0 10px #8affc7,
-      0 0 20px #8affc7;
+        0 0 10px #8affc7,
+        0 0 20px #8affc7;
     cursor:pointer;
     transition:0.3s;
 }
 
 .power.off{
-    background:#777;
+    background:#666;
     box-shadow:none;
 }
 
-/* shutdown overlay */
+/* SHUTDOWN SCREEN */
+
 .shutdown{
     position:absolute;
     inset:0;
@@ -237,18 +238,27 @@ body{
     display:none;
     align-items:center;
     justify-content:center;
+    flex-direction:column;
     font-size:42px;
     z-index:20;
     letter-spacing:3px;
 }
 
+.shutdown small{
+    font-size:18px;
+    margin-top:20px;
+    color:#aaa;
+}
+
+/* BOTTOM MARQUEE */
+
 .marquee{
     position:absolute;
     bottom:0;
     width:100%;
-    background:rgba(255,255,255,0.5);
+    background:rgba(255,255,255,0.45);
     color:#ff1493;
-    padding:6px;
+    padding:7px;
     font-weight:bold;
     overflow:hidden;
     white-space:nowrap;
@@ -257,322 +267,236 @@ body{
 .marquee span{
     display:inline-block;
     padding-left:100%;
-    animation:scroll 15s linear infinite;
+    animation:scroll 18s linear infinite;
 }
 
 @keyframes scroll{
-    from{transform:translateX(0);}
-    to{transform:translateX(-100%);}
-}
-
-/* small responsive */
-@media(max-width:800px){
-    .computer{
-        transform:scale(0.65);
+    from{
+        transform:translateX(0);
+    }
+    to{
+        transform:translateX(-100%);
     }
 }
+
+/* RESPONSIVE */
+
+@media(max-width:850px){
+
+    .computer{
+        transform:scale(0.62);
+    }
+
+}
+
 </style>
 </head>
 
 <body>
 
 <!-- FLOWERS -->
+
 <div class="flower" style="top:5%;left:8%;">🌸</div>
 <div class="flower" style="top:70%;left:12%;animation-delay:1s;">🌼</div>
 <div class="flower" style="top:20%;right:10%;animation-delay:2s;">🌺</div>
 <div class="flower" style="bottom:10%;right:15%;animation-delay:3s;">🌷</div>
 <div class="flower" style="top:40%;left:2%;animation-delay:1.5s;">✨</div>
+<div class="flower" style="top:8%;right:25%;animation-delay:4s;">💖</div>
 
 <!-- SPARKLES -->
+
 <script>
-for(let i=0;i<70;i++){
+
+for(let i=0;i<80;i++){
+
     const s=document.createElement('div');
+
     s.className='sparkle';
+
     s.style.left=Math.random()*100+'vw';
     s.style.top=Math.random()*100+'vh';
-    s.style.animationDelay=Math.random()*3+'s';
+
+    s.style.animationDelay=Math.random()*4+'s';
+
     s.style.opacity=Math.random();
+
     document.body.appendChild(s);
 }
+
 </script>
+
+<!-- COMPUTER -->
 
 <div class="scene">
 
-    <div class="computer">
+<div class="computer">
 
-        <div class="monitor">
+<div class="monitor">
 
-            <div class="shutdown" id="shutdownScreen">
-                COMPUTER OFF
-            </div>
+<!-- OFF SCREEN -->
 
-            <div class="screen" id="screen">
+<div class="shutdown" id="shutdownScreen">
+    COMPUTER OFF
+    <small>Press power button to turn on</small>
+</div>
 
-                <div class="topbar">
-                    💖 Y2K Dream Desktop 💖
-                </div>
+<!-- SCREEN -->
 
-                <div class="desktop">
+<div class="screen" id="screen">
 
-                    <div class="icon" onclick="openWindow('w1')">
-                        <div class="emoji">🎵</div>
-                        Y2K Music
-                    </div>
+<div class="topbar">
+💖 Y2K DREAM DESKTOP 💖
+</div>
 
-                    <div class="icon" onclick="openWindow('w2')">
-                        <div class="emoji">🧚</div>
-                        Winx Game
-                    </div>
+<!-- DESKTOP ICONS -->
 
-                    <div class="icon" onclick="openWindow('w3')">
-                        <div class="emoji">🍄</div>
-                        Mario
-                    </div>
+<div class="desktop">
 
-                    <div class="icon" onclick="openWindow('w4')">
-                        <div class="emoji">💋</div>
-                        Bratz
-                    </div>
+<!-- MUSIC -->
 
-                    <div class="icon" onclick="openWindow('w5')">
-                        <div class="emoji">📸</div>
-                        Glitter Cam
-                    </div>
+<div class="icon"
+onclick="openSite('https://www.spacejam.com/2000/')">
 
-                </div>
+<div class="emoji">🎵</div>
 
-                <!-- WINDOWS -->
-
-                <div class="window" id="w1">
-                    <div class="window-header">
-                        Y2K Music
-                        <div class="close" onclick="closeWindow('w1')">X</div>
-                    </div>
-                    <div class="window-body">
-                        🎧 Now playing:<br><br>
-                        <b>"Bubblegum Pop Mix 2004"</b><br><br>
-                        ♪ lalala ♪<br>
-                        ✨ Glitter beats ✨<br><br>
-                        <marquee>Britney • Avril • Hilary Duff • Destiny's Child</marquee>
-                    </div>
-                </div>
-
-                <div class="window" id="w2">
-                    <div class="window-header">
-                        Winx Fairy Game
-                        <div class="close" onclick="closeWindow('w2')">X</div>
-                    </div>
-                    <div class="window-body">
-                        🧚 Choose your fairy power:<br><br>
-                        ✨ Bloom - Fire<br>
-                        🌊 Layla - Waves<br>
-                        🌸 Flora - Nature<br><br>
-                        Collect magical glitter crystals!
-                    </div>
-                </div>
-
-                <div class="window" id="w3">
-                    <div class="window-header">
-                        Super Mario
-                        <div class="close" onclick="closeWindow('w3')">X</div>
-                    </div>
-                    <div class="window-body">
-                        🍄 Mario Level 1<br><br>
-                        ⭐ Coins: 128<br>
-                        ❤️ Lives: 3<br><br>
-                        Jump over the Goombas and save the princess!
-                    </div>
-                </div>
-
-                <div class="window" id="w4">
-                    <div class="window-header">
-                        Bratz Fashion
-                        <div class="close" onclick="closeWindow('w4')">X</div>
-                    </div>
-                    <div class="window-body">
-                        💋 Fashion Challenge<br><br>
-                        Outfit Style:<br>
-                        👛 Pink Glam<br>
-                        👢 Platform Boots<br>
-                        ✨ Glitter Makeup<br><br>
-                        Yasmin scored 5 stars!
-                    </div>
-                </div>
-
-                <div class="window" id="w5">
-                    <div class="window-header">
-                        Glitter Cam
-                        <div class="close" onclick="closeWindow('w5')">X</div>
-                    </div>
-                    <div class="window-body">
-                        📸 Webcam Effects:<br><br>
-                        ✨ Sparkle Filter<br>
-                        💖 Pink Hearts<br>
-                        🌸 Flower Glow<br><br>
-                        Smile for your MySpace profile!
-                    </div>
-                </div>
-
-                <div class="marquee">
-                    <span>
-                        ✨ welcome to the y2k dream desktop ✨ pink glitter forever ✨ fairy pop vibes ✨
-                    </span>
-                </div>
-
-            </div>
-
-            <div class="power" id="powerBtn"></div>
-
-        </div>
-
-        <div class="stand"></div>
-        <div class="base"></div>
-
-    </div>
+Y2K Music
 
 </div>
 
+<!-- HELLO KITTY -->
+
+<div class="icon"
+onclick="openSite('https://www.numuki.com/games/hello-kitty/')">
+
+<div class="emoji">🐱</div>
+
+Hello Kitty
+
+</div>
+
+<!-- WINX -->
+
+<div class="icon"
+onclick="openSite('https://games.winxclub.com/31/Game.html?languageId=1')">
+
+<div class="emoji">🧚</div>
+
+Winx Game
+
+</div>
+
+<!-- MARIO -->
+
+<div class="icon"
+onclick="openSite('https://supermario-game.com/')">
+
+<div class="emoji">🍄</div>
+
+Mario
+
+</div>
+
+<!-- BRATZ -->
+
+<div class="icon"
+onclick="openSite('https://bratz.fandom.com/wiki/Category:Video_Games')">
+
+<div class="emoji">💋</div>
+
+Bratz
+
+</div>
+
+<!-- Y2K WEB -->
+
+<div class="icon"
+onclick="openSite('https://www.spacejam.com/2000/')">
+
+<div class="emoji">💿</div>
+
+Y2K Web
+
+</div>
+
+</div>
+
+<!-- BOTTOM BAR -->
+
+<div class="marquee">
+<span>
+✨ welcome to the y2k dream desktop ✨ glitter girls forever ✨ fairycore internet ✨ myspace vibes ✨ 2000s nostalgia ✨
+</span>
+</div>
+
+</div>
+
+<!-- POWER BUTTON -->
+
+<div class="power" id="powerBtn"></div>
+
+</div>
+
+<div class="stand"></div>
+<div class="base"></div>
+
+</div>
+
+</div>
+
+<!-- AUDIO -->
+
+<audio id="clickSound">
+<source src="https://assets.mixkit.co/active_storage/sfx/2571/2571-preview.mp3" type="audio/mpeg">
+</audio>
+
 <script>
-function openWindow(id){
-    document.getElementById(id).style.display='flex';
+
+/* OPEN REAL WEBSITE */
+
+function openSite(url){
+
+    if(!isOn) return;
+
+    document.getElementById('clickSound').play();
+
+    window.open(url,'_blank');
 }
 
-function closeWindow(id){
-    document.getElementById(id).style.display='none';
-}
+/* POWER BUTTON */
 
 const powerBtn=document.getElementById('powerBtn');
+
 const screen=document.getElementById('screen');
+
 const shutdown=document.getElementById('shutdownScreen');
 
 let isOn=true;
+
+/* TOGGLE COMPUTER */
 
 powerBtn.addEventListener('click',()=>{
 
     isOn=!isOn;
 
     if(isOn){
+
         powerBtn.classList.remove('off');
+
         screen.style.display='block';
+
         shutdown.style.display='none';
+
     }else{
+
         powerBtn.classList.add('off');
+
         screen.style.display='none';
+
         shutdown.style.display='flex';
-
-        document.querySelectorAll('.window').forEach(w=>{
-            w.style.display='none';
-        });
     }
+
 });
-</script>
 
-</body>
-</html>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Y2K Dream Computer</title>
-
-<style>
-/* (CSS unchanged — everything from previous version stays the same) */
-</style>
-</head>
-
-<body>
-
-<!-- FLOWERS AND SPARKLES (unchanged) -->
-
-<div class="scene">
-    <div class="computer">
-        <div class="monitor">
-
-            <div class="shutdown" id="shutdownScreen">
-                COMPUTER OFF
-            </div>
-
-            <div class="screen" id="screen">
-
-                <div class="topbar">
-                    💖 Y2K Dream Desktop 💖
-                </div>
-
-                <div class="desktop">
-
-                    <div class="icon" onclick="openWindow('w1')">
-                        <div class="emoji">🎵</div>
-                        Y2K Music
-                    </div>
-
-                    <div class="icon" onclick="openWindow('wHK')">
-                        <div class="emoji">🐱</div>
-                        Hello Kitty
-                    </div>
-
-                    <div class="icon" onclick="openWindow('w2')">
-                        <div class="emoji">🧚</div>
-                        Winx Game
-                    </div>
-
-                    <div class="icon" onclick="openWindow('w4')">
-                        <div class="emoji">💋</div>
-                        Bratz
-                    </div>
-
-                </div>
-
-                <!-- WINDOWS -->
-<div class="icon" onclick="window.open('https://www.numuki.com/games/hello-kitty/', '_blank')">
-    <div class="emoji">🐱</div>
-    Hello Kitty
-</div>
-
-<div class="icon" onclick="window.open('https://games.winxclub.com/31/Game.html?languageId=1', '_blank')">
-    <div class="emoji">🧚</div>
-    Winx Game
-</div>
-
-<div class="icon" onclick="window.open('https://bratz.fandom.com/wiki/Category:Video_Games', '_blank')">
-    <div class="emoji">💋</div>
-    Bratz Games
-</div>
-
-<div class="icon" onclick="window.open('https://supermario-game.com/', '_blank')">
-    <div class="emoji">🍄</div>
-    Mario
-</div>
-
-<div class="icon" onclick="window.open('https://www.spacejam.com/2000/', '_blank')">
-    <div class="emoji">💿</div>
-    Y2K Web
-</div>
-
-<script>
-/* Windows open/close */
-function openWindow(id){ document.getElementById(id).style.display='flex'; }
-function closeWindow(id){ document.getElementById(id).style.display='none'; }
-
-/* Power button */
-const powerBtn=document.getElementById('powerBtn');
-const screen=document.getElementById('screen');
-const shutdown=document.getElementById('shutdownScreen');
-let isOn=true;
-
-powerBtn.addEventListener('click',()=>{
-    isOn=!isOn;
-    if(isOn){
-        powerBtn.classList.remove('off');
-        screen.style.display='block';
-        shutdown.style.display='none';
-    }else{
-        powerBtn.classList.add('off');
-        screen.style.display='none';
-        shutdown.style.display='flex';
-        document.querySelectorAll('.window').forEach(w=>w.style.display='none');
-    }
-});
 </script>
 
 </body>
