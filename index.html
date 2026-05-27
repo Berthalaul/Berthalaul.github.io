@@ -469,3 +469,158 @@ powerBtn.addEventListener('click',()=>{
 
 </body>
 </html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Y2K Dream Computer</title>
+
+<style>
+/* (CSS unchanged — everything from previous version stays the same) */
+</style>
+</head>
+
+<body>
+
+<!-- FLOWERS AND SPARKLES (unchanged) -->
+
+<div class="scene">
+    <div class="computer">
+        <div class="monitor">
+
+            <div class="shutdown" id="shutdownScreen">
+                COMPUTER OFF
+            </div>
+
+            <div class="screen" id="screen">
+
+                <div class="topbar">
+                    💖 Y2K Dream Desktop 💖
+                </div>
+
+                <div class="desktop">
+
+                    <div class="icon" onclick="openWindow('w1')">
+                        <div class="emoji">🎵</div>
+                        Y2K Music
+                    </div>
+
+                    <div class="icon" onclick="openWindow('wHK')">
+                        <div class="emoji">🐱</div>
+                        Hello Kitty
+                    </div>
+
+                    <div class="icon" onclick="openWindow('w2')">
+                        <div class="emoji">🧚</div>
+                        Winx Game
+                    </div>
+
+                    <div class="icon" onclick="openWindow('w4')">
+                        <div class="emoji">💋</div>
+                        Bratz
+                    </div>
+
+                </div>
+
+                <!-- WINDOWS -->
+
+                <div class="window" id="w1">
+                    <div class="window-header">
+                        Y2K Music
+                        <div class="close" onclick="closeWindow('w1')">X</div>
+                    </div>
+                    <div class="window-body">
+                        🎧 Bubblegum Pop Mix 2004<br><br>
+                        <marquee>Britney • Avril • Hilary Duff • Destiny's Child</marquee>
+                    </div>
+                </div>
+
+                <!-- ⭐ NEW: HELLO KITTY LINK -->
+                <div class="window" id="wHK">
+                    <div class="window-header">
+                        Hello Kitty Game
+                        <div class="close" onclick="closeWindow('wHK')">X</div>
+                    </div>
+                    <div class="window-body">
+                        🐱 Play Hello Kitty online:<br><br>
+                        <a href="https://www.numuki.com/games/hello-kitty/" target="_blank">
+                            ⭐ Click here to open Hello Kitty games ⭐
+                        </a>
+                    </div>
+                </div>
+
+                <!-- WINX -->
+                <div class="window" id="w2">
+                    <div class="window-header">
+                        Winx Fairy Game
+                        <div class="close" onclick="closeWindow('w2')">X</div>
+                    </div>
+                    <div class="window-body">
+                        ✨ Official Winx Game:<br><br>
+                        <a href="https://games.winxclub.com/31/Game.html?languageId=1" target="_blank">
+                            🌟 Play Winx Fairy Adventure
+                        </a>
+                    </div>
+                </div>
+
+                <!-- BRATZ -->
+                <div class="window" id="w4">
+                    <div class="window-header">
+                        Bratz Fashion
+                        <div class="close" onclick="closeWindow('w4')">X</div>
+                    </div>
+                    <div class="window-body">
+                        💋 Bratz Video Game List:<br><br>
+                        <a href="https://bratz.fandom.com/wiki/Category:Video_Games" target="_blank">
+                            💗 View Bratz Games on Fandom
+                        </a>
+                    </div>
+                </div>
+
+                <div class="marquee">
+                    <span>
+                        ✨ welcome to the y2k dream desktop ✨ pink glitter forever ✨ fairy pop vibes ✨
+                    </span>
+                </div>
+
+            </div>
+
+            <div class="power" id="powerBtn"></div>
+
+        </div>
+
+        <div class="stand"></div>
+        <div class="base"></div>
+
+    </div>
+</div>
+
+<script>
+/* Windows open/close */
+function openWindow(id){ document.getElementById(id).style.display='flex'; }
+function closeWindow(id){ document.getElementById(id).style.display='none'; }
+
+/* Power button */
+const powerBtn=document.getElementById('powerBtn');
+const screen=document.getElementById('screen');
+const shutdown=document.getElementById('shutdownScreen');
+let isOn=true;
+
+powerBtn.addEventListener('click',()=>{
+    isOn=!isOn;
+    if(isOn){
+        powerBtn.classList.remove('off');
+        screen.style.display='block';
+        shutdown.style.display='none';
+    }else{
+        powerBtn.classList.add('off');
+        screen.style.display='none';
+        shutdown.style.display='flex';
+        document.querySelectorAll('.window').forEach(w=>w.style.display='none');
+    }
+});
+</script>
+
+</body>
+</html>
