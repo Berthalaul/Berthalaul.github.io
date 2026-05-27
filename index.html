@@ -654,3 +654,619 @@ body{
         #ffd0ef
     );
 }
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Y2K Dream Laptop</title>
+
+<style>
+
+body{
+    margin:0;
+    overflow:hidden;
+    height:100vh;
+    font-family:Verdana,sans-serif;
+
+    background:
+    linear-gradient(
+        135deg,
+        #8fd7ff 0%,
+        #bde9ff 30%,
+        #ffd0ef 70%,
+        #ffb0e3 100%
+    );
+}
+
+/* ===== COMPUTER ===== */
+
+#computer{
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    width:1050px;
+    height:780px;
+}
+
+/* shell */
+
+#shell{
+    position:absolute;
+    inset:0;
+
+    border-radius:55px;
+
+    background:
+    linear-gradient(
+        to bottom,
+        white,
+        #f4f4f4
+    );
+
+    border:14px solid #ff43b0;
+
+    box-shadow:
+    0 0 70px #ffb6ea,
+    0 0 120px #8fd7ff;
+}
+
+/* logo */
+
+#logo{
+    position:absolute;
+    top:18px;
+    left:50%;
+    transform:translateX(-50%);
+
+    font-size:38px;
+    font-weight:bold;
+    color:#666;
+}
+
+/* power button */
+
+#powerButton{
+    position:absolute;
+    top:18px;
+    right:25px;
+
+    width:42px;
+    height:42px;
+
+    border-radius:50%;
+
+    background:
+    linear-gradient(
+        to bottom,
+        #ff7ed2,
+        #ff2fa5
+    );
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    color:white;
+    font-size:22px;
+
+    cursor:pointer;
+
+    box-shadow:
+    0 0 20px #ffb6ea;
+}
+
+/* ===== SCREEN ===== */
+
+#screen{
+    position:absolute;
+
+    top:85px;
+    left:65px;
+
+    width:900px;
+    height:520px;
+
+    border-radius:25px;
+
+    overflow:hidden;
+
+    border:10px solid #ddd;
+
+    background:
+    linear-gradient(
+        135deg,
+        #8fd7ff,
+        #ffd0ef
+    );
+
+    box-shadow:
+    inset 0 0 50px white;
+}
+
+/* desktop */
+
+#desktop{
+    width:100%;
+    height:100%;
+    position:relative;
+}
+
+/* ===== ICONS ===== */
+
+.desktopIcon{
+    width:130px;
+    position:absolute;
+
+    text-align:center;
+
+    color:white;
+
+    font-size:15px;
+    font-weight:bold;
+
+    cursor:pointer;
+}
+
+.desktopIcon img{
+
+    width:92px;
+    height:92px;
+
+    object-fit:contain;
+
+    border-radius:24px;
+
+    padding:10px;
+
+    box-shadow:
+    0 0 20px white,
+    0 0 30px #ffb6ea;
+
+    transition:.3s;
+}
+
+.desktopIcon:hover img{
+    transform:
+    scale(1.1)
+    rotate(5deg);
+}
+
+/* ===== WINDOWS ===== */
+
+.window{
+    position:absolute;
+
+    top:45px;
+    left:55px;
+
+    width:790px;
+    height:410px;
+
+    border-radius:25px;
+
+    overflow:hidden;
+
+    display:none;
+
+    background:white;
+
+    box-shadow:
+    0 0 50px rgba(0,0,0,.35);
+}
+
+/* topbar */
+
+.topbar{
+    height:52px;
+
+    background:
+    linear-gradient(
+        to right,
+        #ff7ed2,
+        #ffb7e8
+    );
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    padding:0 18px;
+
+    color:white;
+
+    font-weight:bold;
+}
+
+/* close */
+
+.close{
+    background:white;
+    color:#ff43b0;
+
+    border:none;
+
+    width:34px;
+    height:34px;
+
+    border-radius:50%;
+
+    cursor:pointer;
+
+    font-weight:bold;
+}
+
+/* iframe */
+
+iframe{
+    width:100%;
+    height:calc(100% - 52px);
+    border:none;
+}
+
+/* ===== KEYBOARD ===== */
+
+#base{
+    position:absolute;
+
+    bottom:0;
+    left:50%;
+
+    transform:translateX(-50%);
+
+    width:1100px;
+    height:180px;
+
+    border-radius:50px;
+
+    background:
+    linear-gradient(
+        to bottom,
+        white,
+        #f2f2f2
+    );
+
+    border:14px solid #ff43b0;
+
+    box-shadow:
+    0 20px 60px rgba(0,0,0,.25);
+}
+
+/* trackpad */
+
+#trackpad{
+    position:absolute;
+
+    bottom:30px;
+    left:50%;
+
+    transform:translateX(-50%);
+
+    width:220px;
+    height:45px;
+
+    border-radius:40px;
+
+    background:
+    linear-gradient(
+        to bottom,
+        #ff7ed2,
+        #ff2fa5
+    );
+}
+
+.offScreen{
+    opacity:0;
+    pointer-events:none;
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- ===== COMPUTER ===== -->
+
+<div id="computer">
+
+    <div id="shell"></div>
+
+    <div id="logo">
+        iBook Dream
+    </div>
+
+    <!-- POWER -->
+
+    <div id="powerButton"
+    onclick="toggleComputer()">
+    ⏻
+    </div>
+
+    <!-- ===== SCREEN ===== -->
+
+    <div id="screen">
+
+        <div id="desktop">
+
+            <!-- ===== APPS ===== -->
+
+            <!-- MARIO -->
+
+            <div class="desktopIcon"
+            style="top:35px;left:40px;"
+            onclick="openWindow('mario')">
+
+                <img
+                src="https://upload.wikimedia.org/wikipedia/en/0/03/Super_Mario_Bros._Logo.svg"
+                style="
+                background:
+                linear-gradient(
+                to bottom,
+                #ff3c3c,
+                #ff9d00
+                );
+                ">
+
+                <div>Mario</div>
+
+            </div>
+
+            <!-- WINX -->
+
+            <div class="desktopIcon"
+            style="top:35px;left:210px;"
+            onclick="openWindow('winx')">
+
+                <img
+                src="https://upload.wikimedia.org/wikipedia/en/f/fb/Winx_Club_logo.png"
+                style="
+                background:
+                linear-gradient(
+                to bottom,
+                #ff9de8,
+                #9b7dff
+                );
+                ">
+
+                <div>Winx</div>
+
+            </div>
+
+            <!-- BRATZ -->
+
+            <div class="desktopIcon"
+            style="top:35px;left:380px;"
+            onclick="openWindow('bratz')">
+
+                <img
+                src="https://upload.wikimedia.org/wikipedia/commons/6/69/Bratz_logo.svg"
+                style="
+                background:
+                linear-gradient(
+                to bottom,
+                #ff5db5,
+                #ffc7ea
+                );
+                ">
+
+                <div>Bratz</div>
+
+            </div>
+
+            <!-- MUSIC -->
+
+            <div class="desktopIcon"
+            style="top:35px;left:550px;"
+            onclick="openWindow('music')">
+
+                <img
+                src="https://cdn-icons-png.flaticon.com/512/3659/3659899.png"
+                style="
+                background:
+                linear-gradient(
+                to bottom,
+                #8fd7ff,
+                #7d7cff
+                );
+                ">
+
+                <div>Music</div>
+
+            </div>
+
+            <!-- SONIC -->
+
+            <div class="desktopIcon"
+            style="top:35px;left:720px;"
+            onclick="openWindow('sonic')">
+
+                <img
+                src="https://upload.wikimedia.org/wikipedia/commons/5/5a/Sonic_the_Hedgehog_Logo.png"
+                style="
+                background:
+                linear-gradient(
+                to bottom,
+                #5ab7ff,
+                #003cff
+                );
+                ">
+
+                <div>Sonic</div>
+
+            </div>
+
+            <!-- ===== WINDOWS ===== -->
+
+            <!-- MARIO -->
+
+            <div class="window" id="mario">
+
+                <div class="topbar">
+
+                    🍄 SUPER MARIO 🍄
+
+                    <button class="close"
+                    onclick="closeWindow('mario')">
+                    ✕
+                    </button>
+
+                </div>
+
+                <iframe
+                src="https://supermario-game.com">
+                </iframe>
+
+            </div>
+
+            <!-- WINX -->
+
+            <div class="window" id="winx">
+
+                <div class="topbar">
+
+                    ✨ WINX CLUB ✨
+
+                    <button class="close"
+                    onclick="closeWindow('winx')">
+                    ✕
+                    </button>
+
+                </div>
+
+                <iframe
+                src="https://www.numuki.com/game/winx-club-bloomix-battle/">
+                </iframe>
+
+            </div>
+
+            <!-- BRATZ -->
+
+            <div class="window" id="bratz">
+
+                <div class="topbar">
+
+                    💖 BRATZ WORLD 💖
+
+                    <button class="close"
+                    onclick="closeWindow('bratz')">
+                    ✕
+                    </button>
+
+                </div>
+
+                <iframe
+                src="https://www.numuki.com/games/bratz/">
+                </iframe>
+
+            </div>
+
+            <!-- MUSIC -->
+
+            <div class="window" id="music">
+
+                <div class="topbar">
+
+                    🎵 Y2K MUSIC 🎵
+
+                    <button class="close"
+                    onclick="closeWindow('music')">
+                    ✕
+                    </button>
+
+                </div>
+
+                <iframe
+                src="https://www.youtube.com/embed/P13M4K1xuDo">
+                </iframe>
+
+            </div>
+
+            <!-- SONIC -->
+
+            <div class="window" id="sonic">
+
+                <div class="topbar">
+
+                    💙 SONIC GAME 💙
+
+                    <button class="close"
+                    onclick="closeWindow('sonic')">
+                    ✕
+                    </button>
+
+                </div>
+
+                <iframe
+                src="https://kbhgames.com/game/sonic-the-hedgehog">
+                </iframe>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- ===== KEYBOARD ===== -->
+
+<div id="base">
+
+    <div id="trackpad"></div>
+
+</div>
+
+<script>
+
+let computerOn=true;
+
+/* power */
+
+function toggleComputer(){
+
+    computerOn=!computerOn;
+
+    const screen=
+    document.getElementById("screen");
+
+    const base=
+    document.getElementById("base");
+
+    if(computerOn){
+
+        screen.classList.remove("offScreen");
+        base.classList.remove("offScreen");
+
+    }else{
+
+        screen.classList.add("offScreen");
+        base.classList.add("offScreen");
+    }
+}
+
+/* open */
+
+function openWindow(id){
+
+    if(!computerOn) return;
+
+    document
+    .getElementById(id)
+    .style.display="block";
+}
+
+/* close */
+
+function closeWindow(id){
+
+    document
+    .getElementById(id)
+    .style.display="none";
+}
+
+</script>
+
+</body>
+</html>
