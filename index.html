@@ -1,831 +1,284 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- REPLACE EVERYTHING INSIDE THIS: -->
 
-<title>Y2K Dream Laptop</title>
+<div id="desktop">
 
-<style>
+<!-- WITH EVERYTHING BELOW -->
 
-body{
-    margin:0;
-    overflow:hidden;
-    height:100vh;
-    font-family:Verdana,sans-serif;
+<!-- ====================================== -->
+<!-- Y2K DESKTOP -->
+<!-- ====================================== -->
 
-    background:
-    linear-gradient(
-        135deg,
-        #c7ecff,
-        #ffd7ef,
-        #fff0f8
-    );
-}
+<div id="desktop">
 
-/* ===== REAL FLOWERS ===== */
+    <!-- wallpaper decorations -->
 
-.flower{
+    <img
+    src="https://cdn-icons-png.flaticon.com/512/616/616554.png"
+    style="
     position:absolute;
+    width:120px;
+    top:15px;
+    right:20px;
+    opacity:.8;
     z-index:1;
-    animation:float 8s infinite ease-in-out;
-    pointer-events:none;
-}
+    ">
 
-.flower img{
-    width:160px;
-    filter:
-    drop-shadow(0 0 15px #fff)
-    drop-shadow(0 0 30px #ff9de2);
-}
-
-@keyframes float{
-
-    0%{
-        transform:
-        translateY(0px)
-        rotate(0deg);
-    }
-
-    50%{
-        transform:
-        translateY(-30px)
-        rotate(8deg);
-    }
-
-    100%{
-        transform:
-        translateY(0px)
-        rotate(0deg);
-    }
-}
-
-/* ===== SPARKLES ===== */
-
-.sparkle{
+    <img
+    src="https://cdn-icons-png.flaticon.com/512/616/616554.png"
+    style="
     position:absolute;
-    width:10px;
-    height:10px;
-    border-radius:50%;
-    background:white;
+    width:90px;
+    bottom:20px;
+    left:20px;
+    opacity:.8;
+    z-index:1;
+    ">
 
-    box-shadow:
-    0 0 10px white,
-    0 0 25px #ffb6ea,
-    0 0 40px #8fd7ff;
-
-    animation:twinkle 2s infinite alternate;
-}
-
-@keyframes twinkle{
-
-    from{
-        transform:scale(.5);
-        opacity:.3;
-    }
-
-    to{
-        transform:scale(2);
-        opacity:1;
-    }
-}
-
-/* ===== COMPUTER ===== */
-
-#computer{
+    <img
+    src="https://cdn-icons-png.flaticon.com/512/414/414927.png"
+    style="
     position:absolute;
-    top:50%;
-    left:50%;
-
-    transform:
-    translate(-50%,-50%);
-
-    width:980px;
-    height:760px;
-
-    z-index:100;
-}
-
-/* shell */
-
-#shell{
-    position:absolute;
-    inset:0;
-
-    border-radius:55px;
-
-    background:
-    linear-gradient(
-        to bottom,
-        white,
-        #f4f4f4
-    );
-
-    border:14px solid #ff43b0;
-
-    box-shadow:
-    0 0 70px #ffb6ea,
-    0 0 140px #8fd7ff;
-}
-
-/* logo */
-
-#logo{
-    position:absolute;
-    top:20px;
-    left:50%;
-    transform:translateX(-50%);
-
-    font-size:36px;
-    font-weight:bold;
-    color:#666;
-}
-
-/* power button */
-
-#powerButton{
-    position:absolute;
-
-    top:20px;
-    right:25px;
-
-    width:40px;
-    height:40px;
-
-    border-radius:50%;
-
-    background:
-    linear-gradient(
-        to bottom,
-        #ff7ed2,
-        #ff2fa5
-    );
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-
-    color:white;
-
-    font-size:22px;
-
-    cursor:pointer;
-
-    box-shadow:
-    0 0 20px #ffb6ea,
-    0 0 40px #8fd7ff;
-
-    transition:.3s;
-}
-
-#powerButton:hover{
-    transform:scale(1.1);
-}
-
-/* ===== SCREEN ===== */
-
-#screen{
-    position:absolute;
-
-    top:80px;
-    left:70px;
-
-    width:840px;
-    height:470px;
-
-    border-radius:25px;
-
-    border:10px solid #ddd;
-
-    overflow:hidden;
-
-    background:
-    linear-gradient(
-        135deg,
-        #ffbfe5,
-        #ff93d2
-    );
-
-    box-shadow:
-    inset 0 0 50px white;
-
-    transition:.5s;
-}
-
-/* wallpaper */
-
-#desktop{
-    width:100%;
-    height:100%;
-    position:relative;
-
-    background:
-    radial-gradient(circle at center,
-    rgba(255,255,255,.6),
-    transparent 50%);
-}
-
-/* ===== ICONS ===== */
-
-.desktopIcon{
-    width:110px;
-    position:absolute;
-
-    text-align:center;
-
-    color:white;
-
-    font-size:14px;
-    font-weight:bold;
-
-    cursor:pointer;
-}
-
-.desktopIcon img{
-
-    width:78px;
-    height:78px;
-
-    border-radius:22px;
-
-    object-fit:cover;
-
-    background:white;
-
-    padding:6px;
-
-    box-shadow:
-    0 0 20px white,
-    0 0 30px #ffb6ea;
-
-    transition:.3s;
-}
-
-.desktopIcon:hover img{
-    transform:
-    scale(1.1)
-    rotate(5deg);
-}
-
-/* ===== APP WINDOWS ===== */
-
-.window{
-    position:absolute;
-
-    top:30px;
-    left:40px;
-
-    width:740px;
-    height:380px;
-
-    border-radius:25px;
-
-    background:white;
-
-    display:none;
-
-    overflow:hidden;
-
-    box-shadow:
-    0 0 50px rgba(0,0,0,.35);
-
-    animation:pop .3s ease;
-}
-
-@keyframes pop{
-
-    from{
-        transform:scale(.8);
-        opacity:0;
-    }
-
-    to{
-        transform:scale(1);
-        opacity:1;
-    }
-}
-
-/* topbar */
-
-.topbar{
-    height:50px;
-
-    background:
-    linear-gradient(
-        to right,
-        #ff7ed2,
-        #ffb7e8
-    );
-
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-
-    padding:0 18px;
-
-    color:white;
-
-    font-weight:bold;
-}
-
-/* close */
-
-.close{
-    background:white;
-    color:#ff43b0;
-
-    border:none;
-
-    width:32px;
-    height:32px;
-
-    border-radius:50%;
-
-    cursor:pointer;
-
-    font-weight:bold;
-}
-
-/* iframe */
-
-iframe{
-    width:100%;
-    height:calc(100% - 50px);
-    border:none;
-}
-
-/* ===== KEYBOARD ===== */
-
-#base{
-    position:absolute;
-
-    bottom:0;
-    left:50%;
-
-    transform:translateX(-50%);
-
-    width:1040px;
-    height:180px;
-
-    border-radius:50px;
-
-    background:
-    linear-gradient(
-        to bottom,
-        white,
-        #f2f2f2
-    );
-
-    border:14px solid #ff43b0;
-
-    box-shadow:
-    0 20px 60px rgba(0,0,0,.25);
-
-    transition:.5s;
-}
-
-/* trackpad */
-
-#trackpad{
-    position:absolute;
-
-    bottom:30px;
-    left:50%;
-
-    transform:translateX(-50%);
-
     width:220px;
-    height:45px;
-
-    border-radius:40px;
-
-    background:
-    linear-gradient(
-        to bottom,
-        #ff7ed2,
-        #ff2fa5
-    );
-
-    box-shadow:
-    0 0 25px #ff9de2;
-}
-
-/* off */
-
-.offScreen{
-    opacity:0;
-    pointer-events:none;
-}
-
-</style>
-</head>
-
-<body>
-
-<script>
-
-/* ===== FLOWERS ===== */
-
-const flowerURLs=[
-
-"https://cdn-icons-png.flaticon.com/512/616/616490.png",
-
-"https://cdn-icons-png.flaticon.com/512/2909/2909768.png",
-
-"https://cdn-icons-png.flaticon.com/512/599/599502.png"
-
-];
-
-for(let i=0;i<25;i++){
-
-    const flower=document.createElement("div");
-
-    flower.className="flower";
-
-    flower.style.left=
-    Math.random()*window.innerWidth+"px";
-
-    flower.style.top=
-    Math.random()*window.innerHeight+"px";
-
-    flower.style.animationDuration=
-    (6+Math.random()*6)+"s";
-
-    const img=document.createElement("img");
-
-    img.src=
-    flowerURLs[
-        Math.floor(Math.random()*flowerURLs.length)
-    ];
-
-    flower.appendChild(img);
-
-    document.body.appendChild(flower);
-}
-
-/* ===== SPARKLES ===== */
-
-for(let i=0;i<180;i++){
-
-    const sparkle=document.createElement("div");
-
-    sparkle.className="sparkle";
-
-    sparkle.style.left=
-    Math.random()*window.innerWidth+"px";
-
-    sparkle.style.top=
-    Math.random()*window.innerHeight+"px";
-
-    sparkle.style.animationDuration=
-    (1+Math.random()*3)+"s";
-
-    document.body.appendChild(sparkle);
-}
-
-</script>
-
-<!-- ===== COMPUTER ===== -->
-
-<div id="computer">
-
-    <div id="shell"></div>
-
-    <div id="logo">
-        iBook Dream
-    </div>
-
-    <!-- POWER -->
-
-    <div id="powerButton"
-    onclick="toggleComputer()">
-    ⏻
-    </div>
-
-    <!-- SCREEN -->
-
-    <div id="screen">
-
-        <div id="desktop">
-
-            <!-- ICONS -->
-
-            <div class="desktopIcon"
-            style="top:25px;left:25px;"
-            onclick="openWindow('mario')">
-
-                <img src="https://cdn-icons-png.flaticon.com/512/188/188987.png">
-
-                <div>Mario</div>
-
-            </div>
-
-            <div class="desktopIcon"
-            style="top:25px;left:160px;"
-            onclick="openWindow('winx')">
-
-                <img src="https://cdn-icons-png.flaticon.com/512/4140/4140048.png">
-
-                <div>Winx</div>
-
-            </div>
-
-            <div class="desktopIcon"
-            style="top:25px;left:295px;"
-            onclick="openWindow('bratz')">
-
-                <img src="https://cdn-icons-png.flaticon.com/512/3468/3468377.png">
-
-                <div>Bratz</div>
-
-            </div>
-
-            <div class="desktopIcon"
-            style="top:25px;left:430px;"
-            onclick="openWindow('music')">
-
-                <img src="https://cdn-icons-png.flaticon.com/512/727/727245.png">
-
-                <div>Music</div>
-
-            </div>
-
-            <!-- ===== WINDOWS ===== -->
-
-            <!-- MARIO -->
-
-            <div class="window" id="mario">
-
-                <div class="topbar">
-
-                    Mario Website
-
-                    <button class="close"
-                    onclick="closeWindow('mario')">
-                    ✕
-                    </button>
-
-                </div>
-
-                <iframe
-                src="https://example.com">
-                </iframe>
-
-            </div>
-
-            <!-- WINX -->
-
-            <div class="window" id="winx">
-
-                <div class="topbar">
-
-                    Winx Club
-
-                    <button class="close"
-                    onclick="closeWindow('winx')">
-                    ✕
-                    </button>
-
-                </div>
-
-                <iframe
-                src="https://www.wikipedia.org">
-                </iframe>
-
-            </div>
-
-            <!-- BRATZ -->
-
-            <div class="window" id="bratz">
-
-                <div class="topbar">
-
-                    Bratz Fashion
-
-                    <button class="close"
-                    onclick="closeWindow('bratz')">
-                    ✕
-                    </button>
-
-                </div>
-
-                <iframe
-                src="https://archive.org">
-                </iframe>
-
-            </div>
-
-            <!-- MUSIC -->
-
-            <div class="window" id="music">
-
-                <div class="topbar">
-
-                    2000s Music
-
-                    <button class="close"
-                    onclick="closeWindow('music')">
-                    ✕
-                    </button>
-
-                </div>
-
-                <iframe
-                src="https://www.youtube.com/embed/2vjPBrBU-TM">
-                </iframe>
-
-            </div>
-
+    bottom:40px;
+    right:30px;
+    opacity:.7;
+    z-index:1;
+    ">
+
+    <!-- ===== ICONS ===== -->
+
+    <!-- MARIO -->
+
+    <div class="desktopIcon"
+    style="top:30px;left:35px;"
+    onclick="openWindow('mario')">
+
+        <img
+        src="https://upload.wikimedia.org/wikipedia/en/0/03/Super_Mario_Bros._Logo.svg"
+        style="
+        background:
+        linear-gradient(
+            to bottom,
+            #ff3b3b,
+            #ff9d00
+        );
+        padding:12px;
+        border-radius:24px;
+        ">
+
+        <div style="
+        margin-top:8px;
+        text-shadow:
+        0 0 10px white;
+        ">
+        Mario
         </div>
 
     </div>
 
-</div>
+    <!-- WINX -->
 
-<!-- ===== KEYBOARD ===== -->
+    <div class="desktopIcon"
+    style="top:30px;left:200px;"
+    onclick="openWindow('winx')">
 
-<div id="base">
+        <img
+        src="https://upload.wikimedia.org/wikipedia/en/f/fb/Winx_Club_logo.png"
+        style="
+        background:
+        linear-gradient(
+            to bottom,
+            #ff9be8,
+            #ae7cff
+        );
+        padding:12px;
+        border-radius:24px;
+        ">
 
-    <div id="trackpad"></div>
-
-</div>
-
-<script>
-
-let computerOn=true;
-
-/* power */
-
-function toggleComputer(){
-
-    computerOn=!computerOn;
-
-    const screen=
-    document.getElementById("screen");
-
-    const base=
-    document.getElementById("base");
-
-    if(computerOn){
-
-        screen.classList.remove("offScreen");
-        base.classList.remove("offScreen");
-
-    }else{
-
-        screen.classList.add("offScreen");
-        base.classList.add("offScreen");
-    }
-}
-
-/* open */
-
-function openWindow(id){
-
-    if(!computerOn) return;
-
-    document
-    .getElementById(id)
-    .style.display="block";
-}
-
-/* close */
-
-function closeWindow(id){
-
-    document
-    .getElementById(id)
-    .style.display="none";
-}
-
-</script>
-
-</body>
-</html>
-<!-- REPLACE ONLY THE ICONS + WINDOWS SECTION INSIDE #desktop WITH THIS -->
-
-<!-- ===== Y2K ICONS ===== -->
-
-<div class="desktopIcon"
-style="top:25px;left:25px;"
-onclick="openWindow('mario')">
-
-    <img src="https://upload.wikimedia.org/wikipedia/en/0/03/Super_Mario_Bros._Logo.svg">
-
-    <div>Mario</div>
-
-</div>
-
-<div class="desktopIcon"
-style="top:25px;left:180px;"
-onclick="openWindow('winx')">
-
-    <img src="https://upload.wikimedia.org/wikipedia/en/f/fb/Winx_Club_logo.png">
-
-    <div>Winx</div>
-
-</div>
-
-<div class="desktopIcon"
-style="top:25px;left:335px;"
-onclick="openWindow('bratz')">
-
-    <img src="https://upload.wikimedia.org/wikipedia/commons/6/69/Bratz_logo.svg">
-
-    <div>Bratz</div>
-
-</div>
-
-<div class="desktopIcon"
-style="top:25px;left:490px;"
-onclick="openWindow('music')">
-
-    <img src="https://cdn-icons-png.flaticon.com/512/3659/3659899.png">
-
-    <div>Music</div>
-
-</div>
-
-<!-- ===== MARIO ===== -->
-
-<div class="window" id="mario">
-
-    <div class="topbar">
-
-        🍄 SUPER MARIO WORLD 🍄
-
-        <button class="close"
-        onclick="closeWindow('mario')">
-        ✕
-        </button>
+        <div style="
+        margin-top:8px;
+        text-shadow:
+        0 0 10px white;
+        ">
+        Winx Club
+        </div>
 
     </div>
 
-    <iframe
-    src="https://supermario-game.com">
-    </iframe>
+    <!-- BRATZ -->
 
-</div>
+    <div class="desktopIcon"
+    style="top:30px;left:365px;"
+    onclick="openWindow('bratz')">
 
-<!-- ===== WINX ===== -->
+        <img
+        src="https://upload.wikimedia.org/wikipedia/commons/6/69/Bratz_logo.svg"
+        style="
+        background:
+        linear-gradient(
+            to bottom,
+            #ff63b6,
+            #ffc0eb
+        );
+        padding:12px;
+        border-radius:24px;
+        ">
 
-<div class="window" id="winx">
-
-    <div class="topbar">
-
-        ✨ WINX CLUB ✨
-
-        <button class="close"
-        onclick="closeWindow('winx')">
-        ✕
-        </button>
-
-    </div>
-
-    <iframe
-    src="https://www.numuki.com/game/winx-club-bloomix-battle/">
-    </iframe>
-
-</div>
-
-<!-- ===== BRATZ ===== -->
-
-<div class="window" id="bratz">
-
-    <div class="topbar">
-
-        💖 BRATZ FASHION 💖
-
-        <button class="close"
-        onclick="closeWindow('bratz')">
-        ✕
-        </button>
+        <div style="
+        margin-top:8px;
+        text-shadow:
+        0 0 10px white;
+        ">
+        Bratz
+        </div>
 
     </div>
 
-    <iframe
-    src="https://www.numuki.com/games/bratz/">
-    </iframe>
+    <!-- MUSIC -->
 
-</div>
+    <div class="desktopIcon"
+    style="top:30px;left:530px;"
+    onclick="openWindow('music')">
 
-<!-- ===== MUSIC ===== -->
+        <img
+        src="https://cdn-icons-png.flaticon.com/512/3659/3659899.png"
+        style="
+        background:
+        linear-gradient(
+            to bottom,
+            #8fd7ff,
+            #7d7cff
+        );
+        padding:12px;
+        border-radius:24px;
+        ">
 
-<div class="window" id="music">
-
-    <div class="topbar">
-
-        🎵 Y2K MUSIC PLAYER 🎵
-
-        <button class="close"
-        onclick="closeWindow('music')">
-        ✕
-        </button>
+        <div style="
+        margin-top:8px;
+        text-shadow:
+        0 0 10px white;
+        ">
+        Y2K Music
+        </div>
 
     </div>
 
-    <iframe
-    src="https://www.youtube.com/embed/jlAgHt92lqE">
-    </iframe>
+    <!-- ====================================== -->
+    <!-- WINDOWS -->
+    <!-- ====================================== -->
+
+    <!-- MARIO -->
+
+    <div class="window" id="mario">
+
+        <div class="topbar">
+
+            🍄 SUPER MARIO WORLD 🍄
+
+            <button class="close"
+            onclick="closeWindow('mario')">
+            ✕
+            </button>
+
+        </div>
+
+        <iframe
+        src="https://supermario-game.com">
+        </iframe>
+
+    </div>
+
+    <!-- WINX -->
+
+    <div class="window" id="winx">
+
+        <div class="topbar">
+
+            ✨ WINX MAGIC CLUB ✨
+
+            <button class="close"
+            onclick="closeWindow('winx')">
+            ✕
+            </button>
+
+        </div>
+
+        <iframe
+        src="https://www.numuki.com/game/winx-club-bloomix-battle/">
+        </iframe>
+
+    </div>
+
+    <!-- BRATZ -->
+
+    <div class="window" id="bratz">
+
+        <div class="topbar">
+
+            💖 BRATZ FASHION WORLD 💖
+
+            <button class="close"
+            onclick="closeWindow('bratz')">
+            ✕
+            </button>
+
+        </div>
+
+        <iframe
+        src="https://www.numuki.com/games/bratz/">
+        </iframe>
+
+    </div>
+
+    <!-- MUSIC -->
+
+    <div class="window" id="music">
+
+        <div class="topbar">
+
+            🎵 Y2K MUSIC PLAYER 🎵
+
+            <button class="close"
+            onclick="closeWindow('music')">
+            ✕
+            </button>
+
+        </div>
+
+        <iframe
+        src="https://www.youtube.com/embed/P13M4K1xuDo">
+        </iframe>
+
+    </div>
+
+    <!-- ====================================== -->
+    <!-- Y2K GIF ADS -->
+    <!-- ====================================== -->
+
+    <img
+    src="https://media.tenor.com/5k7imHSLJxAAAAAC/pink-glitter.gif"
+    style="
+    position:absolute;
+    width:180px;
+    bottom:15px;
+    left:20px;
+    border-radius:20px;
+    box-shadow:
+    0 0 20px white;
+    z-index:2;
+    ">
+
+    <img
+    src="https://media.tenor.com/3XK4P8Q9W8gAAAAC/y2k.gif"
+    style="
+    position:absolute;
+    width:180px;
+    bottom:15px;
+    right:20px;
+    border-radius:20px;
+    box-shadow:
+    0 0 20px white;
+    z-index:2;
+    ">
 
 </div>
