@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Y2K Dream Computer</title>
 
 <style>
@@ -17,11 +17,11 @@
 body{
     overflow:hidden;
     height:100vh;
-    background:linear-gradient(135deg,#c7f2ff,#ffd3f0,#d7c5ff);
-    position:relative;
     display:flex;
     align-items:center;
     justify-content:center;
+    background:linear-gradient(135deg,#c7f2ff,#ffd3f0,#d7c5ff);
+    position:relative;
     cursor:url('https://cur.cursors-4u.net/cursors/cur-9/cur817.cur'),auto;
 }
 
@@ -31,8 +31,8 @@ body{
     position:absolute;
     width:4px;
     height:4px;
-    background:white;
     border-radius:50%;
+    background:white;
     box-shadow:
         0 0 10px white,
         0 0 20px #fff,
@@ -57,7 +57,7 @@ body{
     position:absolute;
     font-size:40px;
     animation:floatFlower 8s infinite ease-in-out;
-    filter:drop-shadow(0 0 10px #fff);
+    filter:drop-shadow(0 0 10px white);
 }
 
 @keyframes floatFlower{
@@ -112,8 +112,6 @@ body{
     overflow:hidden;
 }
 
-/* CRT EFFECT */
-
 .screen::after{
     content:"";
     position:absolute;
@@ -132,11 +130,11 @@ body{
 
 .topbar{
     height:38px;
-    background:rgba(255,255,255,0.4);
-    backdrop-filter:blur(6px);
     display:flex;
     align-items:center;
     padding:0 14px;
+    background:rgba(255,255,255,0.4);
+    backdrop-filter:blur(6px);
     color:#ff1493;
     font-weight:bold;
     border-bottom:2px solid rgba(255,255,255,0.4);
@@ -167,7 +165,6 @@ body{
 
 .icon:hover{
     transform:scale(1.1);
-    filter:brightness(1.1);
 }
 
 .icon:active{
@@ -200,58 +197,49 @@ body{
     border-radius:20px;
 }
 
-/* POWER */
+/* POWER BUTTON */
 
 .power-container{
     position:absolute;
-    bottom:12px;
+    bottom:14px;
     right:18px;
     display:flex;
     align-items:center;
     gap:10px;
-    z-index:50;
-}
-
-.power-label{
-    color:#ff1493;
-    font-size:12px;
-    font-weight:bold;
-    letter-spacing:1px;
-    text-shadow:
-        0 0 5px white,
-        0 0 10px pink;
-    user-select:none;
+    z-index:200;
 }
 
 .power{
-    width:32px;
-    height:32px;
+    width:38px;
+    height:38px;
+    border:none;
     border-radius:50%;
     background:#8affc7;
-    box-shadow:
-      0 0 10px #8affc7,
-      0 0 20px #8affc7;
+    color:white;
+    font-size:20px;
     cursor:pointer;
+    box-shadow:
+        0 0 10px #8affc7,
+        0 0 20px #8affc7;
     transition:0.3s;
-    border:2px solid white;
-    position:relative;
 }
 
-.power::before{
-    content:"⏻";
-    position:absolute;
-    inset:0;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    color:white;
-    font-size:18px;
-    font-weight:bold;
+.power:hover{
+    transform:scale(1.08);
 }
 
 .power.off{
     background:#666;
     box-shadow:none;
+}
+
+.power-text{
+    color:#ff1493;
+    font-size:13px;
+    font-weight:bold;
+    text-shadow:
+        0 0 5px white,
+        0 0 10px pink;
 }
 
 /* SHUTDOWN */
@@ -305,21 +293,7 @@ body{
     }
 }
 
-/* RESPONSIVE */
-
-@media(max-width:850px){
-
-    .computer{
-        transform:scale(0.62);
-    }
-
-    .desktop{
-        grid-template-columns:repeat(2,140px);
-    }
-
-}
-
-/* FLOWER POSITIONS */
+/* FLOWERS POSITIONS */
 
 .f1{top:5%;left:8%;}
 .f2{top:70%;left:12%;}
@@ -370,74 +344,44 @@ body{
 💖 Y2K DREAM DESKTOP 💖
 </div>
 
-<!-- DESKTOP -->
+<!-- APPS -->
 
 <div class="desktop">
 
-<!-- MUSIC -->
-
 <div class="icon"
 onclick="openSite('https://www.youtube.com/watch?v=4fndeDfaWCg')">
-
 <div class="emoji">🎵</div>
-
 2000's Music
-
 </div>
-
-<!-- HELLO KITTY -->
 
 <div class="icon"
 onclick="openSite('https://www.numuki.com/games/hello-kitty/')">
-
 <div class="emoji">🐱</div>
-
 Hello Kitty
-
 </div>
-
-<!-- WINX -->
 
 <div class="icon"
 onclick="openSite('https://games.winxclub.com/31/Game.html?languageId=1')">
-
 <div class="emoji">🧚</div>
-
 Winx Game
-
 </div>
-
-<!-- MARIO -->
 
 <div class="icon"
 onclick="openSite('https://supermario-game.com/')">
-
 <div class="emoji">🍄</div>
-
 Mario
-
 </div>
-
-<!-- BRATZ -->
 
 <div class="icon"
 onclick="openSite('https://bratz.fandom.com/wiki/Category:Video_Games')">
-
 <div class="emoji">💋</div>
-
 Bratz
-
 </div>
-
-<!-- Y2K WEB -->
 
 <div class="icon"
 onclick="openSite('https://www.cameronsworld.net/')">
-
 <div class="emoji">💿</div>
-
 Y2K Web
-
 </div>
 
 </div>
@@ -456,11 +400,13 @@ Y2K Web
 
 <div class="power-container">
 
-<div class="power-label">
+<button id="powerBtn" class="power">
+⏻
+</button>
+
+<div class="power-text">
 POWER
 </div>
-
-<div class="power" id="powerBtn"></div>
 
 </div>
 
@@ -490,7 +436,6 @@ for(let i=0;i<80;i++){
     s.className='sparkle';
 
     s.style.left=Math.random()*100+'vw';
-
     s.style.top=Math.random()*100+'vh';
 
     s.style.animationDelay=Math.random()*4+'s';
@@ -513,63 +458,63 @@ function openSite(url){
 
 /* POWER BUTTON */
 
-const powerBtn = document.getElementById('powerBtn');
+const powerBtn=document.getElementById("powerBtn");
 
-const screen = document.getElementById('screen');
+const screen=document.getElementById("screen");
 
-const shutdown = document.getElementById('shutdownScreen');
+const shutdown=document.getElementById("shutdownScreen");
 
-const powerText = document.getElementById('powerText');
+const powerText=document.getElementById("powerText");
 
-const powerSubtext = document.getElementById('powerSubtext');
+const powerSubtext=document.getElementById("powerSubtext");
 
-let isOn = true;
+let isOn=true;
 
 /* STARTUP */
 
-shutdown.style.display='flex';
+shutdown.style.display="flex";
 
 setTimeout(()=>{
 
-    shutdown.style.display='none';
+    shutdown.style.display="none";
 
 },1500);
 
 /* POWER TOGGLE */
 
-powerBtn.addEventListener('click',()=>{
+powerBtn.addEventListener("click",()=>{
 
-    isOn = !isOn;
+    isOn=!isOn;
 
     if(isOn){
 
-        powerBtn.classList.remove('off');
+        powerBtn.classList.remove("off");
 
-        shutdown.style.display='flex';
+        shutdown.style.display="flex";
 
-        powerText.innerHTML='COMPUTER ON';
+        powerText.innerHTML="COMPUTER ON";
 
-        powerSubtext.innerHTML='Loading glitter desktop ✨';
+        powerSubtext.innerHTML="Loading glitter desktop ✨";
 
         setTimeout(()=>{
 
-            screen.style.display='block';
+            screen.style.display="block";
 
-            shutdown.style.display='none';
+            shutdown.style.display="none";
 
         },1200);
 
     }else{
 
-        powerBtn.classList.add('off');
+        powerBtn.classList.add("off");
 
-        screen.style.display='none';
+        screen.style.display="none";
 
-        shutdown.style.display='flex';
+        shutdown.style.display="flex";
 
-        powerText.innerHTML='COMPUTER OFF';
+        powerText.innerHTML="COMPUTER OFF";
 
-        powerSubtext.innerHTML='Press power button to turn on';
+        powerSubtext.innerHTML="Press power button to turn on";
     }
 
 });
