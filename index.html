@@ -69,6 +69,15 @@ body{
     }
 }
 
+/* FLOWER POSITIONS */
+
+.f1{top:5%;left:8%;}
+.f2{top:70%;left:12%;}
+.f3{top:20%;right:10%;}
+.f4{bottom:10%;right:15%;}
+.f5{top:40%;left:2%;}
+.f6{top:8%;right:25%;}
+
 /* COMPUTER */
 
 .computer{
@@ -126,7 +135,7 @@ body{
     pointer-events:none;
 }
 
-/* TOP BAR */
+/* TOPBAR */
 
 .topbar{
     height:38px;
@@ -167,16 +176,122 @@ body{
     transform:scale(1.1);
 }
 
-.icon:active{
-    transform:scale(0.95);
-}
-
 .icon .emoji{
     font-size:58px;
     margin-bottom:8px;
     filter:
         drop-shadow(0 0 8px white)
         drop-shadow(0 0 15px pink);
+}
+
+/* APP WINDOW */
+
+.app-window{
+    position:absolute;
+    top:60px;
+    left:50%;
+    transform:translateX(-50%);
+    width:88%;
+    height:78%;
+    background:white;
+    border:4px solid #ff8ad8;
+    border-radius:18px;
+    overflow:hidden;
+    z-index:300;
+    display:none;
+    box-shadow:
+        0 0 25px rgba(255,255,255,0.9),
+        0 0 40px rgba(255,105,180,0.5);
+}
+
+.app-header{
+    height:42px;
+    background:linear-gradient(90deg,#ff9ce6,#ffc7f3);
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 14px;
+    color:white;
+    font-weight:bold;
+}
+
+.app-header button{
+    border:none;
+    background:white;
+    color:#ff1493;
+    width:28px;
+    height:28px;
+    border-radius:50%;
+    cursor:pointer;
+    font-size:16px;
+    font-weight:bold;
+}
+
+#appFrame{
+    width:100%;
+    height:calc(100% - 42px);
+    border:none;
+    background:white;
+}
+
+/* POWER BUTTON */
+
+.power-container{
+    position:absolute;
+    bottom:14px;
+    right:18px;
+    display:flex;
+    align-items:center;
+    gap:10px;
+    z-index:400;
+}
+
+.power{
+    width:38px;
+    height:38px;
+    border:none;
+    border-radius:50%;
+    background:#8affc7;
+    color:white;
+    font-size:20px;
+    cursor:pointer;
+    box-shadow:
+        0 0 10px #8affc7,
+        0 0 20px #8affc7;
+    transition:0.3s;
+}
+
+.power.off{
+    background:#666;
+    box-shadow:none;
+}
+
+.power-text{
+    color:#ff1493;
+    font-size:13px;
+    font-weight:bold;
+}
+
+/* SHUTDOWN */
+
+.shutdown{
+    position:absolute;
+    inset:0;
+    background:black;
+    color:white;
+    display:none;
+    align-items:center;
+    justify-content:center;
+    flex-direction:column;
+    font-size:42px;
+    z-index:500;
+    letter-spacing:3px;
+}
+
+.shutdown small{
+    font-size:18px;
+    margin-top:20px;
+    color:#aaa;
 }
 
 /* STAND */
@@ -195,73 +310,6 @@ body{
     background:#cfcfff;
     margin:10px auto;
     border-radius:20px;
-}
-
-/* POWER BUTTON */
-
-.power-container{
-    position:absolute;
-    bottom:14px;
-    right:18px;
-    display:flex;
-    align-items:center;
-    gap:10px;
-    z-index:200;
-}
-
-.power{
-    width:38px;
-    height:38px;
-    border:none;
-    border-radius:50%;
-    background:#8affc7;
-    color:white;
-    font-size:20px;
-    cursor:pointer;
-    box-shadow:
-        0 0 10px #8affc7,
-        0 0 20px #8affc7;
-    transition:0.3s;
-}
-
-.power:hover{
-    transform:scale(1.08);
-}
-
-.power.off{
-    background:#666;
-    box-shadow:none;
-}
-
-.power-text{
-    color:#ff1493;
-    font-size:13px;
-    font-weight:bold;
-    text-shadow:
-        0 0 5px white,
-        0 0 10px pink;
-}
-
-/* SHUTDOWN */
-
-.shutdown{
-    position:absolute;
-    inset:0;
-    background:black;
-    color:white;
-    display:none;
-    align-items:center;
-    justify-content:center;
-    flex-direction:column;
-    font-size:42px;
-    z-index:100;
-    letter-spacing:3px;
-}
-
-.shutdown small{
-    font-size:18px;
-    margin-top:20px;
-    color:#aaa;
 }
 
 /* MARQUEE */
@@ -293,15 +341,6 @@ body{
     }
 }
 
-/* FLOWERS POSITIONS */
-
-.f1{top:5%;left:8%;}
-.f2{top:70%;left:12%;}
-.f3{top:20%;right:10%;}
-.f4{bottom:10%;right:15%;}
-.f5{top:40%;left:2%;}
-.f6{top:8%;right:25%;}
-
 </style>
 </head>
 
@@ -322,17 +361,17 @@ body{
 
 <div class="monitor">
 
-<!-- SHUTDOWN SCREEN -->
+<!-- SHUTDOWN -->
 
 <div class="shutdown" id="shutdownScreen">
 
-    <div id="powerText">
-        COMPUTER ON
-    </div>
+<div id="powerText">
+COMPUTER ON
+</div>
 
-    <small id="powerSubtext">
-        Welcome to your Y2K desktop ✨
-    </small>
+<small id="powerSubtext">
+Welcome to your Y2K desktop ✨
+</small>
 
 </div>
 
@@ -349,40 +388,60 @@ body{
 <div class="desktop">
 
 <div class="icon"
-onclick="openSite('https://www.youtube.com/watch?v=4fndeDfaWCg')">
+onclick="openApp('https://www.youtube.com/embed/4fndeDfaWCg')">
 <div class="emoji">🎵</div>
 2000's Music
 </div>
 
 <div class="icon"
-onclick="openSite('https://www.numuki.com/games/hello-kitty/')">
+onclick="openApp('https://www.cameronsworld.net/')">
+<div class="emoji">💿</div>
+Y2K Web
+</div>
+
+<div class="icon"
+onclick="openApp('https://www.numuki.com/games/hello-kitty/')">
 <div class="emoji">🐱</div>
 Hello Kitty
 </div>
 
 <div class="icon"
-onclick="openSite('https://games.winxclub.com/31/Game.html?languageId=1')">
+onclick="openApp('https://games.winxclub.com/31/Game.html?languageId=1')">
 <div class="emoji">🧚</div>
 Winx Game
 </div>
 
 <div class="icon"
-onclick="openSite('https://supermario-game.com/')">
+onclick="openApp('https://supermario-game.com/')">
 <div class="emoji">🍄</div>
 Mario
 </div>
 
 <div class="icon"
-onclick="openSite('https://bratz.fandom.com/wiki/Category:Video_Games')">
+onclick="openApp('https://bratz.fandom.com/wiki/Category:Video_Games')">
 <div class="emoji">💋</div>
 Bratz
 </div>
 
-<div class="icon"
-onclick="openSite('https://www.cameronsworld.net/')">
-<div class="emoji">💿</div>
-Y2K Web
 </div>
+
+<!-- APP WINDOW -->
+
+<div class="app-window" id="appWindow">
+
+<div class="app-header">
+
+<div>
+💖 Y2K Browser
+</div>
+
+<button onclick="closeApp()">
+✕
+</button>
+
+</div>
+
+<iframe id="appFrame"></iframe>
 
 </div>
 
@@ -390,7 +449,7 @@ Y2K Web
 
 <div class="marquee">
 <span>
-✨ welcome to the y2k dream desktop ✨ glitter girls forever ✨ fairycore internet ✨ myspace vibes ✨ 2000s nostalgia ✨
+✨ welcome to the y2k dream desktop ✨ glitter girls forever ✨ fairycore internet ✨ myspace vibes ✨
 </span>
 </div>
 
@@ -423,8 +482,6 @@ POWER
 <source src="https://assets.mixkit.co/active_storage/sfx/2571/2571-preview.mp3" type="audio/mpeg">
 </audio>
 
-<!-- SCRIPT -->
-
 <script>
 
 /* SPARKLES */
@@ -445,18 +502,33 @@ for(let i=0;i<80;i++){
     document.body.appendChild(s);
 }
 
-/* OPEN WEBSITE */
+/* OPEN APPS */
 
-function openSite(url){
+function openApp(url){
 
     if(!isOn) return;
 
     document.getElementById('clickSound').play();
 
-    window.open(url,'_blank');
+    const appWindow=document.getElementById('appWindow');
+
+    const appFrame=document.getElementById('appFrame');
+
+    appFrame.src=url;
+
+    appWindow.style.display='block';
 }
 
-/* POWER BUTTON */
+/* CLOSE APP */
+
+function closeApp(){
+
+    document.getElementById('appWindow').style.display='none';
+
+    document.getElementById('appFrame').src='';
+}
+
+/* POWER */
 
 const powerBtn=document.getElementById("powerBtn");
 
@@ -515,6 +587,8 @@ powerBtn.addEventListener("click",()=>{
         powerText.innerHTML="COMPUTER OFF";
 
         powerSubtext.innerHTML="Press power button to turn on";
+
+        closeApp();
     }
 
 });
