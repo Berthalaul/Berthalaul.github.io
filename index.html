@@ -19,49 +19,46 @@ body{
     background:
     linear-gradient(
         135deg,
-        #ffb6dc,
-        #8fd7ff
+        #8fd7ff,
+        #ffd1ec
     );
 }
 
-/* ===== SPARKLY FLOWER BACKGROUND ===== */
+/* ===== FLOWERS ===== */
 
-.bg{
-    position:fixed;
-    inset:0;
-    z-index:0;
-    background:
-    url('/mnt/data/-4.jpg');
-    background-size:cover;
-    background-position:center;
-    filter:brightness(1.1);
-}
-
-.sparkle{
+.flower{
     position:absolute;
-    width:8px;
-    height:8px;
-    border-radius:50%;
-    background:white;
-
-    box-shadow:
-    0 0 10px white,
-    0 0 20px #ff9de2,
-    0 0 40px white;
-
-    animation:twinkle 2s infinite alternate;
+    width:140px;
+    pointer-events:none;
+    z-index:1;
+    animation:float 8s infinite ease-in-out;
 }
 
-@keyframes twinkle{
+.flower img{
+    width:100%;
+    filter:
+    drop-shadow(0 0 15px white)
+    drop-shadow(0 0 25px #ff9de2);
+}
 
-    from{
-        transform:scale(.5);
-        opacity:.4;
+@keyframes float{
+
+    0%{
+        transform:
+        translateY(0px)
+        rotate(0deg);
     }
 
-    to{
-        transform:scale(1.8);
-        opacity:1;
+    50%{
+        transform:
+        translateY(-30px)
+        rotate(8deg);
+    }
+
+    100%{
+        transform:
+        translateY(0px)
+        rotate(0deg);
     }
 }
 
@@ -154,10 +151,11 @@ body{
     border:10px solid #ddd;
 
     background:
-    url('/mnt/data/-4.jpg');
-
-    background-size:cover;
-    background-position:center;
+    linear-gradient(
+        135deg,
+        #8fd7ff,
+        #ffd0ef
+    );
 }
 
 #desktop{
@@ -182,7 +180,7 @@ body{
 
     object-fit:contain;
 
-    border-radius:24px;
+    border-radius:22px;
 
     padding:8px;
 
@@ -327,28 +325,48 @@ iframe{
 
 <body>
 
-<div class="bg"></div>
-
-<!-- ===== SPARKLES ===== -->
+<!-- ===== FLOWERS ===== -->
 
 <script>
 
-for(let i=0;i<120;i++){
+const flowers = [
 
-    const sparkle=document.createElement("div");
+"https://pngimg.com/d/daisy_PNG5.png",
 
-    sparkle.className="sparkle";
+"https://pngimg.com/d/flowers_PNG102.png",
 
-    sparkle.style.left=
+"https://pngimg.com/d/flower_PNG102.png",
+
+"https://pngimg.com/d/sunflower_PNG13417.png"
+
+];
+
+for(let i=0;i<18;i++){
+
+    const flower=document.createElement("div");
+
+    flower.className="flower";
+
+    flower.style.left=
     Math.random()*window.innerWidth+"px";
 
-    sparkle.style.top=
+    flower.style.top=
     Math.random()*window.innerHeight+"px";
 
-    sparkle.style.animationDuration=
-    (1+Math.random()*3)+"s";
+    flower.style.width=
+    100+Math.random()*120+"px";
 
-    document.body.appendChild(sparkle);
+    flower.style.animationDuration=
+    6+Math.random()*6+"s";
+
+    const img=document.createElement("img");
+
+    img.src=
+    flowers[Math.floor(Math.random()*flowers.length)];
+
+    flower.appendChild(img);
+
+    document.body.appendChild(flower);
 }
 
 </script>
@@ -470,7 +488,7 @@ onclick="closeWindow('winx')">
 </div>
 
 <iframe
-src="https://www.numuki.com/game/winx-club-love-and-pet/">
+src="https://www.gameszap.com/game/204/winx-club-dress-up.html">
 </iframe>
 
 </div>
@@ -491,7 +509,7 @@ onclick="closeWindow('bratz')">
 </div>
 
 <iframe
-src="https://www.numuki.com/games/bratz/">
+src="https://www.girlsgogames.com/game/bratz-makeover-game">
 </iframe>
 
 </div>
@@ -533,21 +551,19 @@ onclick="closeWindow('kitty')">
 </div>
 
 <iframe
-src="https://www.numuki.com/games/hello-kitty/">
+src="https://www.gameszap.com/game/272/hello-kitty-dress-up.html">
 </iframe>
 
 </div>
 
 </div>
-
+</div>
 </div>
 
 <!-- ===== KEYBOARD ===== -->
 
 <div id="base">
 <div id="trackpad"></div>
-</div>
-
 </div>
 
 <script>
