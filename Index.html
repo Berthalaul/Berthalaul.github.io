@@ -4,357 +4,898 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Y2K Dream Computer</title>
+
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:Verdana,sans-serif;}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Verdana,sans-serif;
+}
 
 body{
-    overflow:hidden;height:100vh;
-    background:radial-gradient(circle at top left,#ffb7dc 0%,transparent 35%),radial-gradient(circle at bottom right,#ffd9ef 0%,transparent 30%),linear-gradient(to bottom,#ff94c9,#ffb3d8);
+    overflow:hidden;
+    height:100vh;
+
+    background:
+    radial-gradient(circle at top left,#ffb7dc 0%,transparent 35%),
+    radial-gradient(circle at bottom right,#ffd9ef 0%,transparent 30%),
+    linear-gradient(to bottom,#ff94c9,#ffb3d8);
+
     position:relative;
 }
-body::before{content:"";position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,0.15) 1px,transparent 1px);background-size:6px 6px;opacity:.4;pointer-events:none;}
 
-.flower{position:absolute;color:white;opacity:.7;filter:blur(.2px);animation:floatFlower linear infinite;pointer-events:none;z-index:0;}
-@keyframes floatFlower{from{transform:translateY(120vh) rotate(0deg);}to{transform:translateY(-120vh) rotate(360deg);}}
-.sparkle{position:absolute;color:white;animation:twinkle 2s infinite ease-in-out;pointer-events:none;z-index:0;}
-@keyframes twinkle{0%,100%{transform:scale(.6);opacity:.3;}50%{transform:scale(1.3);opacity:1;}}
-.swirl{position:absolute;border:2px solid rgba(255,255,255,0.7);border-color:white transparent transparent transparent;border-radius:50%;opacity:.6;animation:spinS 18s linear infinite;pointer-events:none;z-index:0;}
-@keyframes spinS{from{transform:rotate(0deg);}to{transform:rotate(360deg);}}
+/* BACKGROUND TEXTURE */
 
-.scene{position:absolute;inset:0;display:flex;justify-content:center;align-items:center;flex-direction:column;z-index:1;}
+body::before{
+    content:"";
+    position:absolute;
+    inset:0;
 
-.computer{position:relative;animation:floatPC 4s ease-in-out infinite;}
-@keyframes floatPC{0%,100%{transform:translateY(0);}50%{transform:translateY(-12px);}}
+    background-image:
+    radial-gradient(rgba(255,255,255,0.15) 1px, transparent 1px);
 
-/* MONITOR - dark blue */
-.monitor{
-    width:520px;height:390px;border-radius:28px;position:relative;
-    background:linear-gradient(135deg,#1a2a4a,#0d1f3c);
-    padding:20px;
-    box-shadow:inset -8px -8px 20px rgba(255,255,255,0.08),inset 8px 8px 20px rgba(0,0,0,0.4),0 30px 60px rgba(0,0,0,0.5);
+    background-size:6px 6px;
+    opacity:.4;
+    pointer-events:none;
 }
-.monitor::before{content:"";position:absolute;top:10px;left:16px;width:40%;height:24%;border-radius:40px;background:rgba(255,255,255,0.07);transform:rotate(-8deg);pointer-events:none;}
+
+/* SPARKLES */
+
+.sparkle{
+    position:absolute;
+    color:white;
+    animation:twinkle 2s infinite ease-in-out;
+    pointer-events:none;
+}
+
+@keyframes twinkle{
+
+    0%,100%{
+        transform:scale(.6);
+        opacity:.3;
+    }
+
+    50%{
+        transform:scale(1.3);
+        opacity:1;
+    }
+}
+
+/* FLOWERS */
+
+.flower{
+    position:absolute;
+    color:white;
+    opacity:.7;
+    animation:floatFlower linear infinite;
+}
+
+@keyframes floatFlower{
+
+    from{
+        transform:translateY(120vh) rotate(0deg);
+    }
+
+    to{
+        transform:translateY(-120vh) rotate(360deg);
+    }
+}
+
+/* MAIN SCENE */
+
+.scene{
+    position:absolute;
+    inset:0;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+}
+
+/* COMPUTER */
+
+.computer{
+    position:relative;
+    animation:hoverPC 4s ease-in-out infinite;
+}
+
+@keyframes hoverPC{
+
+    0%,100%{
+        transform:translateY(0px);
+    }
+
+    50%{
+        transform:translateY(-10px);
+    }
+}
+
+/* MONITOR */
+
+.monitor{
+    width:950px;
+    height:650px;
+
+    border-radius:30px;
+
+    background:
+    linear-gradient(
+        135deg,
+        #b894ff,
+        #f7b7e7
+    );
+
+    padding:24px;
+
+    box-shadow:
+    inset -8px -8px 20px rgba(255,255,255,0.4),
+    inset 8px 8px 20px rgba(0,0,0,0.12),
+    0 30px 60px rgba(0,0,0,0.25);
+
+    position:relative;
+}
+
+/* GLOSS */
+
+.monitor::before{
+    content:"";
+    position:absolute;
+
+    top:10px;
+    left:16px;
+
+    width:40%;
+    height:24%;
+
+    border-radius:40px;
+
+    background:rgba(255,255,255,0.28);
+
+    transform:rotate(-8deg);
+}
+
+/* SCREEN */
 
 .screen{
-    width:100%;height:100%;border-radius:20px;position:relative;overflow:hidden;
-    background:linear-gradient(135deg,#8fd8ff,#a7b8ff,#ffc8ea);
-    box-shadow:inset 0 0 30px rgba(255,255,255,0.7),inset 0 0 70px rgba(0,0,0,0.2);
-    transition:background .5s;
-}
-.screen::after{content:"";position:absolute;inset:0;background:repeating-linear-gradient(to bottom,rgba(255,255,255,0.05),rgba(255,255,255,0.05) 2px,transparent 2px,transparent 4px);opacity:.4;pointer-events:none;z-index:10;border-radius:20px;}
-.screen.off{background:#050a10 !important;box-shadow:inset 0 0 60px #000 !important;}
-.screen.off > *:not(#bootScreen){opacity:0;pointer-events:none;}
+    width:100%;
+    height:100%;
+    border-radius:20px;
+    overflow:hidden;
+    position:relative;
 
-/* BOOT */
-#bootScreen{position:absolute;inset:0;z-index:20;display:none;flex-direction:column;align-items:center;justify-content:center;background:#050a10;border-radius:20px;color:#7ab8ff;font-size:12px;font-family:monospace;letter-spacing:2px;text-align:center;gap:10px;}
-#bootScreen.show{display:flex;}
-.boot-bar{width:55%;height:5px;background:#111;border-radius:10px;overflow:hidden;margin-top:4px;}
-.boot-bar-fill{height:100%;width:0%;background:linear-gradient(to right,#4488ff,#88ccff);border-radius:10px;transition:width .08s;}
+    background:
+    linear-gradient(
+        135deg,
+        #8fd8ff,
+        #a7b8ff,
+        #ffc8ea
+    );
+
+    box-shadow:
+    inset 0 0 30px rgba(255,255,255,0.7),
+    inset 0 0 70px rgba(0,0,0,0.2);
+}
+
+/* CRT EFFECT */
+
+.screen::after{
+    content:"";
+    position:absolute;
+    inset:0;
+
+    background:
+    repeating-linear-gradient(
+        to bottom,
+        rgba(255,255,255,0.05),
+        rgba(255,255,255,0.05) 2px,
+        transparent 2px,
+        transparent 4px
+    );
+
+    opacity:.4;
+    pointer-events:none;
+}
+
+/* TOP BAR */
+
+.topbar{
+    width:100%;
+    height:40px;
+
+    background:rgba(255,255,255,0.25);
+
+    backdrop-filter:blur(10px);
+
+    display:flex;
+    align-items:center;
+
+    padding:0 14px;
+
+    color:white;
+    font-size:14px;
+    font-weight:bold;
+
+    box-shadow:0 4px 12px rgba(0,0,0,0.1);
+}
+
+/* TOP DOTS */
+
+.dots{
+    display:flex;
+    gap:6px;
+}
+
+.dot{
+    width:10px;
+    height:10px;
+    border-radius:50%;
+}
+
+.pink{
+    background:#ff7ecf;
+}
+
+.blue{
+    background:#7ecbff;
+}
+
+.white{
+    background:white;
+}
+
+.title{
+    margin-left:14px;
+}
 
 /* DESKTOP */
-.desktop{position:absolute;inset:0;z-index:2;padding:14px;display:flex;flex-direction:column;transition:opacity .3s;}
-.topbar{height:30px;border-radius:10px;background:rgba(255,255,255,0.25);backdrop-filter:blur(10px);display:flex;align-items:center;padding:0 10px;color:white;font-size:11px;font-weight:bold;box-shadow:0 4px 12px rgba(0,0,0,0.1);flex-shrink:0;}
-.dots{display:flex;gap:5px;}
-.dot{width:8px;height:8px;border-radius:50%;}
-.d-pink{background:#ff7ecf;}.d-blue{background:#7ecbff;}.d-white{background:white;}
-.bar-title{margin-left:10px;letter-spacing:1px;flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
-.back-btn{background:rgba(255,255,255,0.35);border:1px solid rgba(255,255,255,0.6);border-radius:8px;color:white;font-size:10px;font-weight:bold;padding:3px 9px;cursor:pointer;white-space:nowrap;transition:.15s;}
-.back-btn:hover{background:rgba(255,255,255,0.55);}
 
-.icons{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:14px;}
-.icon{text-align:center;color:white;cursor:pointer;transition:.25s;}
-.icon:hover{transform:scale(1.12) rotate(-4deg);}
-.icon-box{width:56px;height:56px;margin:auto;border-radius:14px;background:rgba(255,255,255,0.22);border:1px solid rgba(255,255,255,0.5);display:flex;align-items:center;justify-content:center;font-size:24px;box-shadow:0 8px 16px rgba(0,0,0,0.15),inset 0 0 10px rgba(255,255,255,0.5);backdrop-filter:blur(10px);}
-.icon span{display:block;margin-top:5px;font-size:10px;text-shadow:0 0 10px rgba(255,255,255,0.7);}
+.desktop{
+    padding:30px;
 
-/* DINO VIEW */
-.dino-view{position:absolute;inset:0;z-index:5;display:none;flex-direction:column;padding:12px;background:linear-gradient(135deg,#8fd8ff,#a7b8ff,#ffc8ea);border-radius:20px;}
-.dino-view.active{display:flex;}
-.dino-wrap{flex:1;border-radius:12px;overflow:hidden;margin-top:8px;background:#fff5fe;position:relative;}
-#dinoCanvas{display:block;}
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
 
-/* STAND / BASE - dark blue */
-.stand{width:160px;height:30px;margin:0 auto;background:linear-gradient(to bottom,#1e3a6e,#0d1f3c);border-radius:0 0 16px 16px;box-shadow:inset 0 0 10px rgba(255,255,255,0.05);}
-.base{width:260px;height:24px;margin:5px auto 0;border-radius:18px;background:linear-gradient(to bottom,#1a2f55,#0a1628);box-shadow:0 10px 20px rgba(0,0,0,0.4);}
+    gap:34px;
+}
+
+/* ICONS */
+
+.icon{
+    text-align:center;
+    color:white;
+    cursor:pointer;
+    transition:.25s;
+}
+
+.icon:hover{
+    transform:scale(1.08) rotate(-4deg);
+}
+
+.icon-box{
+    width:82px;
+    height:82px;
+
+    margin:auto;
+
+    border-radius:20px;
+
+    background:rgba(255,255,255,0.22);
+
+    border:1px solid rgba(255,255,255,0.5);
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    font-size:40px;
+
+    box-shadow:
+    0 10px 18px rgba(0,0,0,0.15),
+    inset 0 0 12px rgba(255,255,255,0.5);
+
+    backdrop-filter:blur(10px);
+}
+
+.icon span{
+    display:block;
+    margin-top:10px;
+    font-size:14px;
+    font-weight:bold;
+}
+
+/* WINDOW */
+
+.window{
+    position:absolute;
+
+    top:70px;
+    left:50%;
+
+    transform:translateX(-50%);
+
+    width:86%;
+    height:76%;
+
+    background:white;
+
+    border-radius:18px;
+
+    overflow:hidden;
+
+    display:none;
+
+    z-index:50;
+
+    box-shadow:
+    0 20px 40px rgba(0,0,0,0.35);
+}
+
+/* WINDOW TOP */
+
+.window-top{
+    height:42px;
+
+    background:#ffb3d8;
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    padding:0 15px;
+
+    color:white;
+    font-weight:bold;
+}
+
+/* CLOSE BUTTON */
+
+.close-btn{
+    background:white;
+    color:#ff4fa0;
+
+    border:none;
+
+    width:30px;
+    height:30px;
+
+    border-radius:50%;
+
+    cursor:pointer;
+
+    font-size:18px;
+    font-weight:bold;
+}
+
+/* IFRAME */
+
+.window iframe{
+    width:100%;
+    height:calc(100% - 42px);
+    border:none;
+}
 
 /* POWER BUTTON */
-.power-btn{display:flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:50%;background:linear-gradient(135deg,#ff7ecf,#d94fff);border:3px solid rgba(255,255,255,0.4);box-shadow:0 0 14px rgba(255,80,220,0.5);cursor:pointer;margin:7px auto 0;font-size:13px;transition:.3s;}
-.power-btn:hover{transform:scale(1.12);box-shadow:0 0 26px rgba(255,80,220,0.9);}
-.power-btn.on{background:linear-gradient(135deg,#7fff9b,#00e472);box-shadow:0 0 18px rgba(0,220,100,0.8);}
 
-/* KEYBOARD - dark blue */
-.keyboard{width:550px;margin-top:10px;padding:13px;border-radius:22px;background:linear-gradient(135deg,#1a2f55,#0d1f3c);box-shadow:inset 0 0 20px rgba(255,255,255,0.05),0 18px 36px rgba(0,0,0,0.4);}
-.keys{display:grid;grid-template-columns:repeat(12,1fr);gap:5px;}
-.key{height:20px;border-radius:6px;background:rgba(255,255,255,0.12);box-shadow:inset 0 -2px 4px rgba(0,0,0,0.3),0 1px 2px rgba(255,255,255,0.1);}
+.power-container{
+    position:absolute;
+    bottom:18px;
+    right:18px;
 
-@media(max-width:700px){
-    .monitor{width:92vw;height:66vw;}
-    .keyboard{width:95vw;}
-    .icons{gap:7px;}
-    .icon-box{width:44px;height:44px;font-size:20px;}
-    .icon span{font-size:9px;}
+    display:flex;
+    align-items:center;
+    gap:10px;
+
+    z-index:100;
 }
+
+.power{
+    width:44px;
+    height:44px;
+
+    border-radius:50%;
+    border:none;
+
+    cursor:pointer;
+
+    font-size:20px;
+    color:white;
+
+    background:#8affc7;
+
+    box-shadow:
+    0 0 10px #8affc7,
+    0 0 20px #8affc7;
+
+    transition:.3s;
+}
+
+.power.off{
+    background:#666;
+    box-shadow:none;
+}
+
+.power-text{
+    color:white;
+    font-size:13px;
+    font-weight:bold;
+}
+
+/* SHUTDOWN SCREEN */
+
+.shutdown{
+    position:absolute;
+    inset:0;
+
+    background:black;
+    color:white;
+
+    z-index:200;
+
+    display:none;
+    align-items:center;
+    justify-content:center;
+    flex-direction:column;
+
+    font-size:42px;
+    letter-spacing:3px;
+}
+
+.shutdown small{
+    margin-top:18px;
+    color:#aaa;
+    font-size:18px;
+}
+
+/* STAND */
+
+.stand{
+    width:180px;
+    height:36px;
+
+    margin:auto;
+
+    background:
+    linear-gradient(
+        to bottom,
+        #d6b3ff,
+        #9f74da
+    );
+
+    border-radius:0 0 18px 18px;
+}
+
+.base{
+    width:270px;
+    height:30px;
+
+    margin:8px auto 0;
+
+    border-radius:20px;
+
+    background:
+    linear-gradient(
+        to bottom,
+        #f8bfe9,
+        #9d72d9
+    );
+}
+
+/* KEYBOARD */
+
+.keyboard{
+    width:620px;
+
+    margin-top:26px;
+
+    padding:18px;
+
+    border-radius:22px;
+
+    background:
+    linear-gradient(
+        135deg,
+        #ffc6e9,
+        #c59dff
+    );
+}
+
+.keys{
+    display:grid;
+    grid-template-columns:repeat(12,1fr);
+    gap:8px;
+}
+
+.key{
+    height:28px;
+
+    border-radius:8px;
+
+    background:rgba(255,255,255,0.65);
+}
+
+/* FOOTER */
+
+.footer{
+    position:absolute;
+    bottom:18px;
+
+    color:white;
+
+    font-size:18px;
+
+    text-shadow:0 0 12px rgba(255,255,255,0.8);
+
+    letter-spacing:2px;
+}
+
 </style>
 </head>
+
 <body>
 
 <div class="scene">
+
 <div class="computer">
-  <div class="monitor">
-    <div class="screen off" id="screen">
 
-      <div id="bootScreen">
-        <div style="font-size:26px">💙</div>
-        <div style="font-size:15px;font-weight:bold">loading...</div>
-        <div style="font-size:10px;color:#88ccff;letter-spacing:3px">please wait ✨</div>
-        <div class="boot-bar"><div class="boot-bar-fill" id="bootFill"></div></div>
-      </div>
+<div class="monitor">
 
-      <!-- HOME -->
-      <div class="desktop" id="homeView" style="opacity:0;pointer-events:none;">
-        <div class="topbar">
-          <div class="dots"><div class="dot d-pink"></div><div class="dot d-blue"></div><div class="dot d-white"></div></div>
-          <div class="bar-title">dream_computer.exe</div>
-        </div>
-        <div class="icons">
+<!-- SHUTDOWN -->
 
-          <a class="icon" href="https://playclassic.games/games/action-dos-games-online/play-grand-theft-auto-2-online/" target="_blank" rel="noopener">
-            <div class="icon-box">🚗</div><span>GTA 2</span>
-          </a>
+<div class="shutdown" id="shutdownScreen">
 
-          <a class="icon" href="https://supermario-game.com" target="_blank" rel="noopener">
-            <div class="icon-box">🍄</div><span>Super Mario</span>
-          </a>
-
-          <a class="icon" href="https://www.numuki.com/games/winx-club/" target="_blank" rel="noopener">
-            <div class="icon-box">🧚</div><span>Winx Club</span>
-          </a>
-
-          <a class="icon" href="https://www.numuki.com/games/bratz/" target="_blank" rel="noopener">
-            <div class="icon-box">💄</div><span>Bratz Dolls</span>
-          </a>
-
-          <a class="icon" href="https://archive.org/details/softwarelibrary_msdos_games" target="_blank" rel="noopener">
-            <div class="icon-box">👾</div><span>Retro Games</span>
-          </a>
-
-          <a class="icon" href="https://classicreload.com" target="_blank" rel="noopener">
-            <div class="icon-box">🕹️</div><span>Classic Reload</span>
-          </a>
-
-          <a class="icon" href="https://archive.org/details/classicpcgames" target="_blank" rel="noopener">
-            <div class="icon-box">💿</div><span>PC Classics</span>
-          </a>
-
-          <div class="icon" onclick="startDino()">
-            <div class="icon-box">🦕</div><span>Dino Run</span>
-          </div>
-
-        </div>
-      </div>
-
-      <!-- DINO VIEW -->
-      <div class="dino-view" id="dinoView">
-        <div class="topbar">
-          <div class="dots"><div class="dot d-pink"></div><div class="dot d-blue"></div><div class="dot d-white"></div></div>
-          <div class="bar-title">🦕 Dino Run — SPACE or TAP to jump!</div>
-          <button class="back-btn" onclick="goHome()">⬅ Home</button>
-        </div>
-        <div class="dino-wrap" id="dinoWrap">
-          <canvas id="dinoCanvas"></canvas>
-        </div>
-      </div>
-
-    </div>
-  </div>
-  <div class="stand"></div>
-  <div class="base"></div>
-  <button class="power-btn" id="powerBtn" onclick="togglePower()" title="Power on/off">⏻</button>
+<div id="powerText">
+COMPUTER OFF
 </div>
 
-<div class="keyboard"><div class="keys" id="keys"></div></div>
+<small id="powerSubtext">
+Press power button to turn on
+</small>
+
 </div>
+
+<!-- SCREEN -->
+
+<div class="screen" id="screen">
+
+<!-- TOP BAR -->
+
+<div class="topbar">
+
+<div class="dots">
+<div class="dot pink"></div>
+<div class="dot blue"></div>
+<div class="dot white"></div>
+</div>
+
+<div class="title">
+dream_computer.exe
+</div>
+
+</div>
+
+<!-- DESKTOP -->
+
+<div class="desktop">
+
+<!-- MUSIC -->
+
+<div class="icon"
+onclick="openSite('https://www.youtube.com/embed/4fndeDfaWCg')">
+
+<div class="icon-box">🎵</div>
+
+<span>2000s Music</span>
+
+</div>
+
+<!-- DINO GAME -->
+
+<div class="icon"
+onclick="openSite('https://chromedino.com/')">
+
+<div class="icon-box">🦖</div>
+
+<span>Dino Game</span>
+
+</div>
+
+<!-- MARIO -->
+
+<div class="icon"
+onclick="openSite('https://supermario-game.com/')">
+
+<div class="icon-box">🍄</div>
+
+<span>Mario</span>
+
+</div>
+
+<!-- HELLO KITTY -->
+
+<div class="icon"
+onclick="openSite('https://www.numuki.com/games/hello-kitty/')">
+
+<div class="icon-box">🐱</div>
+
+<span>Hello Kitty</span>
+
+</div>
+
+<!-- WINX -->
+
+<div class="icon"
+onclick="openSite('https://www.numuki.com/games/winx-club/')">
+
+<div class="icon-box">🧚</div>
+
+<span>Winx Club</span>
+
+</div>
+
+<!-- BRATZ -->
+
+<div class="icon"
+onclick="openSite('https://www.numuki.com/games/bratz/')">
+
+<div class="icon-box">💋</div>
+
+<span>Bratz</span>
+
+</div>
+
+<!-- INTERNET -->
+
+<div class="icon"
+onclick="openSite('https://www.cameronsworld.net/')">
+
+<div class="icon-box">✨</div>
+
+<span>Internet</span>
+
+</div>
+
+<!-- RETRO GAMES -->
+
+<div class="icon"
+onclick="openSite('https://classicreload.com/')">
+
+<div class="icon-box">💿</div>
+
+<span>Retro Games</span>
+
+</div>
+
+</div>
+
+<!-- WINDOW -->
+
+<div class="window" id="siteWindow">
+
+<div class="window-top">
+
+<div id="windowTitle">
+website.exe
+</div>
+
+<button class="close-btn" onclick="closeWindow()">
+×
+</button>
+
+</div>
+
+<iframe id="siteFrame"></iframe>
+
+</div>
+
+</div>
+
+<!-- POWER BUTTON -->
+
+<div class="power-container">
+
+<button id="powerBtn" class="power">
+⏻
+</button>
+
+<div class="power-text">
+POWER
+</div>
+
+</div>
+
+</div>
+
+<div class="stand"></div>
+<div class="base"></div>
+
+</div>
+
+<!-- KEYBOARD -->
+
+<div class="keyboard">
+
+<div class="keys" id="keys"></div>
+
+</div>
+
+<div class="footer">
+✧･ﾟ: * Y2K DREAM WORLD * :･ﾟ✧
+</div>
+
+</div>
+
+<!-- CLICK SOUND -->
+
+<audio id="clickSound">
+<source src="https://assets.mixkit.co/active_storage/sfx/2571/2571-preview.mp3">
+</audio>
 
 <script>
-/* POWER */
-var isOn = false;
-function togglePower(){ isOn ? shutDown() : bootUp(); }
-
-function bootUp(){
-    isOn = true;
-    document.getElementById('powerBtn').classList.add('on');
-    document.getElementById('screen').classList.remove('off');
-    var boot = document.getElementById('bootScreen');
-    boot.classList.add('show');
-    var fill = document.getElementById('bootFill');
-    var pct = 0;
-    var iv = setInterval(function(){
-        pct += Math.random()*15+5;
-        if(pct>=100){ pct=100; clearInterval(iv); setTimeout(function(){ boot.classList.remove('show'); showHome(); },300); }
-        fill.style.width = pct+'%';
-    },100);
-}
-
-function shutDown(){
-    isOn = false;
-    document.getElementById('powerBtn').classList.remove('on');
-    stopDino();
-    hideAll();
-    document.getElementById('screen').classList.add('off');
-}
-
-function showHome(){
-    var h = document.getElementById('homeView');
-    h.style.opacity='1'; h.style.pointerEvents='auto';
-}
-function hideAll(){
-    var h = document.getElementById('homeView');
-    h.style.opacity='0'; h.style.pointerEvents='none';
-    document.getElementById('dinoView').classList.remove('active');
-}
-function goHome(){ stopDino(); hideAll(); showHome(); }
-
-/* DINO */
-var dinoAnim, dinoRunning=false;
-var ctx, CW, CH, groundY;
-var dino, obstacles, score, dead, speed, frame;
-
-function startDino(){
-    if(!isOn) return;
-    hideAll();
-    document.getElementById('dinoView').classList.add('active');
-    var wrap = document.getElementById('dinoWrap');
-    var c = document.getElementById('dinoCanvas');
-    CW = c.width = wrap.clientWidth||470;
-    CH = c.height = wrap.clientHeight||280;
-    ctx = c.getContext('2d');
-    groundY = CH-48;
-    resetDino();
-    if(dinoAnim) cancelAnimationFrame(dinoAnim);
-    dinoRunning=true;
-    dinoLoop();
-}
-
-function resetDino(){
-    dino={x:55,y:groundY-40,w:34,h:40,vy:0,grounded:true};
-    obstacles=[]; score=0; dead=false; speed=4; frame=0;
-}
-
-function jump(){
-    if(!dinoRunning) return;
-    if(dead){ resetDino(); return; }
-    if(dino.grounded){ dino.vy=-13; dino.grounded=false; }
-}
-
-function dinoLoop(){
-    if(!dinoRunning) return;
-    dinoAnim=requestAnimationFrame(dinoLoop);
-    ctx.clearRect(0,0,CW,CH);
-    var g=ctx.createLinearGradient(0,0,0,groundY);
-    g.addColorStop(0,'#d4eeff'); g.addColorStop(1,'#fce4ff');
-    ctx.fillStyle=g; ctx.fillRect(0,0,CW,CH);
-    ctx.fillStyle='#e0b0ff'; ctx.fillRect(0,groundY+36,CW,CH);
-    ctx.fillStyle='#cc88ff'; ctx.fillRect(0,groundY+34,CW,4);
-
-    if(!dead){
-        frame++; score++;
-        if(frame%500===0) speed=Math.min(speed+0.4,11);
-        dino.vy+=0.65; dino.y+=dino.vy;
-        if(dino.y>=groundY-dino.h){ dino.y=groundY-dino.h; dino.vy=0; dino.grounded=true; }
-        var gap=Math.max(45,75-speed*4);
-        if(frame%Math.floor(gap)===0){
-            var isBird=speed>5&&Math.random()>0.5;
-            obstacles.push({x:CW+10,y:isBird?groundY-62-Math.random()*20:groundY-48,w:isBird?32:20,h:isBird?18:48,bird:isBird});
-        }
-        for(var i=obstacles.length-1;i>=0;i--){ obstacles[i].x-=speed; if(obstacles[i].x+obstacles[i].w<0) obstacles.splice(i,1); }
-        for(var i=0;i<obstacles.length;i++){
-            var o=obstacles[i];
-            if(dino.x+7<o.x+o.w-4&&dino.x+dino.w-7>o.x+4&&dino.y+7<o.y+o.h&&dino.y+dino.h-4>o.y+4) dead=true;
-        }
-    }
-
-    var leg=Math.floor(frame/7)%2;
-    ctx.fillStyle=dead?'#cc44cc':'#9b59b6';
-    ctx.beginPath(); ctx.roundRect(dino.x,dino.y+4,dino.w,dino.h-12,7); ctx.fill();
-    ctx.beginPath(); ctx.roundRect(dino.x+14,dino.y-12,20,18,5); ctx.fill();
-    ctx.beginPath(); ctx.moveTo(dino.x+2,dino.y+12); ctx.lineTo(dino.x-12,dino.y+22); ctx.lineTo(dino.x+2,dino.y+26); ctx.fill();
-    ctx.fillStyle='white'; ctx.beginPath(); ctx.arc(dino.x+28,dino.y-5,3,0,Math.PI*2); ctx.fill();
-    ctx.fillStyle='#333'; ctx.beginPath(); ctx.arc(dino.x+29,dino.y-5,1.5,0,Math.PI*2); ctx.fill();
-    ctx.fillStyle='#7d3c98';
-    if(dino.grounded){ ctx.fillRect(dino.x+4,dino.y+dino.h-14,9,leg?16:11); ctx.fillRect(dino.x+16,dino.y+dino.h-14,9,leg?11:16); }
-    else { ctx.fillRect(dino.x+4,dino.y+dino.h-14,9,13); ctx.fillRect(dino.x+16,dino.y+dino.h-14,9,13); }
-
-    for(var i=0;i<obstacles.length;i++){
-        var o=obstacles[i];
-        if(!o.bird){
-            ctx.fillStyle='#ff7ecf';
-            ctx.fillRect(o.x+5,o.y,10,o.h); ctx.fillRect(o.x,o.y+14,o.w,7);
-            ctx.fillRect(o.x+1,o.y+9,7,10); ctx.fillRect(o.x+12,o.y+11,7,8);
-        } else {
-            var wf=Math.floor(frame/8)%2;
-            ctx.fillStyle='#c59dff';
-            ctx.beginPath(); ctx.ellipse(o.x+16,o.y+9,14,7,0,0,Math.PI*2); ctx.fill();
-            ctx.fillStyle='#ff9de8';
-            ctx.beginPath(); ctx.ellipse(o.x+13,wf?o.y+3:o.y+15,10,5,wf?-0.4:0.4,0,Math.PI*2); ctx.fill();
-        }
-    }
-
-    ctx.fillStyle='#7a00aa'; ctx.font='bold 12px Verdana';
-    ctx.fillText('✨ '+Math.floor(score/5),CW-72,22);
-
-    if(dead){
-        ctx.fillStyle='rgba(180,0,255,0.15)'; ctx.fillRect(0,0,CW,CH);
-        ctx.fillStyle='#6a0099'; ctx.font='bold 20px Verdana'; ctx.textAlign='center';
-        ctx.fillText('💔 GAME OVER 💔',CW/2,CH/2-10);
-        ctx.font='12px Verdana'; ctx.fillText('tap or SPACE to restart',CW/2,CH/2+16);
-        ctx.textAlign='left';
-    }
-}
-
-function stopDino(){ dinoRunning=false; if(dinoAnim) cancelAnimationFrame(dinoAnim); }
-
-document.addEventListener('keydown',function(e){ if(e.code==='Space'||e.key===' '){ e.preventDefault(); jump(); } });
-document.getElementById('dinoCanvas').addEventListener('click',jump);
-document.getElementById('dinoCanvas').addEventListener('touchstart',function(e){ e.preventDefault(); jump(); },{passive:false});
 
 /* KEYBOARD */
-var keysEl=document.getElementById('keys');
-for(var i=0;i<60;i++){ var k=document.createElement('div'); k.className='key'; k.style.opacity=0.7+Math.random()*0.3; keysEl.appendChild(k); }
+
+const keys=document.getElementById("keys");
+
+for(let i=0;i<60;i++){
+
+    const key=document.createElement("div");
+
+    key.classList.add("key");
+
+    keys.appendChild(key);
+}
 
 /* SPARKLES */
-for(var i=0;i<60;i++){
-    var s=document.createElement('div'); s.className='sparkle'; s.innerHTML='✦';
-    s.style.left=Math.random()*100+'vw'; s.style.top=Math.random()*100+'vh';
-    s.style.fontSize=(8+Math.random()*16)+'px'; s.style.animationDelay=Math.random()*2+'s';
+
+for(let i=0;i<70;i++){
+
+    const s=document.createElement("div");
+
+    s.classList.add("sparkle");
+
+    s.innerHTML="✦";
+
+    s.style.left=Math.random()*100+"vw";
+    s.style.top=Math.random()*100+"vh";
+
+    s.style.fontSize=(8+Math.random()*16)+"px";
+
+    s.style.animationDelay=Math.random()*2+"s";
+
     document.body.appendChild(s);
 }
 
 /* FLOWERS */
-var fl=['🌸','❀','✿'];
-for(var i=0;i<18;i++){
-    var f=document.createElement('div'); f.className='flower';
-    f.innerHTML=fl[Math.floor(Math.random()*fl.length)];
-    f.style.left=Math.random()*100+'vw';
-    f.style.fontSize=(20+Math.random()*40)+'px';
-    f.style.animationDuration=(15+Math.random()*20)+'s';
-    f.style.animationDelay=(-Math.random()*20)+'s';
+
+const flowers=["🌸","❀","✿"];
+
+for(let i=0;i<18;i++){
+
+    const f=document.createElement("div");
+
+    f.classList.add("flower");
+
+    f.innerHTML=
+    flowers[Math.floor(Math.random()*flowers.length)];
+
+    f.style.left=Math.random()*100+"vw";
+
+    f.style.fontSize=
+    (20+Math.random()*40)+"px";
+
+    f.style.animationDuration=
+    (15+Math.random()*20)+"s";
+
     document.body.appendChild(f);
 }
 
-/* SWIRLS */
-for(var i=0;i<10;i++){
-    var sw=document.createElement('div'); sw.className='swirl';
-    var sz=80+Math.random()*220;
-    sw.style.width=sz+'px'; sw.style.height=sz+'px';
-    sw.style.left=Math.random()*100+'vw'; sw.style.top=Math.random()*100+'vh';
-    sw.style.animationDuration=(10+Math.random()*20)+'s';
-    document.body.appendChild(sw);
+/* WINDOW */
+
+const siteWindow=document.getElementById("siteWindow");
+
+const siteFrame=document.getElementById("siteFrame");
+
+const windowTitle=document.getElementById("windowTitle");
+
+/* OPEN WEBSITE */
+
+function openSite(url){
+
+    if(!isOn) return;
+
+    document.getElementById("clickSound").play();
+
+    siteFrame.src=url;
+
+    siteWindow.style.display="block";
+
+    windowTitle.innerHTML="loading.exe";
 }
 
-/* MOUSE GLOW */
-document.addEventListener('mousemove',function(e){
-    document.body.style.background=`radial-gradient(circle at ${e.clientX}px ${e.clientY}px,rgba(255,255,255,0.18),transparent 20%),radial-gradient(circle at top left,#ffb7dc 0%,transparent 35%),radial-gradient(circle at bottom right,#ffd9ef 0%,transparent 30%),linear-gradient(to bottom,#ff94c9,#ffb3d8)`;
+/* CLOSE WINDOW */
+
+function closeWindow(){
+
+    siteWindow.style.display="none";
+
+    siteFrame.src="";
+}
+
+/* POWER SYSTEM */
+
+const powerBtn=document.getElementById("powerBtn");
+
+const screen=document.getElementById("screen");
+
+const shutdown=document.getElementById("shutdownScreen");
+
+const powerText=document.getElementById("powerText");
+
+const powerSubtext=document.getElementById("powerSubtext");
+
+let isOn=true;
+
+/* STARTUP */
+
+shutdown.style.display="flex";
+
+powerText.innerHTML="COMPUTER ON";
+
+powerSubtext.innerHTML="Loading Y2K desktop ✨";
+
+setTimeout(()=>{
+
+    shutdown.style.display="none";
+
+},1800);
+
+/* TOGGLE */
+
+powerBtn.addEventListener("click",()=>{
+
+    isOn=!isOn;
+
+    if(isOn){
+
+        powerBtn.classList.remove("off");
+
+        shutdown.style.display="flex";
+
+        powerText.innerHTML="COMPUTER ON";
+
+        powerSubtext.innerHTML="Welcome back ✨";
+
+        setTimeout(()=>{
+
+            screen.style.display="block";
+
+            shutdown.style.display="none";
+
+        },1200);
+
+    }
+
+    else{
+
+        powerBtn.classList.add("off");
+
+        screen.style.display="none";
+
+        siteWindow.style.display="none";
+
+        shutdown.style.display="flex";
+
+        powerText.innerHTML="COMPUTER OFF";
+
+        powerSubtext.innerHTML=
+        "Press power button to turn on";
+    }
 });
+
 </script>
+
 </body>
 </html>
