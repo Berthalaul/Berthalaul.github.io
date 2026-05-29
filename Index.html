@@ -1,1377 +1,360 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>2000s Computer Zone 2</title>
-
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Y2K Dream Computer</title>
 <style>
-    *{
-        margin:0;
-        padding:0;
-        box-sizing:border-box;
-        font-family: Verdana, sans-serif;
-    }
+*{margin:0;padding:0;box-sizing:border-box;font-family:Verdana,sans-serif;}
 
-    body{
-        background: linear-gradient(to bottom, #b7ecff, #dff7ff);
-        overflow:hidden;
-        height:100vh;
-    }
+body{
+    overflow:hidden;height:100vh;
+    background:radial-gradient(circle at top left,#ffb7dc 0%,transparent 35%),radial-gradient(circle at bottom right,#ffd9ef 0%,transparent 30%),linear-gradient(to bottom,#ff94c9,#ffb3d8);
+    position:relative;
+}
+body::before{content:"";position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,0.15) 1px,transparent 1px);background-size:6px 6px;opacity:.4;pointer-events:none;}
 
-    /* Floating sparkles */
-    .sparkle{
-        position:absolute;
-        width:8px;
-        height:8px;
-        background:white;
-        border-radius:50%;
-        opacity:0.7;
-        animation: float 6s infinite linear;
-    }
+.flower{position:absolute;color:white;opacity:.7;filter:blur(.2px);animation:floatFlower linear infinite;pointer-events:none;z-index:0;}
+@keyframes floatFlower{from{transform:translateY(120vh) rotate(0deg);}to{transform:translateY(-120vh) rotate(360deg);}}
+.sparkle{position:absolute;color:white;animation:twinkle 2s infinite ease-in-out;pointer-events:none;z-index:0;}
+@keyframes twinkle{0%,100%{transform:scale(.6);opacity:.3;}50%{transform:scale(1.3);opacity:1;}}
+.swirl{position:absolute;border:2px solid rgba(255,255,255,0.7);border-color:white transparent transparent transparent;border-radius:50%;opacity:.6;animation:spinS 18s linear infinite;pointer-events:none;z-index:0;}
+@keyframes spinS{from{transform:rotate(0deg);}to{transform:rotate(360deg);}}
 
-    @keyframes float{
-        from{
-            transform:translateY(100vh) scale(0.5);
-        }
-        to{
-            transform:translateY(-100px) scale(1.2);
-        }
-    }
+.scene{position:absolute;inset:0;display:flex;justify-content:center;align-items:center;flex-direction:column;z-index:1;}
 
-    /* Purple dreamy area */
-    .purple-glow{
-        position:absolute;
-        width:700px;
-        height:700px;
-        background: radial-gradient(circle, rgba(180,0,255,0.35), transparent 70%);
-        bottom:-250px;
-        right:-150px;
-        pointer-events:none;
-    }
+.computer{position:relative;animation:floatPC 4s ease-in-out infinite;}
+@keyframes floatPC{0%,100%{transform:translateY(0);}50%{transform:translateY(-12px);}}
 
-    /* Computer */
-    .computer{
-        position:relative;
-        width:900px;
-        height:620px;
-        margin:40px auto;
-    }
-    .monitor{
-        background:#d7d7d7;
-        border:12px solid #999;
-        border-radius:25px;
-        width:100%;
-        height:500px;
-        box-shadow:
-            inset 0 0 20px rgba(255,255,255,0.7),
-            0 15px 30px rgba(0,0,0,0.3);
-        position:relative;
-    }
+/* MONITOR - dark blue */
+.monitor{
+    width:520px;height:390px;border-radius:28px;position:relative;
+    background:linear-gradient(135deg,#1a2a4a,#0d1f3c);
+    padding:20px;
+    box-shadow:inset -8px -8px 20px rgba(255,255,255,0.08),inset 8px 8px 20px rgba(0,0,0,0.4),0 30px 60px rgba(0,0,0,0.5);
+}
+.monitor::before{content:"";position:absolute;top:10px;left:16px;width:40%;height:24%;border-radius:40px;background:rgba(255,255,255,0.07);transform:rotate(-8deg);pointer-events:none;}
 
-    .screen{
-        position:absolute;
-        top:20px;
-        left:20px;
-        right:20px;
-        bottom:20px;
-        background: linear-gradient(to bottom, #bff4ff, #ffd6ff);
-        border-radius:10px;
-        overflow:auto;
-        padding:20px;
-    }
+.screen{
+    width:100%;height:100%;border-radius:20px;position:relative;overflow:hidden;
+    background:linear-gradient(135deg,#8fd8ff,#a7b8ff,#ffc8ea);
+    box-shadow:inset 0 0 30px rgba(255,255,255,0.7),inset 0 0 70px rgba(0,0,0,0.2);
+    transition:background .5s;
+}
+.screen::after{content:"";position:absolute;inset:0;background:repeating-linear-gradient(to bottom,rgba(255,255,255,0.05),rgba(255,255,255,0.05) 2px,transparent 2px,transparent 4px);opacity:.4;pointer-events:none;z-index:10;border-radius:20px;}
+.screen.off{background:#050a10 !important;box-shadow:inset 0 0 60px #000 !important;}
+.screen.off > *:not(#bootScreen){opacity:0;pointer-events:none;}
 
-    .stand{
-        width:200px;
-        height:30px;
-        background:#999;
-        margin:0 auto;
-        border-radius:0 0 20px 20px;
-    }
+/* BOOT */
+#bootScreen{position:absolute;inset:0;z-index:20;display:none;flex-direction:column;align-items:center;justify-content:center;background:#050a10;border-radius:20px;color:#7ab8ff;font-size:12px;font-family:monospace;letter-spacing:2px;text-align:center;gap:10px;}
+#bootScreen.show{display:flex;}
+.boot-bar{width:55%;height:5px;background:#111;border-radius:10px;overflow:hidden;margin-top:4px;}
+.boot-bar-fill{height:100%;width:0%;background:linear-gradient(to right,#4488ff,#88ccff);border-radius:10px;transition:width .08s;}
 
-    .base{
-        width:320px;
-        height:25px;
-        background:#777;
-        margin:0 auto;
-        border-radius:20px;
-    }
+/* DESKTOP */
+.desktop{position:absolute;inset:0;z-index:2;padding:14px;display:flex;flex-direction:column;transition:opacity .3s;}
+.topbar{height:30px;border-radius:10px;background:rgba(255,255,255,0.25);backdrop-filter:blur(10px);display:flex;align-items:center;padding:0 10px;color:white;font-size:11px;font-weight:bold;box-shadow:0 4px 12px rgba(0,0,0,0.1);flex-shrink:0;}
+.dots{display:flex;gap:5px;}
+.dot{width:8px;height:8px;border-radius:50%;}
+.d-pink{background:#ff7ecf;}.d-blue{background:#7ecbff;}.d-white{background:white;}
+.bar-title{margin-left:10px;letter-spacing:1px;flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.back-btn{background:rgba(255,255,255,0.35);border:1px solid rgba(255,255,255,0.6);border-radius:8px;color:white;font-size:10px;font-weight:bold;padding:3px 9px;cursor:pointer;white-space:nowrap;transition:.15s;}
+.back-btn:hover{background:rgba(255,255,255,0.55);}
 
-    h1{
-        text-align:center;
-        color:#8b1fd8;
-        text-shadow:2px 2px white;
-        margin-bottom:20px;
-        font-size:38px;
-    }
+.icons{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:14px;}
+.icon{text-align:center;color:white;cursor:pointer;transition:.25s;}
+.icon:hover{transform:scale(1.12) rotate(-4deg);}
+.icon-box{width:56px;height:56px;margin:auto;border-radius:14px;background:rgba(255,255,255,0.22);border:1px solid rgba(255,255,255,0.5);display:flex;align-items:center;justify-content:center;font-size:24px;box-shadow:0 8px 16px rgba(0,0,0,0.15),inset 0 0 10px rgba(255,255,255,0.5);backdrop-filter:blur(10px);}
+.icon span{display:block;margin-top:5px;font-size:10px;text-shadow:0 0 10px rgba(255,255,255,0.7);}
 
-    .icons{
-        display:grid;
-        grid-template-columns: repeat(auto-fill,minmax(120px,1fr));
-        gap:20px;
-    }
+/* DINO VIEW */
+.dino-view{position:absolute;inset:0;z-index:5;display:none;flex-direction:column;padding:12px;background:linear-gradient(135deg,#8fd8ff,#a7b8ff,#ffc8ea);border-radius:20px;}
+.dino-view.active{display:flex;}
+.dino-wrap{flex:1;border-radius:12px;overflow:hidden;margin-top:8px;background:#fff5fe;position:relative;}
+#dinoCanvas{display:block;}
 
-    .icon{
-        text-align:center;
-        cursor:pointer;
-        transition:0.2s;
-    }
+/* STAND / BASE - dark blue */
+.stand{width:160px;height:30px;margin:0 auto;background:linear-gradient(to bottom,#1e3a6e,#0d1f3c);border-radius:0 0 16px 16px;box-shadow:inset 0 0 10px rgba(255,255,255,0.05);}
+.base{width:260px;height:24px;margin:5px auto 0;border-radius:18px;background:linear-gradient(to bottom,#1a2f55,#0a1628);box-shadow:0 10px 20px rgba(0,0,0,0.4);}
 
-    .icon:hover{
-        transform:scale(1.1) rotate(-2deg);
-    }
+/* POWER BUTTON */
+.power-btn{display:flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:50%;background:linear-gradient(135deg,#ff7ecf,#d94fff);border:3px solid rgba(255,255,255,0.4);box-shadow:0 0 14px rgba(255,80,220,0.5);cursor:pointer;margin:7px auto 0;font-size:13px;transition:.3s;}
+.power-btn:hover{transform:scale(1.12);box-shadow:0 0 26px rgba(255,80,220,0.9);}
+.power-btn.on{background:linear-gradient(135deg,#7fff9b,#00e472);box-shadow:0 0 18px rgba(0,220,100,0.8);}
 
-    .icon img{
-        width:80px;
-        height:80px;
-        border-radius:18px;
-        border:3px solid white;
-        box-shadow:0 4px 10px rgba(0,0,0,0.2);
-        object-fit:cover;
-    }
+/* KEYBOARD - dark blue */
+.keyboard{width:550px;margin-top:10px;padding:13px;border-radius:22px;background:linear-gradient(135deg,#1a2f55,#0d1f3c);box-shadow:inset 0 0 20px rgba(255,255,255,0.05),0 18px 36px rgba(0,0,0,0.4);}
+.keys{display:grid;grid-template-columns:repeat(12,1fr);gap:5px;}
+.key{height:20px;border-radius:6px;background:rgba(255,255,255,0.12);box-shadow:inset 0 -2px 4px rgba(0,0,0,0.3),0 1px 2px rgba(255,255,255,0.1);}
 
-    .icon span{
-        display:block;
-        margin-top:8px;
-        color:#5d007d;
-        font-weight:bold;
-        font-size:14px;
-    }
-
-    .footer{
-        position:absolute;
-        bottom:10px;
-        width:100%;
-        text-align:center;
-        color:#7a2ea8;
-        font-size:14px;
-    }
-
-    /* Scrollbar */
-    .screen::-webkit-scrollbar{
-        width:10px;
-    }
-
-    .screen::-webkit-scrollbar-thumb{
-        background:#c66dff;
-        border-radius:20px;
-    }
-
+@media(max-width:700px){
+    .monitor{width:92vw;height:66vw;}
+    .keyboard{width:95vw;}
+    .icons{gap:7px;}
+    .icon-box{width:44px;height:44px;font-size:20px;}
+    .icon span{font-size:9px;}
+}
 </style>
 </head>
 <body>
 
-<div class="purple-glow"></div>
-
-<!-- Sparkles -->
-<script>
-for(let i=0;i<40;i++){
-    const s=document.createElement("div");
-    s.className="sparkle";
-    s.style.left=Math.random()*100+"vw";
-    s.style.animationDuration=(3+Math.random()*6)+"s";
-    s.style.opacity=Math.random();
-    document.body.appendChild(s);
-}
-</script>
-
+<div class="scene">
 <div class="computer">
+  <div class="monitor">
+    <div class="screen off" id="screen">
 
-    <div class="monitor">
-        <div class="screen">
+      <div id="bootScreen">
+        <div style="font-size:26px">💙</div>
+        <div style="font-size:15px;font-weight:bold">loading...</div>
+        <div style="font-size:10px;color:#88ccff;letter-spacing:3px">please wait ✨</div>
+        <div class="boot-bar"><div class="boot-bar-fill" id="bootFill"></div></div>
+      </div>
 
-            <h1>✨ 2000's Computer ✨</h1>
+      <!-- HOME -->
+      <div class="desktop" id="homeView" style="opacity:0;pointer-events:none;">
+        <div class="topbar">
+          <div class="dots"><div class="dot d-pink"></div><div class="dot d-blue"></div><div class="dot d-white"></div></div>
+          <div class="bar-title">dream_computer.exe</div>
+        </div>
+        <div class="icons">
 
-            <div class="icons">
+          <a class="icon" href="https://playclassic.games/games/action-dos-games-online/play-grand-theft-auto-2-online/" target="_blank" rel="noopener">
+            <div class="icon-box">🚗</div><span>GTA 2</span>
+          </a>
 
-                <div class="icon" onclick="openGame('https://playclassic.games/games/action-dos-games-online/play-grand-theft-auto-2-online/')">
-                    <img src="https://upload.wikimedia.org/wikipedia/en/7/73/Grand_Theft_Auto_2_Game_Cover.jpg">
-                    <span>GTA 2</span>
-                </div>
+          <a class="icon" href="https://supermario-game.com" target="_blank" rel="noopener">
+            <div class="icon-box">🍄</div><span>Super Mario</span>
+          </a>
 
-                <div class="icon" onclick="openGame('https://supermario-game.com')">
-                    <img src="https://upload.wikimedia.org/wikipedia/en/a/a9/MarioNSMBUDeluxe.png">
-                    <span>Super Mario</span>
-                </div>
+          <a class="icon" href="https://www.numuki.com/games/winx-club/" target="_blank" rel="noopener">
+            <div class="icon-box">🧚</div><span>Winx Club</span>
+          </a>
 
-                <div class="icon" onclick="openGame('https://www.numuki.com/games/winx-club/')">
-                    <img src="https://upload.wikimedia.org/wikipedia/en/8/8d/Winx_Club_logo.png">
-                    <span>Winx Club</span>
-                </div>
+          <a class="icon" href="https://www.numuki.com/games/bratz/" target="_blank" rel="noopener">
+            <div class="icon-box">💄</div><span>Bratz Dolls</span>
+          </a>
 
-                <div class="icon" onclick="openGame('https://www.numuki.com/games/bratz/')">
-                    <img src="https://upload.wikimedia.org/wikipedia/en/e/e4/Bratz_Logo.png">
-                    <span>Bratz Dolls</span>
-                </div>
+          <a class="icon" href="https://archive.org/details/softwarelibrary_msdos_games" target="_blank" rel="noopener">
+            <div class="icon-box">👾</div><span>Retro Games</span>
+          </a>
 
-                <div class="icon" onclick="openGame('https://archive.org/details/softwarelibrary_msdos_games')">
-                    <img src="https://cdn-icons-png.flaticon.com/512/1055/1055687.png">
-                    <span>Retro Games</span>
-                </div>
+          <a class="icon" href="https://classicreload.com" target="_blank" rel="noopener">
+            <div class="icon-box">🕹️</div><span>Classic Reload</span>
+          </a>
 
-                <div class="icon" onclick="openGame('https://classicreload.com')">
-                    <img src="https://cdn-icons-png.flaticon.com/512/686/686589.png">
-                    <span>Classic Reload</span>
-                </div>
+          <a class="icon" href="https://archive.org/details/classicpcgames" target="_blank" rel="noopener">
+            <div class="icon-box">💿</div><span>PC Classics</span>
+          </a>
 
-                <div class="icon" onclick="openGame('https://archive.org/details/classicpcgames')">
-                    <img src="https://cdn-icons-png.flaticon.com/512/3022/3022256.png">
-                    <span>PC Classics</span>
-                </div>
-
-                <div class="icon" onclick="openGame('https://www.retrogames.cc')">
-                    <img src="https://cdn-icons-png.flaticon.com/512/3145/3145765.png">
-                    <span>Retro Console</span>
-                </div>
-
-            </div>
+          <div class="icon" onclick="startDino()">
+            <div class="icon-box">🦕</div><span>Dino Run</span>
+          </div>
 
         </div>
+      </div>
+
+      <!-- DINO VIEW -->
+      <div class="dino-view" id="dinoView">
+        <div class="topbar">
+          <div class="dots"><div class="dot d-pink"></div><div class="dot d-blue"></div><div class="dot d-white"></div></div>
+          <div class="bar-title">🦕 Dino Run — SPACE or TAP to jump!</div>
+          <button class="back-btn" onclick="goHome()">⬅ Home</button>
+        </div>
+        <div class="dino-wrap" id="dinoWrap">
+          <canvas id="dinoCanvas"></canvas>
+        </div>
+      </div>
+
     </div>
-
-    <div class="stand"></div>
-    <div class="base"></div>
-
+  </div>
+  <div class="stand"></div>
+  <div class="base"></div>
+  <button class="power-btn" id="powerBtn" onclick="togglePower()" title="Power on/off">⏻</button>
 </div>
 
-<div class="footer">
-    💜 Welcome to the Y2K Purple Place 💜
+<div class="keyboard"><div class="keys" id="keys"></div></div>
 </div>
 
 <script>
-function openGame(url){
-    window.open(url, "_blank");
-}
-</script>
+/* POWER */
+var isOn = false;
+function togglePower(){ isOn ? shutDown() : bootUp(); }
 
-</body>
-</html>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Y2K Dream Computer</title>
-
-<style>
-
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:Verdana,sans-serif;
+function bootUp(){
+    isOn = true;
+    document.getElementById('powerBtn').classList.add('on');
+    document.getElementById('screen').classList.remove('off');
+    var boot = document.getElementById('bootScreen');
+    boot.classList.add('show');
+    var fill = document.getElementById('bootFill');
+    var pct = 0;
+    var iv = setInterval(function(){
+        pct += Math.random()*15+5;
+        if(pct>=100){ pct=100; clearInterval(iv); setTimeout(function(){ boot.classList.remove('show'); showHome(); },300); }
+        fill.style.width = pct+'%';
+    },100);
 }
 
-body{
-    overflow:hidden;
-    height:100vh;
-    background:
-    radial-gradient(circle at top left,#ffb7dc 0%,transparent 35%),
-    radial-gradient(circle at bottom right,#ffd9ef 0%,transparent 30%),
-    linear-gradient(to bottom,#ff94c9,#ffb3d8);
-    position:relative;
+function shutDown(){
+    isOn = false;
+    document.getElementById('powerBtn').classList.remove('on');
+    stopDino();
+    hideAll();
+    document.getElementById('screen').classList.add('off');
 }
 
-/* tiny texture */
-body::before{
-    content:"";
-    position:absolute;
-    inset:0;
-    background-image:
-    radial-gradient(rgba(255,255,255,0.15) 1px, transparent 1px);
-    background-size:6px 6px;
-    opacity:.4;
-    pointer-events:none;
+function showHome(){
+    var h = document.getElementById('homeView');
+    h.style.opacity='1'; h.style.pointerEvents='auto';
+}
+function hideAll(){
+    var h = document.getElementById('homeView');
+    h.style.opacity='0'; h.style.pointerEvents='none';
+    document.getElementById('dinoView').classList.remove('active');
+}
+function goHome(){ stopDino(); hideAll(); showHome(); }
+
+/* DINO */
+var dinoAnim, dinoRunning=false;
+var ctx, CW, CH, groundY;
+var dino, obstacles, score, dead, speed, frame;
+
+function startDino(){
+    if(!isOn) return;
+    hideAll();
+    document.getElementById('dinoView').classList.add('active');
+    var wrap = document.getElementById('dinoWrap');
+    var c = document.getElementById('dinoCanvas');
+    CW = c.width = wrap.clientWidth||470;
+    CH = c.height = wrap.clientHeight||280;
+    ctx = c.getContext('2d');
+    groundY = CH-48;
+    resetDino();
+    if(dinoAnim) cancelAnimationFrame(dinoAnim);
+    dinoRunning=true;
+    dinoLoop();
 }
 
-/* flowers */
-.flower{
-    position:absolute;
-    color:white;
-    opacity:.7;
-    filter:blur(.2px);
-    animation:floatFlower linear infinite;
+function resetDino(){
+    dino={x:55,y:groundY-40,w:34,h:40,vy:0,grounded:true};
+    obstacles=[]; score=0; dead=false; speed=4; frame=0;
 }
 
-@keyframes floatFlower{
-    from{
-        transform:translateY(120vh) rotate(0deg);
-    }
-    to{
-        transform:translateY(-120vh) rotate(360deg);
-    }
+function jump(){
+    if(!dinoRunning) return;
+    if(dead){ resetDino(); return; }
+    if(dino.grounded){ dino.vy=-13; dino.grounded=false; }
 }
 
-/* sparkles */
-.sparkle{
-    position:absolute;
-    color:white;
-    animation:twinkle 2s infinite ease-in-out;
-    pointer-events:none;
-}
+function dinoLoop(){
+    if(!dinoRunning) return;
+    dinoAnim=requestAnimationFrame(dinoLoop);
+    ctx.clearRect(0,0,CW,CH);
+    var g=ctx.createLinearGradient(0,0,0,groundY);
+    g.addColorStop(0,'#d4eeff'); g.addColorStop(1,'#fce4ff');
+    ctx.fillStyle=g; ctx.fillRect(0,0,CW,CH);
+    ctx.fillStyle='#e0b0ff'; ctx.fillRect(0,groundY+36,CW,CH);
+    ctx.fillStyle='#cc88ff'; ctx.fillRect(0,groundY+34,CW,4);
 
-@keyframes twinkle{
-    0%,100%{
-        transform:scale(.6);
-        opacity:.3;
-    }
-
-    50%{
-        transform:scale(1.3);
-        opacity:1;
-    }
-}
-
-/* swirls */
-.swirl{
-    position:absolute;
-    border:2px solid rgba(255,255,255,0.7);
-    border-color:white transparent transparent transparent;
-    border-radius:50%;
-    opacity:.6;
-    animation:spin 18s linear infinite;
-}
-
-@keyframes spin{
-    from{
-        transform:rotate(0deg);
-    }
-    to{
-        transform:rotate(360deg);
-    }
-}
-
-/* main computer */
-.scene{
-    position:absolute;
-    inset:0;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    flex-direction:column;
-}
-
-.computer{
-    position:relative;
-    animation:hover 4s ease-in-out infinite;
-}
-
-@keyframes hover{
-    0%,100%{
-        transform:translateY(0px);
+    if(!dead){
+        frame++; score++;
+        if(frame%500===0) speed=Math.min(speed+0.4,11);
+        dino.vy+=0.65; dino.y+=dino.vy;
+        if(dino.y>=groundY-dino.h){ dino.y=groundY-dino.h; dino.vy=0; dino.grounded=true; }
+        var gap=Math.max(45,75-speed*4);
+        if(frame%Math.floor(gap)===0){
+            var isBird=speed>5&&Math.random()>0.5;
+            obstacles.push({x:CW+10,y:isBird?groundY-62-Math.random()*20:groundY-48,w:isBird?32:20,h:isBird?18:48,bird:isBird});
+        }
+        for(var i=obstacles.length-1;i>=0;i--){ obstacles[i].x-=speed; if(obstacles[i].x+obstacles[i].w<0) obstacles.splice(i,1); }
+        for(var i=0;i<obstacles.length;i++){
+            var o=obstacles[i];
+            if(dino.x+7<o.x+o.w-4&&dino.x+dino.w-7>o.x+4&&dino.y+7<o.y+o.h&&dino.y+dino.h-4>o.y+4) dead=true;
+        }
     }
 
-    50%{
-        transform:translateY(-12px);
-    }
-}
+    var leg=Math.floor(frame/7)%2;
+    ctx.fillStyle=dead?'#cc44cc':'#9b59b6';
+    ctx.beginPath(); ctx.roundRect(dino.x,dino.y+4,dino.w,dino.h-12,7); ctx.fill();
+    ctx.beginPath(); ctx.roundRect(dino.x+14,dino.y-12,20,18,5); ctx.fill();
+    ctx.beginPath(); ctx.moveTo(dino.x+2,dino.y+12); ctx.lineTo(dino.x-12,dino.y+22); ctx.lineTo(dino.x+2,dino.y+26); ctx.fill();
+    ctx.fillStyle='white'; ctx.beginPath(); ctx.arc(dino.x+28,dino.y-5,3,0,Math.PI*2); ctx.fill();
+    ctx.fillStyle='#333'; ctx.beginPath(); ctx.arc(dino.x+29,dino.y-5,1.5,0,Math.PI*2); ctx.fill();
+    ctx.fillStyle='#7d3c98';
+    if(dino.grounded){ ctx.fillRect(dino.x+4,dino.y+dino.h-14,9,leg?16:11); ctx.fillRect(dino.x+16,dino.y+dino.h-14,9,leg?11:16); }
+    else { ctx.fillRect(dino.x+4,dino.y+dino.h-14,9,13); ctx.fillRect(dino.x+16,dino.y+dino.h-14,9,13); }
 
-/* monitor */
-.monitor{
-    width:520px;
-    height:390px;
-    border-radius:28px;
-    position:relative;
-    background:
-    linear-gradient(
-        135deg,
-        #b894ff,
-        #f7b7e7
-    );
-
-    padding:24px;
-
-    box-shadow:
-    inset -8px -8px 20px rgba(255,255,255,0.4),
-    inset 8px 8px 20px rgba(0,0,0,0.12),
-    0 30px 60px rgba(0,0,0,0.25);
-}
-
-/* glossy effect */
-.monitor::before{
-    content:"";
-    position:absolute;
-    top:10px;
-    left:16px;
-    width:40%;
-    height:24%;
-    border-radius:40px;
-    background:rgba(255,255,255,0.28);
-    transform:rotate(-8deg);
-}
-
-/* screen */
-.screen{
-    width:100%;
-    height:100%;
-    border-radius:20px;
-    position:relative;
-    overflow:hidden;
-
-    background:
-    linear-gradient(
-        135deg,
-        #8fd8ff,
-        #a7b8ff,
-        #ffc8ea
-    );
-
-    box-shadow:
-    inset 0 0 30px rgba(255,255,255,0.7),
-    inset 0 0 70px rgba(0,0,0,0.2);
-}
-
-/* screen glow */
-.screen::after{
-    content:"";
-    position:absolute;
-    inset:0;
-    background:
-    repeating-linear-gradient(
-        to bottom,
-        rgba(255,255,255,0.05),
-        rgba(255,255,255,0.05) 2px,
-        transparent 2px,
-        transparent 4px
-    );
-    opacity:.4;
-}
-
-/* desktop content */
-.desktop{
-    position:absolute;
-    inset:0;
-    z-index:2;
-    padding:20px;
-}
-
-/* top bar */
-.topbar{
-    width:100%;
-    height:34px;
-    border-radius:12px;
-    background:rgba(255,255,255,0.25);
-    backdrop-filter:blur(10px);
-
-    display:flex;
-    align-items:center;
-    padding:0 12px;
-    color:white;
-    font-size:14px;
-    font-weight:bold;
-    box-shadow:0 4px 12px rgba(0,0,0,0.1);
-}
-
-.dots{
-    display:flex;
-    gap:6px;
-}
-
-.dot{
-    width:10px;
-    height:10px;
-    border-radius:50%;
-}
-
-.pink{background:#ff7ecf;}
-.blue{background:#7ecbff;}
-.white{background:white;}
-
-.title{
-    margin-left:14px;
-    letter-spacing:1px;
-}
-
-/* icons */
-.icons{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:24px;
-    margin-top:28px;
-}
-
-.icon{
-    text-align:center;
-    color:white;
-    cursor:pointer;
-    transition:.25s;
-}
-
-.icon:hover{
-    transform:scale(1.1) rotate(-4deg);
-}
-
-.icon-box{
-    width:72px;
-    height:72px;
-    margin:auto;
-    border-radius:18px;
-    background:rgba(255,255,255,0.22);
-    border:1px solid rgba(255,255,255,0.5);
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:34px;
-    box-shadow:
-    0 10px 18px rgba(0,0,0,0.15),
-    inset 0 0 12px rgba(255,255,255,0.5);
-
-    backdrop-filter:blur(10px);
-}
-
-.icon span{
-    display:block;
-    margin-top:8px;
-    font-size:13px;
-    text-shadow:0 0 10px rgba(255,255,255,0.7);
-}
-
-/* monitor stand */
-.stand{
-    width:160px;
-    height:34px;
-    margin:auto;
-    background:
-    linear-gradient(
-        to bottom,
-        #d6b3ff,
-        #9f74da
-    );
-
-    border-radius:0 0 18px 18px;
-    box-shadow:
-    inset 0 0 10px rgba(255,255,255,0.4);
-}
-
-.base{
-    width:260px;
-    height:28px;
-    margin:8px auto 0;
-    border-radius:20px;
-
-    background:
-    linear-gradient(
-        to bottom,
-        #f8bfe9,
-        #9d72d9
-    );
-
-    box-shadow:
-    0 12px 24px rgba(0,0,0,0.18);
-}
-
-/* keyboard */
-.keyboard{
-    width:580px;
-    margin-top:24px;
-    padding:18px;
-    border-radius:22px;
-
-    background:
-    linear-gradient(
-        135deg,
-        #ffc6e9,
-        #c59dff
-    );
-
-    box-shadow:
-    inset 0 0 20px rgba(255,255,255,0.4),
-    0 20px 40px rgba(0,0,0,0.18);
-}
-
-.keys{
-    display:grid;
-    grid-template-columns:repeat(12,1fr);
-    gap:8px;
-}
-
-.key{
-    height:28px;
-    border-radius:8px;
-    background:rgba(255,255,255,0.65);
-
-    box-shadow:
-    inset 0 -2px 5px rgba(0,0,0,0.08),
-    0 2px 4px rgba(255,255,255,0.5);
-}
-
-/* footer text */
-.footer{
-    position:absolute;
-    bottom:18px;
-    color:white;
-    font-size:18px;
-    text-shadow:0 0 12px rgba(255,255,255,0.8);
-    letter-spacing:2px;
-}
-
-/* responsive */
-@media(max-width:700px){
-
-    .monitor{
-        width:92vw;
-        height:66vw;
+    for(var i=0;i<obstacles.length;i++){
+        var o=obstacles[i];
+        if(!o.bird){
+            ctx.fillStyle='#ff7ecf';
+            ctx.fillRect(o.x+5,o.y,10,o.h); ctx.fillRect(o.x,o.y+14,o.w,7);
+            ctx.fillRect(o.x+1,o.y+9,7,10); ctx.fillRect(o.x+12,o.y+11,7,8);
+        } else {
+            var wf=Math.floor(frame/8)%2;
+            ctx.fillStyle='#c59dff';
+            ctx.beginPath(); ctx.ellipse(o.x+16,o.y+9,14,7,0,0,Math.PI*2); ctx.fill();
+            ctx.fillStyle='#ff9de8';
+            ctx.beginPath(); ctx.ellipse(o.x+13,wf?o.y+3:o.y+15,10,5,wf?-0.4:0.4,0,Math.PI*2); ctx.fill();
+        }
     }
 
-    .keyboard{
-        width:95vw;
-    }
+    ctx.fillStyle='#7a00aa'; ctx.font='bold 12px Verdana';
+    ctx.fillText('✨ '+Math.floor(score/5),CW-72,22);
 
-    .icons{
-        gap:14px;
-    }
-
-    .icon-box{
-        width:56px;
-        height:56px;
-        font-size:26px;
+    if(dead){
+        ctx.fillStyle='rgba(180,0,255,0.15)'; ctx.fillRect(0,0,CW,CH);
+        ctx.fillStyle='#6a0099'; ctx.font='bold 20px Verdana'; ctx.textAlign='center';
+        ctx.fillText('💔 GAME OVER 💔',CW/2,CH/2-10);
+        ctx.font='12px Verdana'; ctx.fillText('tap or SPACE to restart',CW/2,CH/2+16);
+        ctx.textAlign='left';
     }
 }
 
-</style>
-</head>
-<body>
+function stopDino(){ dinoRunning=false; if(dinoAnim) cancelAnimationFrame(dinoAnim); }
 
-<div class="scene">
+document.addEventListener('keydown',function(e){ if(e.code==='Space'||e.key===' '){ e.preventDefault(); jump(); } });
+document.getElementById('dinoCanvas').addEventListener('click',jump);
+document.getElementById('dinoCanvas').addEventListener('touchstart',function(e){ e.preventDefault(); jump(); },{passive:false});
 
-    <div class="computer">
+/* KEYBOARD */
+var keysEl=document.getElementById('keys');
+for(var i=0;i<60;i++){ var k=document.createElement('div'); k.className='key'; k.style.opacity=0.7+Math.random()*0.3; keysEl.appendChild(k); }
 
-        <div class="monitor">
-
-            <div class="screen">
-
-                <div class="desktop">
-
-                    <div class="topbar">
-                        <div class="dots">
-                            <div class="dot pink"></div>
-                            <div class="dot blue"></div>
-                            <div class="dot white"></div>
-                        </div>
-
-                        <div class="title">
-                            dream_computer.exe
-                        </div>
-                    </div>
-
-                    <div class="icons">
-
-                        <div class="icon">
-                            <div class="icon-box">💖</div>
-                            <span>Diary</span>
-                        </div>
-
-                        <div class="icon">
-                            <div class="icon-box">🎵</div>
-                            <span>Music</span>
-                        </div>
-
-                        <div class="icon">
-                            <div class="icon-box">🌸</div>
-                            <span>Photos</span>
-                        </div>
-
-                        <div class="icon">
-                            <div class="icon-box">💿</div>
-                            <span>CD Player</span>
-                        </div>
-
-                        <div class="icon">
-                            <div class="icon-box">🦋</div>
-                            <span>Chatroom</span>
-                        </div>
-
-                        <div class="icon">
-                            <div class="icon-box">✨</div>
-                            <span>Internet</span>
-                        </div>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        </div>
-
-        <div class="stand"></div>
-        <div class="base"></div>
-
-    </div>
-
-    <div class="keyboard">
-        <div class="keys" id="keys"></div>
-    </div>
-
-    <div class="footer">
-        ✧･ﾟ: * Y2K DREAM WORLD * :･ﾟ✧
-    </div>
-
-</div>
-
-<script>
-
-/* keyboard keys */
-
-const keys = document.getElementById("keys");
-
-for(let i=0;i<60;i++){
-
-    const key = document.createElement("div");
-    key.classList.add("key");
-
-    key.style.opacity = 0.7 + Math.random() * 0.3;
-
-    keys.appendChild(key);
-}
-
-/* sparkles */
-
-for(let i=0;i<70;i++){
-
-    const s = document.createElement("div");
-
-    s.classList.add("sparkle");
-
-    s.innerHTML = "✦";
-
-    s.style.left = Math.random()*100+"vw";
-    s.style.top = Math.random()*100+"vh";
-
-    s.style.fontSize = (8 + Math.random()*16)+"px";
-
-    s.style.animationDelay = Math.random()*2+"s";
-
+/* SPARKLES */
+for(var i=0;i<60;i++){
+    var s=document.createElement('div'); s.className='sparkle'; s.innerHTML='✦';
+    s.style.left=Math.random()*100+'vw'; s.style.top=Math.random()*100+'vh';
+    s.style.fontSize=(8+Math.random()*16)+'px'; s.style.animationDelay=Math.random()*2+'s';
     document.body.appendChild(s);
 }
 
-/* flowers */
-
-const flowers = ["🌸","❀","✿"];
-
-for(let i=0;i<18;i++){
-
-    const f = document.createElement("div");
-
-    f.classList.add("flower");
-
-    f.innerHTML = flowers[Math.floor(Math.random()*flowers.length)];
-
-    f.style.left = Math.random()*100+"vw";
-
-    f.style.fontSize = (20 + Math.random()*40)+"px";
-
-    f.style.animationDuration =
-    (15 + Math.random()*20)+"s";
-
-    f.style.animationDelay =
-    (-Math.random()*20)+"s";
-
+/* FLOWERS */
+var fl=['🌸','❀','✿'];
+for(var i=0;i<18;i++){
+    var f=document.createElement('div'); f.className='flower';
+    f.innerHTML=fl[Math.floor(Math.random()*fl.length)];
+    f.style.left=Math.random()*100+'vw';
+    f.style.fontSize=(20+Math.random()*40)+'px';
+    f.style.animationDuration=(15+Math.random()*20)+'s';
+    f.style.animationDelay=(-Math.random()*20)+'s';
     document.body.appendChild(f);
 }
 
-/* swirls */
-
-for(let i=0;i<10;i++){
-
-    const swirl = document.createElement("div");
-
-    swirl.classList.add("swirl");
-
-    const size = 80 + Math.random()*220;
-
-    swirl.style.width = size+"px";
-    swirl.style.height = size+"px";
-
-    swirl.style.left = Math.random()*100+"vw";
-    swirl.style.top = Math.random()*100+"vh";
-
-    swirl.style.animationDuration =
-    (10 + Math.random()*20)+"s";
-
-    document.body.appendChild(swirl);
+/* SWIRLS */
+for(var i=0;i<10;i++){
+    var sw=document.createElement('div'); sw.className='swirl';
+    var sz=80+Math.random()*220;
+    sw.style.width=sz+'px'; sw.style.height=sz+'px';
+    sw.style.left=Math.random()*100+'vw'; sw.style.top=Math.random()*100+'vh';
+    sw.style.animationDuration=(10+Math.random()*20)+'s';
+    document.body.appendChild(sw);
 }
 
-/* mouse glow */
-
-document.addEventListener("mousemove",(e)=>{
-
-    document.body.style.background = `
-    radial-gradient(circle at ${e.clientX}px ${e.clientY}px,
-    rgba(255,255,255,0.18),
-    transparent 20%),
-
-    radial-gradient(circle at top left,#ffb7dc 0%,transparent 35%),
-    radial-gradient(circle at bottom right,#ffd9ef 0%,transparent 30%),
-    linear-gradient(to bottom,#ff94c9,#ffb3d8)
-    `;
+/* MOUSE GLOW */
+document.addEventListener('mousemove',function(e){
+    document.body.style.background=`radial-gradient(circle at ${e.clientX}px ${e.clientY}px,rgba(255,255,255,0.18),transparent 20%),radial-gradient(circle at top left,#ffb7dc 0%,transparent 35%),radial-gradient(circle at bottom right,#ffd9ef 0%,transparent 30%),linear-gradient(to bottom,#ff94c9,#ffb3d8)`;
 });
-
 </script>
-
-</body>
-</html><!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Y2K Dream Computer</title>
-
-<style>
-
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:Verdana,sans-serif;
-}
-
-body{
-    overflow:hidden;
-    height:100vh;
-    background:
-    radial-gradient(circle at top left,#ffb7dc 0%,transparent 35%),
-    radial-gradient(circle at bottom right,#ffd9ef 0%,transparent 30%),
-    linear-gradient(to bottom,#ff94c9,#ffb3d8);
-    position:relative;
-}
-
-/* tiny texture */
-body::before{
-    content:"";
-    position:absolute;
-    inset:0;
-    background-image:
-    radial-gradient(rgba(255,255,255,0.15) 1px, transparent 1px);
-    background-size:6px 6px;
-    opacity:.4;
-    pointer-events:none;
-}
-
-/* flowers */
-.flower{
-    position:absolute;
-    color:white;
-    opacity:.7;
-    filter:blur(.2px);
-    animation:floatFlower linear infinite;
-}
-
-@keyframes floatFlower{
-    from{
-        transform:translateY(120vh) rotate(0deg);
-    }
-    to{
-        transform:translateY(-120vh) rotate(360deg);
-    }
-}
-
-/* sparkles */
-.sparkle{
-    position:absolute;
-    color:white;
-    animation:twinkle 2s infinite ease-in-out;
-    pointer-events:none;
-}
-
-@keyframes twinkle{
-    0%,100%{
-        transform:scale(.6);
-        opacity:.3;
-    }
-
-    50%{
-        transform:scale(1.3);
-        opacity:1;
-    }
-}
-
-/* swirls */
-.swirl{
-    position:absolute;
-    border:2px solid rgba(255,255,255,0.7);
-    border-color:white transparent transparent transparent;
-    border-radius:50%;
-    opacity:.6;
-    animation:spin 18s linear infinite;
-}
-
-@keyframes spin{
-    from{
-        transform:rotate(0deg);
-    }
-    to{
-        transform:rotate(360deg);
-    }
-}
-
-/* main computer */
-.scene{
-    position:absolute;
-    inset:0;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    flex-direction:column;
-}
-
-.computer{
-    position:relative;
-    animation:hover 4s ease-in-out infinite;
-}
-
-@keyframes hover{
-    0%,100%{
-        transform:translateY(0px);
-    }
-
-    50%{
-        transform:translateY(-12px);
-    }
-}
-
-/* monitor */
-.monitor{
-    width:520px;
-    height:390px;
-    border-radius:28px;
-    position:relative;
-    background:
-    linear-gradient(
-        135deg,
-        #b894ff,
-        #f7b7e7
-    );
-
-    padding:24px;
-
-    box-shadow:
-    inset -8px -8px 20px rgba(255,255,255,0.4),
-    inset 8px 8px 20px rgba(0,0,0,0.12),
-    0 30px 60px rgba(0,0,0,0.25);
-}
-
-/* glossy effect */
-.monitor::before{
-    content:"";
-    position:absolute;
-    top:10px;
-    left:16px;
-    width:40%;
-    height:24%;
-    border-radius:40px;
-    background:rgba(255,255,255,0.28);
-    transform:rotate(-8deg);
-}
-
-/* screen */
-.screen{
-    width:100%;
-    height:100%;
-    border-radius:20px;
-    position:relative;
-    overflow:hidden;
-
-    background:
-    linear-gradient(
-        135deg,
-        #8fd8ff,
-        #a7b8ff,
-        #ffc8ea
-    );
-
-    box-shadow:
-    inset 0 0 30px rgba(255,255,255,0.7),
-    inset 0 0 70px rgba(0,0,0,0.2);
-}
-
-/* screen glow */
-.screen::after{
-    content:"";
-    position:absolute;
-    inset:0;
-    background:
-    repeating-linear-gradient(
-        to bottom,
-        rgba(255,255,255,0.05),
-        rgba(255,255,255,0.05) 2px,
-        transparent 2px,
-        transparent 4px
-    );
-    opacity:.4;
-}
-
-/* desktop content */
-.desktop{
-    position:absolute;
-    inset:0;
-    z-index:2;
-    padding:20px;
-}
-
-/* top bar */
-.topbar{
-    width:100%;
-    height:34px;
-    border-radius:12px;
-    background:rgba(255,255,255,0.25);
-    backdrop-filter:blur(10px);
-
-    display:flex;
-    align-items:center;
-    padding:0 12px;
-    color:white;
-    font-size:14px;
-    font-weight:bold;
-    box-shadow:0 4px 12px rgba(0,0,0,0.1);
-}
-
-.dots{
-    display:flex;
-    gap:6px;
-}
-
-.dot{
-    width:10px;
-    height:10px;
-    border-radius:50%;
-}
-
-.pink{background:#ff7ecf;}
-.blue{background:#7ecbff;}
-.white{background:white;}
-
-.title{
-    margin-left:14px;
-    letter-spacing:1px;
-}
-
-/* icons */
-.icons{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:24px;
-    margin-top:28px;
-}
-
-.icon{
-    text-align:center;
-    color:white;
-    cursor:pointer;
-    transition:.25s;
-}
-
-.icon:hover{
-    transform:scale(1.1) rotate(-4deg);
-}
-
-.icon-box{
-    width:72px;
-    height:72px;
-    margin:auto;
-    border-radius:18px;
-    background:rgba(255,255,255,0.22);
-    border:1px solid rgba(255,255,255,0.5);
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:34px;
-    box-shadow:
-    0 10px 18px rgba(0,0,0,0.15),
-    inset 0 0 12px rgba(255,255,255,0.5);
-
-    backdrop-filter:blur(10px);
-}
-
-.icon span{
-    display:block;
-    margin-top:8px;
-    font-size:13px;
-    text-shadow:0 0 10px rgba(255,255,255,0.7);
-}
-
-/* monitor stand */
-.stand{
-    width:160px;
-    height:34px;
-    margin:auto;
-    background:
-    linear-gradient(
-        to bottom,
-        #d6b3ff,
-        #9f74da
-    );
-
-    border-radius:0 0 18px 18px;
-    box-shadow:
-    inset 0 0 10px rgba(255,255,255,0.4);
-}
-
-.base{
-    width:260px;
-    height:28px;
-    margin:8px auto 0;
-    border-radius:20px;
-
-    background:
-    linear-gradient(
-        to bottom,
-        #f8bfe9,
-        #9d72d9
-    );
-
-    box-shadow:
-    0 12px 24px rgba(0,0,0,0.18);
-}
-
-/* keyboard */
-.keyboard{
-    width:580px;
-    margin-top:24px;
-    padding:18px;
-    border-radius:22px;
-
-    background:
-    linear-gradient(
-        135deg,
-        #ffc6e9,
-        #c59dff
-    );
-
-    box-shadow:
-    inset 0 0 20px rgba(255,255,255,0.4),
-    0 20px 40px rgba(0,0,0,0.18);
-}
-
-.keys{
-    display:grid;
-    grid-template-columns:repeat(12,1fr);
-    gap:8px;
-}
-
-.key{
-    height:28px;
-    border-radius:8px;
-    background:rgba(255,255,255,0.65);
-
-    box-shadow:
-    inset 0 -2px 5px rgba(0,0,0,0.08),
-    0 2px 4px rgba(255,255,255,0.5);
-}
-
-/* footer text */
-.footer{
-    position:absolute;
-    bottom:18px;
-    color:white;
-    font-size:18px;
-    text-shadow:0 0 12px rgba(255,255,255,0.8);
-    letter-spacing:2px;
-}
-
-/* responsive */
-@media(max-width:700px){
-
-    .monitor{
-        width:92vw;
-        height:66vw;
-    }
-
-    .keyboard{
-        width:95vw;
-    }
-
-    .icons{
-        gap:14px;
-    }
-
-    .icon-box{
-        width:56px;
-        height:56px;
-        font-size:26px;
-    }
-}
-
-</style>
-</head>
-<body>
-
-<div class="scene">
-
-    <div class="computer">
-
-        <div class="monitor">
-
-            <div class="screen">
-
-                <div class="desktop">
-
-                    <div class="topbar">
-                        <div class="dots">
-                            <div class="dot pink"></div>
-                            <div class="dot blue"></div>
-                            <div class="dot white"></div>
-                        </div>
-
-                        <div class="title">
-                            dream_computer.exe
-                        </div>
-                    </div>
-
-                    <div class="icons">
-
-                        <div class="icon">
-                            <div class="icon-box">💖</div>
-                            <span>Diary</span>
-                        </div>
-
-                        <div class="icon">
-                            <div class="icon-box">🎵</div>
-                            <span>Music</span>
-                        </div>
-
-                        <div class="icon">
-                            <div class="icon-box">🌸</div>
-                            <span>Photos</span>
-                        </div>
-
-                        <div class="icon">
-                            <div class="icon-box">💿</div>
-                            <span>CD Player</span>
-                        </div>
-
-                        <div class="icon">
-                            <div class="icon-box">🦋</div>
-                            <span>Chatroom</span>
-                        </div>
-
-                        <div class="icon">
-                            <div class="icon-box">✨</div>
-                            <span>Internet</span>
-                        </div>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        </div>
-
-        <div class="stand"></div>
-        <div class="base"></div>
-
-    </div>
-
-    <div class="keyboard">
-        <div class="keys" id="keys"></div>
-    </div>
-
-    <div class="footer">
-        ✧･ﾟ: * Y2K DREAM WORLD * :･ﾟ✧
-    </div>
-
-</div>
-
-<script>
-
-/* keyboard keys */
-
-const keys = document.getElementById("keys");
-
-for(let i=0;i<60;i++){
-
-    const key = document.createElement("div");
-    key.classList.add("key");
-
-    key.style.opacity = 0.7 + Math.random() * 0.3;
-
-    keys.appendChild(key);
-}
-
-/* sparkles */
-
-for(let i=0;i<70;i++){
-
-    const s = document.createElement("div");
-
-    s.classList.add("sparkle");
-
-    s.innerHTML = "✦";
-
-    s.style.left = Math.random()*100+"vw";
-    s.style.top = Math.random()*100+"vh";
-
-    s.style.fontSize = (8 + Math.random()*16)+"px";
-
-    s.style.animationDelay = Math.random()*2+"s";
-
-    document.body.appendChild(s);
-}
-
-/* flowers */
-
-const flowers = ["🌸","❀","✿"];
-
-for(let i=0;i<18;i++){
-
-    const f = document.createElement("div");
-
-    f.classList.add("flower");
-
-    f.innerHTML = flowers[Math.floor(Math.random()*flowers.length)];
-
-    f.style.left = Math.random()*100+"vw";
-
-    f.style.fontSize = (20 + Math.random()*40)+"px";
-
-    f.style.animationDuration =
-    (15 + Math.random()*20)+"s";
-
-    f.style.animationDelay =
-    (-Math.random()*20)+"s";
-
-    document.body.appendChild(f);
-}
-
-/* swirls */
-
-for(let i=0;i<10;i++){
-
-    const swirl = document.createElement("div");
-
-    swirl.classList.add("swirl");
-
-    const size = 80 + Math.random()*220;
-
-    swirl.style.width = size+"px";
-    swirl.style.height = size+"px";
-
-    swirl.style.left = Math.random()*100+"vw";
-    swirl.style.top = Math.random()*100+"vh";
-
-    swirl.style.animationDuration =
-    (10 + Math.random()*20)+"s";
-
-    document.body.appendChild(swirl);
-}
-
-/* mouse glow */
-
-document.addEventListener("mousemove",(e)=>{
-
-    document.body.style.background = `
-    radial-gradient(circle at ${e.clientX}px ${e.clientY}px,
-    rgba(255,255,255,0.18),
-    transparent 20%),
-
-    radial-gradient(circle at top left,#ffb7dc 0%,transparent 35%),
-    radial-gradient(circle at bottom right,#ffd9ef 0%,transparent 30%),
-    linear-gradient(to bottom,#ff94c9,#ffb3d8)
-    `;
-});
-
-</script>
-
 </body>
 </html>
